@@ -1,0 +1,102 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;border:none;list-style:none;font-family:'Microsoft Yahei';/*color:#333;*/}
+a{text-decoration:none}
+a:hover{color:#00abff;}
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearfloat{zoom:1}
+.clear{ clear:both; height:0; line-height:0; font-size:0;}
+.fl{float:left}
+.fr{float:right}
+.h1557{height:auto;}
+.h1960{min-height:840px;}
+html, body, p,div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, blockquote, pre, form, fieldset, table, th, td, span{padding:0;margin:0;}
+
+body{position:relative}
+
+/* CSS 列表页*/
+
+.listconbox{float:left;width:100%;/*padding-top:56px;*/padding-bottom:30px; background:#f4f4f4;}
+
+.listcon{width:1200px;margin:0 auto; display: table;}
+
+.listleft{width:884px;padding-bottom:60px;  float:left; background:#ffffff;}
+
+.mbxcon{width:800px;  margin:0 auto;display: table;}
+
+.mbxcon .mbx{font-size:14px; padding:30px 0 10px;text-align:left; font-family:SimHei; color:#878787;}
+
+/*.mbxcon .mbx a{color:#878787;}*/
+
+.mbxcon .tit{font-size:38px; color:#00acfe; clear:both; height:60px;}
+
+.mbxcon .tit span{float:left; color:#00acfe; display:block; padding-right:40px; background:url(../images/yuanjiao.jpg) no-repeat right center; }
+
+.pagenews{padding: 0;width:800px;margin:0 auto;clear:both;}
+
+.pagenews ul li{border-bottom:1px solid #eeeeee; padding: 15px 0 10px; width: 800px;}
+
+.pagenews ul li .time{float: left; font-size: 16px; text-align: center; width: 66px;height:56px;padding-top:10px;background:#f3f3f3;color:#a9a9a9;font-weight:500;font-family:SimHei;}
+
+.pagenews ul li .time strong{display: inline-block; font-size: 22px; line-height: 30px; width: 100%;color:#a9a9a9;font-weight:500;}
+
+.pagenews ul li .time-txt{float: right; width: 700px;}
+
+.pagenews ul li .time-txt h3{color: #343434; font-size: 18px; height: 26px;font-family:SimHei;font-weight:400;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+.pagenews ul li .time-txt h3 a{font-weight:100; color: #343434;font-family:SimHei;}
+
+.pagenews ul li .time-txt h3 a:hover{color: #0092ee;text-decoration:underline;}
+
+.pagenews ul li .time-txt p{height: 80px;font-size: 15px;color:#888888;line-height:20px;font-family:SimHei;overflow: hidden;}
+
+.page{clear: both; margin-top: 30px;text-align:center;}
+
+.page a{background:#f2f2f2; color: #828282; display: inline-block; height: 25px; line-height: 25px; margin: 0 1px; text-align: center; width: 26px;}
+
+.page a:hover{background:#f2f2f2; color: #343434;}
+
+.page a.current{background:#00aaff; color: #FFFFFF;}
+
+.listright{width:300px;float:right;padding-bottom:60px; background:#ffffff;}
+
+.hottit{width:228px; margin:0 auto; padding:60px 0 20px 0;}
+
+.tenhot{width:228px; margin:0 auto; clear:both; background: url("../images/tenbg.jpg") no-repeat left top;}
+
+.tenhot li{height:70px;}
+
+.tenhot a{font-family:SimHei; text-align:left; font-size:16px;padding-left:30px; display:block;color:#444;}
+
+.ad{width:228px; margin:0 auto; clear:both; padding-bottom:30px;}
+
+
+/* CSS 内容页*/
+
+.Edit{ padding: 30px 0 0; width:890px; margin:0 auto; clear:both;}
+
+.Edit1{ padding: 30px 0 0; width:760px; margin:0 auto; clear:both;}
+
+.biaoti{padding:0;margin:0; text-align:center; font-size:30px;font-weight:100; color:#261e1b; border-bottom:1px solid #eeeeee; font-family:SimHei; }
+
+.biaoti span{position:relative; height:40px; line-height:40px; font-weight:100;color:#a9a9a9; font-size:15px; display:block;text-align: center;}
+
+.daodu{ padding:20px 0; line-height:24px;color:#333;text-align: justify;font-size: .93em;}
+
+.daodu span{ color:#990202; font-weight:bold;}
+
+.Editneirong{ text-align:justify; line-height:30px;color:#444;word-wrap:break-word;overflow-wrap:break-word;}
+
+.Editneirong p {text-indent: 35px;}
+
+.xgnews{padding-top:60px;}
+
+.xgtit{font-size:30px; height:50px; color:#333333; text-align:left; font-weight:400; border-bottom:3px solid #16d2de;}
+
+.xgtit span{font-size:22px; color:#999999;font-weight:100;padding-left:10px;}
+
+.xgbox{background:#f7f7f7;padding:30px 0;}
+
+.xgbox li{width:690px; margin:0 auto; height:26px;color:#888888;line-height:26px; background: url("../images/listicon.png") no-repeat left center; text-align:right;font-size:16px;}
+
+.xgbox li a{ float:left;padding-left:16px; color:#444444;}
