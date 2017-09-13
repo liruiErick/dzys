@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../layer/skin/default/layer.css">
+    <style>
+        #modelBody tr:hover {
+            background: #FAFAFA;
+        }
+
+        #modelBody tr td {
+            cursor: default;
+        }
+
+        #modelBody tr td.cursor {
+            cursor: pointer;
+        }
+
+        #modelBody tr td.cursor:hover {
+            background: #AFEAFF;
+        }
+
+        th.bg {
+            background: #46CCFC;
+        }
+
+        .form-control.reset {
+            width: 20rem !important;
+        }
+
+        .input-group-addon {
+            width: 8rem;
+            height: 34px !important;
+        }
+
+        .new-model-box {
+            height: 150px;
+        }
+
+        input[type="file"] {
+            position: absolute !important;
+            opacity: 0;
+            z-index: 1000 !important;
+        }
+
+        input[type="text"] {
+            position: absolute !important;
+            z-index: 10 !important;
+        }
+
+        .chk {
+            cursor: pointer;
+        }
+
+        .table-responseive {
+            height: 447px;
+            overflow-y: auto;
+        }
+
+        .btn-box button {
+            margin: 0 5px;
+        }
+
+        .btn-padding {
+            margin: 5px 0;
+        }
+    </style>
+    <script src="../js/modelCheck.js"></script>
+</head>
+<body>
+<div class="center" style="padding: 0 1rem;">
+    <div class="mng_metas">
+        <div class="centop clear">
+            <div class="lastnavwrap">
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:void(0);">模型管理</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="new-model-box">
+                <div class="rows">
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="input-group">
+                            <span class="input-group-addon">分类</span>
+                            <select class="form-control reset" id="modelClass">
+                                <option id="def" value="0" selected>--请选择--</option>
+                                <option value="热点分析">热点分析</option>
+                                <option value="品牌监测">品牌监测</option>
+                                <option value="突发词发现">突发词发现</option>
+                                <option value="技术趋势分析">技术趋势分析</option>
+                                <option value="主题趋势分析">主题趋势分析</option>
+                                <option value="机构地区分析">机构地区分析</option>
+                                <option value="机构影响力分析">机构影响力分析</option>
+                                <option value="作者影响力分析">作者影响力分析</option>
+                                <option value="机构涉及领域分析">机构涉及领域分析</option>
+                                <option value="专家涉及领域分析">专家涉及领域分析</option>
+                                <option value="专家论文专利量化分析">专家论文专利量化分析</option>
+                                <option value="机构论文专利量化分析">机构论文专利量化分析</option>
+                                <option value="关键技术发展水平评估">关键技术发展水平评估</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">模型名称</span>
+                                <input class="form-control reset file-text model-name" placeholder="请输入模型名称"
+                                       id="modelName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">模型版本号</span>
+                                <input class="form-control reset file-text model-ver" placeholder="请输入模型版本号"
+                                       id="modelVersion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rows">
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">jar包</span>
+                                <input type="file" class="form-control reset" id="modelA">
+                                <input class="form-control reset file-text modal-a" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">数据</span>
+                                <input type="file" class="form-control reset" id="modelB">
+                                <input class="form-control reset file-text modal-b" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">执行文件</span>
+                                <input type="file" class="form-control reset" id="modelC">
+                                <input class="form-control reset file-text modal-c" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rows">
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">源代码</span>
+                                <input type="file" class="form-control reset" id="modelD">
+                                <input class="form-control reset file-text modal-d" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">接口文档</span>
+                                <input type="file" class="form-control reset" id="modelE">
+                                <input class="form-control reset file-text modal-e" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">技术文档</span>
+                                <input type="file" class="form-control reset" id="modelF">
+                                <input class="form-control reset file-text modal-f" placeholder="请选择文件">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rows">
+                    <div class="col-sm-8 paddingl10r0">
+                        <div class="subPage padding0">
+                            <div class="input-group">
+                                <span class="input-group-addon">模型描述</span>
+                                <textarea cols="150" rows="3" class="form-control comment file-text" placeholder="请输入模型描述"
+                                          id="modelDetail"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="subPage padding0" style="padding-top:25px;">
+                            <div class="paddingr0">
+                                <button class="btn btn-primary" id="newModel" style="margin-left:40px;">新建模型</button>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="centop clear">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb">
+                            <li><a href="javascript:void(0);">模型列表</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responseive">
+                <table class="table table-hover table-bordered fontSize14" id="meta-table">
+                    <thead>
+                    <tr>
+                        <th>选中修改</th>
+                        <th>分类</th>
+                        <th>名称</th>
+                        <th>版本号</th>
+                        <th>描述</th>
+                        <th>文件夹名称</th>
+                        <th class="bg">jar包</th>
+                        <th class="bg">数据</th>
+                        <th class="bg">执行文件</th>
+                        <th class="bg">源代码</th>
+                        <th class="bg">接口文档</th>
+                        <th class="bg">技术文档</th>
+                        <th>修改时间</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="modelBody"></tbody>
+                </table>
+                <div class="msg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-2.2.4.min.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../layer/layer.js"></script>
+<script src="../js/Common.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/data_upload.js"></script>
+</body>
+</html>

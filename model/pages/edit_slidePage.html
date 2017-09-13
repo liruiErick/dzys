@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>后台管理系统</title>
+    <link rel="icon" href="../image/newlogo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../image/newlogo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+</head>
+<body>
+<div class="center" id="center">
+    <!-- 数据项管理 -->
+    <div class="mng_metas">
+        <div class="centop clear" id="centop">
+            <div class="lastnavwrap">
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;"></a></li>
+                    </ol>
+                </div>
+                <!--<div class="">-->
+
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="content entry">
+            <div class="rows">
+                <div class="col-sm-12 col-sm-offset-2" style="padding: 10px 0;">
+                    <div class="col-sm-4 subPage" style="padding: 0;">
+                        <div class="input-group">
+                            <span class="input-group-addon">标题</span>
+                            <input type="text" class="form-control" placeholder="请输入标题">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 subPage" style="padding: 0;">
+                        <div class="input-group">
+                            <span class="input-group-addon">链接</span>
+                            <input type="text" class="form-control" placeholder="请输入链接">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-sm-offset-2" style="padding: 10px 0;">
+                    <div class="col-sm-8 subPage" style="padding: 0;">
+                        <div class="input-group">
+                            <span class="input-group-addon">摘要</span>
+                            <textarea type="text" class="form-control" rows="2" ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-sm-offset-2" style="padding: 10px 0;">
+                    <div class="col-sm-8 subPage" style="padding: 0;">
+                        <div class="thumbnail" style="padding: 0;text-align: center;">
+                            <h5 style="text-align: center;border-bottom: 1px solid #f1f1f1;padding: 10px 0;background: #f1f1f1;">推荐比例64*64</h5>
+                            <img src="../image/user_m.png" alt="" style="display: inline-block;margin: 10px 0;">
+                            <div class="caption">
+                                <input type="file" value="上传图片"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" style="padding: 10px 0;">
+                    <div class="col-sm-1 pull-right" style="padding: 0;color: white;">
+                        <div class="btn btn-info">确定</div>
+                        <button class="btn btn-danger">取消</button>
+                    </div>
+                </div>
+            </div>
+            <div class="nometa text-center hide">
+                <p>暂无任何数据项</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户管理 -->
+    <div class="mng_users hide">
+        <div class="content">
+            <p class="text-center">管理用户</p>
+            <a href="javascript:;" class="pull-right backhome">返回首页</a>
+            <!-- 查看所有用户 -->
+            <table class="table table-hover table-bordered w90" id="user-table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>是否在线</th>
+                    <th>编辑</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-id="58b0520ce877bfbffcbffaed">
+                    <td>1</td>
+                    <td class="name">测试1</td>
+                    <td>1@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaee">
+                    <td>2</td>
+                    <td class="name">测试2</td>
+                    <td>2@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaef">
+                    <td>3</td>
+                    <td class="name">测试3</td>
+                    <td>3@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520fe877bfbffcbffaf0">
+                    <td>4</td>
+                    <td class="name">测试4</td>
+                    <td>4@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 设置用户权限的模态框 -->
+        <div class="modal fade" id="user_set" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog mt100">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="user_set_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="H2">设置用户权限</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>用户名：<span id="user_set_name"></span></p>
+                            <table class="table table-hover table-bordered w90" id="user_set_table">
+                                <thead>
+                                <tr>
+                                    <th>数据类别</th>
+                                    <th>查看数据项</th>
+                                    <th>修改数据项</th>
+                                    <th>添加数据项</th>
+                                    <th>删除数据项</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-tagno="01">
+                                    <td>园区企业信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="02">
+                                    <td>实验仪器信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="03">
+                                    <td>园区专家库信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="04">
+                                    <td>管委会自由固定资产</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="05">
+                                    <td>园区整体固定资产投资</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="user_set_save">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

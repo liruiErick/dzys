@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css样式-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <link rel="stylesheet" href="../css/Paginate.css">
+    <!--js部分-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+</head>
+<body>
+    <div class="center" id="center">
+        <!-- 数据项管理 -->
+        <div class="mng_metas">
+            <div class="centop clear subPlatcentop" id="centop">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb">
+                            <li><a href="javascript:;">子平台设置</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 paddingTB10LF0 subPlatOperate">
+                <div class="col-sm-4 subPage pull-right padding0">
+                    <button class="btn btn-info insert_meta">追加</button>
+                    <button class="btn btn-success" id="editSubPlat">编辑</button>
+                    <button class="btn btn-primary" id="deleteSubPlat">删除</button>
+                    <button class="btn btn-danger" id="platNews">平台新闻</button>
+                </div>
+            </div>
+            <div class="content entry">
+                <table class="table table-hover table-bordered" id="meta-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>简称</th>
+                            <th>英文名称</th>
+                            <th>主页链接</th>
+                            <th>简介全文链接</th>
+                            <th>图标</th>
+                            <th>平台简介</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subPlatTable"></tbody>
+                </table>
+                <div class="nometa text-center hide" id="nometa">
+                    <p>暂无任何数据项</p>
+                </div>
+                <div class="pull-right" id="pagingid"></div>
+            </div>
+        </div>
+        <!-- 添加子平台的模态框 -->
+        <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">添加子平台</h4>
+                        </div>
+                        <div class="modal-body" id="addSubPlat">
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">名称
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nameAdd"  placeholder="名称"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">简称
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="abbAdd"  placeholder="简称"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">英文名称
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ennameAdd"  placeholder="摘要"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">主要链接
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="homeurlAdd" placeholder="主要链接"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">简介链接
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  id="urlAdd" placeholder="简介链接"/>
+                                </div>
+                            </div>
+                            <div class="form-group imgSelect subPlat">
+                                <label  class="col-sm-2 control-label">图标
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10 textlignLeft">
+                                    <input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/jpg" name="up_img_wu_file_1"  id="up_img_wu_file_1"  onchange="selectImage(this);" class="form-control padding0" multiple="multiple" placeholder="图片"/>
+                                    <span class="upload btn btn-primary uploadImg" id="UploadTwo" onclick="unLoadImg(this);">上传图片</span>
+                                    <div  class="suggectSize">建议70*50(px)</div>
+                                    <div class="imgSetting" style="width: 5.834rem;height: 5.15rem;">
+                                        <img id="imgShow_wu_file_1" id="picAdd" src="" class="prevImg"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">平台简介
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control" rows="4" cols="6"  id="detailsAdd"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-12 control-label text-center">
+                                    <span class="uploadImgTips">上传图片必须点击上传按钮!!</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="meta_save">保存</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 编辑子平台的模态框 -->
+        <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog mt100">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="H1">编辑子平台</h4>
+                        </div>
+                        <div class="modal-body" id="editSubPlatBody"></div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="edit_subPlat">保存</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--存储临时数据-->
+        <input type="text" id="selid" class="hide"/>
+        <input type="text" id="imgPath" class="hide"/>
+        <input type="text" id="hugeImgePath" class="hide"/>
+        <input type="text" id="existsImg" class="hide"/>
+        <!--临时存储选中新闻id-->
+        <input type="text" class="hide" id="set1"/>
+        <input type="text" class="hide" id="set2"/>
+    </div>
+</body>
+<script src="../js/SubPlatList.js"></script>
+<script src="../js/reviewImg.js"></script>
+<script src="../js/unloadImg.js"></script>
+<script src="../js/selectTr.js"></script>
+</html>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!--css部分-->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+	<!--js部分-->
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/index.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/Common.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+</head>
+<body>
+	<div class="center">
+		<!-- 数据项管理 -->
+		<div class="mng_metas">
+			<div class="centop clear">
+				<div class="lastnavwrap">
+					<div class="pull-left">
+						<ol class="breadcrumb">
+							<li><a href="javascript:void (0);">链接管理</a></li>
+						</ol>
+					</div>
+					<div class="edit_btn pull-right">
+						<button type="button" class="mybtn btn btn-primary" id="addLinkUrl">添加链接</button>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<table class="table table-hover table-bordered" id="meta-table">
+					<thead>
+					<tr>
+						<th>链接名称</th>
+						<th>链接</th>
+						<th>图标</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody id="LinkTableBody">
+					</tbody>
+				</table>
+				<div class="nometa text-center hide" id="nometa">
+					<p>暂无友情链接</p>
+				</div>
+			</div>
+
+			<!-- 编辑友情链接的模态框 -->
+			<div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal" role="form" id="add_meta_form">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">编辑链接</h4>
+							</div>
+							<div class="modal-body" id="editbody">
+							</div>
+							<div class="modal-footer">
+								<div class="btn btn-primary" id="meta_save">保存</div>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 添加友情链接的模态框 -->
+			<div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog mt100">
+					<div class="modal-content">
+						<form class="form-horizontal" role="form" id="add_title_form">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabe2">添加链接</h4>
+							</div>
+							<div class="modal-body" id="addbody">
+							</div>
+							<div class="modal-footer">
+								<div class="btn btn-primary" id="rank_save">保存</div>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!--存储临时数据-->
+			<input type="text" id="selid" class="hide"/>
+			<input type="text" id="imgPath" class="hide"/>
+			<input type="text" id="hugeImgePath" class="hide"/>
+			<input type="text" id="existsImg" class="hide"/>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/LinkUrlList.js"></script>
+<script src="../js/reviewImg.js"></script>
+<script src="../js/unloadImg.js"></script>
+</html>
+
+

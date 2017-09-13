@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../layer/skin/default/layer.css">
+    <link rel="stylesheet" href="../css/Paginate.css">
+    <script src="../js/modelCheck.js"></script>
+</head>
+<body>
+<div class="center" id="center" style="padding: 0 1rem;">
+    <div class="mng_metas">
+        <div class="centop clear">
+            <div class="lastnavwrap">
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:void(0);">用户管理</a></li>
+                    </ol>
+                </div>
+                <div class="edit_btn pull-right">
+                    <button type="button" class="mybtn btn btn-primary insert_rank" id="addauthority">创建</button>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <table class="table table-hover table-bordered" id="meta-table">
+                <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>登陆权限</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="authorityTableBody"></tbody>
+            </table>
+            <div class="nometa text-center hide" id="nometa">
+                <p>暂无用户数据</p>
+            </div>
+        </div>
+        <!-- 编辑后台用户的模态框 -->
+        <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">编辑模型管理用户</h4>
+                        </div>
+                        <div class="modal-body" id="editbody">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10 w32 marginl16 paddingl0">
+                                    <input class="form-control" id="EditUser" placeholder="请输入用户名"
+                                           disabled/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">可登陆系统
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10 paddingl0" id="editLimit"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="edit_meta">保存</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 添加后台用户的模态框 -->
+        <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="add_meta_form_rank">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabe2">添加模型管理用户</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10 w32 marginl16 paddingl0">
+                                    <input class="form-control" id="adduser" placeholder="请输入用户名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">可登陆系统
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10 paddingl0" id="addLimit">
+                                    <label class="checkbox-inline marginl16">
+                                        <input type="checkbox" value="flg_fx" id="flg_fx">信息自动分析系统
+                                    </label>
+                                    <label class="checkbox-inline marginl16">
+                                        <input type="checkbox" value="flg_ycl" id="flg_ycl">网络情报预处理系统
+                                    </label>
+                                    <label class="checkbox-inline marginl16">
+                                        <input type="checkbox" value="flag_wj" id="flag_wj">数据挖掘系统
+                                    </label>
+                                    <label class="checkbox-inline marginl16">
+                                        <input type="checkbox" value="flag_rh" id="flag_rh">数据融合系统
+                                    </label>
+                                    <label class="checkbox-inline marginl16">
+                                        <input type="checkbox" value="flag_cs" id="flag_cs">系统与数据测试工具
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="add_meta">保存</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/jquery-2.2.4.min.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
+<script src="../js/jquery.paginate.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jQuery.md5.min.js"></script>
+<script src="../layer/layer.js"></script>
+<script src="../js/Common.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/AuthorityList.js"></script>
+</html>

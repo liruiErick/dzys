@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/upload.js"></script>
+    <style>
+        .zcenter{width:1200px;margin:0 auto;overflow:hidden;}
+        .techNews{position:relative;width:100%;}
+        .column h1{font-weight:bold;font-size:36px;margin-bottom:35px;margin-top:80px}
+        .column h1 a{color:#333}
+        .photonews{width:680px}
+        .photonews div{border:solid 1px #ddd}
+        .photonews1{width:426px;height:402px;}
+        .photonews1 h3{font-size:16px;line-height:48px;margin:0 20px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color: #00abff;}
+        .photonews1 p{font-size:12px;color:#888;line-height:18px;text-align:justify;margin:0 20px;}
+        .photonews2{width:235px;height:190px;margin-bottom:20px}
+        .photonews2 h3{font-size:15px;line-height:36px;padding:0 10px;color:#00abff;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+
+        .book-image-box{position: relative;}
+        .book-image-box a img{-webkit-transition: .3s;transition: .3s;}
+        .book-image-box a:hover img{-webkit-transform: scale(1.02,1.02);transform: scale(1.02,1.02);-webkit-transition: .3s;transition: .3s;}.techNews .textnews{width:428px;height:370px;padding:9px 21px;border:solid 8px #f4f4f4}
+        .techNews .textnews li{background:url(../../images/listicon.png) 15px 18px no-repeat;}
+        .techNews .textnews li h3 a{font-size:17px;}
+        .techNews .textnews li h3{line-height:32px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;color:#00abff}
+        .techNews .textnews li{padding:0 35px;color:#00abff;height:93px;}
+        .techNews .textnews li p{color:#888888;font-size:12px;line-height:18px}
+        .techNews .textnews li:hover{background:#00abff url(../../images/listicon_white.png) 15px 18px no-repeat}
+        .techNews .textnews li:hover h3 a,.techNews .textnews li:hover p,.techNews .textnews li:hover h3 {color:#fff}
+        .techNews .textnews li:hover h3{text-decoration:underline}
+        .prev-book-btn {
+            position: absolute;
+            left: 200px;
+            top:320px;
+        }
+        .next-book-btn {
+            position: absolute;
+            right: 200px;
+            top:320px;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+<div class="techNews column tsbg" style="height:600px;">
+    <div class="zcenter">
+        <h1><a href="Technological/LiteratureService.html?menu=3">图书报告<span class="bookmore"></span></a></h1>
+        <div style="width:1194px; height: 402px; border:3px solid #DDD;overflow: hidden;">
+                <div class="book-image-box fl" style="display: block; width: 1500px; left: -300px;" id="book_id">
+                    <div style="width:300px;float:left;height:400px; text-align:center; border:none;">
+                        <a href="Technological/LiteratureServiceDetail.html?menu=3&amp;pid=595b02b8678ef926b8d50610">
+                            <img src="../../images/book0.jpg" width="240" height="300" style="padding-top:30px;" alt="">
+                            <h6 style="margin: 16px auto;width:220px; overflow:visible;line-height:normal;white-space:normal;">阿萨德</h6>
+                        </a>
+                    </div>
+                <div style="width:300px;float:left;height:400px; text-align:center; border:none;">
+                    <a href="Technological/LiteratureServiceDetail.html?menu=3&amp;pid=595afcd1678ef92084113ad1">
+                        <img src="../../images/book1.jpg" width="240" height="300" style="padding-top:30px;" alt="">
+                        <h6 style="margin: 16px auto;width:220px; overflow:visible;line-height:normal;white-space:normal;">完善中央财政</h6>
+                    </a>
+                </div>
+                <div style="width:300px;float:left;height:400px; text-align:center; border:none;">
+                    <a href="Technological/LiteratureServiceDetail.html?menu=3&amp;pid=594b32ec4bdd50a28551aed2">
+                        <img src="../../images/book2.jpg" width="240" height="300" style="padding-top:30px;" alt="">
+                        <h6 style="margin: 16px auto;width:220px; overflow:visible;line-height:normal;white-space:normal;">半导体照明</h6>
+                    </a>
+                </div>
+                <div style="width:300px;float:left;height:400px; text-align:center; border:none;">
+                    <a href="Technological/LiteratureServiceDetail.html?menu=3&amp;pid=594b2cd74bdd50a285517ac6">
+                        <img src="../../images/book3.jpg" width="240" height="300" style="padding-top:30px;" alt="">
+                        <h6 style="margin: 16px auto;width:220px; overflow:visible;line-height:normal;white-space:normal;">清洁能源</h6>
+                    </a>
+                </div>
+                <div style="width:300px;float:left;height:400px; text-align:center; border:none;">
+                    <a href="Technological/LiteratureServiceDetail.html?menu=3&amp;pid=594b2cd64bdd50a285517ac4">
+                        <img src="../../images/book0.jpg" width="240" height="300" style="padding-top:30px;" alt="">
+                        <h6 style="margin: 16px auto;width:220px; overflow:visible;line-height:normal;white-space:normal;">清洁能源</h6>
+                    </a>
+                </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="control-book-button prev-book-btn">
+            <a class="prev-book-a" href="javascript:void (0)"><img src="../../images/prev_book.png" alt="" class=""></a>
+        </div>
+        <div class="control-book-button next-book-btn">
+            <a class="next-book-a" href="javascript:void (0)"><img src="../../images/next_book.png" alt="" class="gray"></a>
+        </div>
+    </div>
+</body>
+<script>
+    (function () {
+        var com_width=1500;
+        var length=5;
+        if (length > 4) {
+            var left = 0;
+            $('.prev-book-a img').addClass('gray');
+            // var width = $('ul.item').width();
+            // console.log(width);
+            $('.next-book-a').click(function () {
+                left += 300;
+                $('.prev-book-a img').removeClass('gray');
+                if (left <= com_width - 1200) {
+                    $('.book-image-box').animate({left: '-' + left + 'px'}, 'normal');
+                    if (left === com_width - 1200) {
+                        $('.next-book-a img').addClass('gray');
+                    }
+                } else {
+                    left = (length - 4) * 300
+                }
+            });
+            $('.prev-book-a').click(function () {
+                if (left > 0) {
+                    left -= 300;
+                    $('.next-book-a img').removeClass('gray');
+                    $('.book-image-box').animate({left: '-' + left + 'px'}, 'normal')
+                } else {
+                    left = 0
+                }
+                if (left === 0) {
+                    $('.prev-book-a img').addClass('gray');
+                }
+            })
+        }
+    })();
+</script>
+</html>

@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>后台管理系统</title>
+    <link rel="icon" href="../image/newlogo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../image/newlogo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="center" id="center">
+    <!-- 数据项管理 -->
+    <div class="mng_metas">
+        <div class="centop clear" id="centop">
+            <div class="lastnavwrap">
+                <!--								<ul class="lastnav nav-justified nav nav-tabs omit pull-left" role="tablist">
+                                        <li role="presentation" data-tagno="010101" class="active">
+                                            <a href="#" title="企业工商登记信息">企业工商登记信息</a>
+                                        </li>
+                                        <li role="presentation" data-tagno="010102">
+                                            <a href="#" title="税务登记信息">税务登记信息</a>
+                                        </li>
+                                        <li role="presentation" data-tagno="010103">
+                                            <a href="#" title="组织机构代码登记信息">组织机构代码登记信息</a>
+                                        </li>
+                                    </ul>-->
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;">百度词条</a></li>
+                    </ol>
+                </div>
+                <!--<div class="">-->
+
+                <!--</div>-->
+                <form role="form" class="form-inline edit_btn pull-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="searchKeyword" placeholder="请输入词条名">
+                    </div>
+                    <button type="button" class="mybtn btn btn-info" id="searchWord">检索</button>
+                    <button type="button" class="mybtn btn btn-primary insert_meta">添加</button>
+                </form>
+            </div>
+        </div>
+        <div class="content entry">
+            <table class="table table-hover table-bordered" id="meta-table">
+                <thead>
+                <tr>
+                    <th>词条名称</th>
+                    <th>词条释义</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tablebody">
+                </tbody>
+            </table>
+            <div class="nometa text-center hide">
+                <p>暂无任何数据项</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加数据项的模态框 -->
+    <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabe2">添加词条</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">词条名称
+                                <span class="must_sym">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="addwordname" placeholder="请输入词条名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">词条释义
+                                <span class="must_sym">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea  class="form-control" id="addworddes" placeholder="请输入词条释义"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary submit" id="add_meta_save">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑数据项的模态框 -->
+    <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">编辑词条</h4>
+                    </div>
+                    <div class="modal-body" id="editbody">
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">词条名称
+                                <span class="must_sym">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="insertwordname" placeholder="请输入词条名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">词条释义
+                                <span class="must_sym">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea  class="form-control" id="insertworddes" placeholder="请输入词条释义"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary submit" id="insert_meta_save">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 用户管理 -->
+    <div class="mng_users hide">
+        <div class="content">
+            <p class="text-center">管理用户</p>
+            <a href="javascript:;" class="pull-right backhome">返回首页</a>
+            <!-- 查看所有用户 -->
+            <table class="table table-hover table-bordered w90" id="user-table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>是否在线</th>
+                    <th>编辑</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-id="58b0520ce877bfbffcbffaed">
+                    <td>1</td>
+                    <td class="name">测试1</td>
+                    <td>1@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaee">
+                    <td>2</td>
+                    <td class="name">测试2</td>
+                    <td>2@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaef">
+                    <td>3</td>
+                    <td class="name">测试3</td>
+                    <td>3@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520fe877bfbffcbffaf0">
+                    <td>4</td>
+                    <td class="name">测试4</td>
+                    <td>4@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 设置用户权限的模态框 -->
+        <div class="modal fade" id="user_set" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog mt100">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="user_set_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="H2">设置用户权限</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>用户名：<span id="user_set_name"></span></p>
+                            <table class="table table-hover table-bordered w90" id="user_set_table">
+                                <thead>
+                                <tr>
+                                    <th>数据类别</th>
+                                    <th>查看数据项</th>
+                                    <th>修改数据项</th>
+                                    <th>添加数据项</th>
+                                    <th>删除数据项</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-tagno="01">
+                                    <td>园区企业信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="02">
+                                    <td>实验仪器信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="03">
+                                    <td>园区专家库信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="04">
+                                    <td>管委会自由固定资产</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="05">
+                                    <td>园区整体固定资产投资</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="user_set_save">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="footer">
+    <p>欢迎使用后台管理系统 | 意见反馈 | 京ICP证XXXXXX号</p>
+</div>-->
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*检索百科词条数据*/
+        $("#searchWord").click(function () {
+            var surl = LoadUrl() + "axis2/services/MyService/QueryWikiSettingCustom";
+            $.ajax({
+                type: "POST",
+                url: surl,
+                data: {
+                    "keyword":$("#searchKeyword").val()
+                },
+                dataType: "text",
+                /*contentType:"text/xml",*/
+                success: function (result) {
+                    var html = "";
+                    result = loadXML(result);
+                    result = jQuery.parseJSON(result);
+                    $("#tablebody").empty();
+                    $.each(result, function (a, b) {
+                        html +='<tr>'
+                                    +'<td class="title" data-id="'+b._id+'">'+ b.title +'</td>'
+                                    +'<td class="content">'+ b.content + '</td>'
+                                    +'<td class="last" data-chnamespell="qi-ye-ming-cheng(zhong wen)" data-expression="名称" data-objectclass="工商登记信息" data-speciality="名称" data-synonymy="企业中文名"><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>'
+                               +'</tr>';
+                    });
+                    $("#tablebody").html(html);
+                }
+            })
+        });
+        // 模态框：“修改百科词条数据项”
+        $('#meta-table').on('click', '.update', function () {
+            var thisUpdate = $(this);
+            var dataId=$(this).parents("tr").find(".tagno").get(0).dataset.id;
+            var trObj = thisUpdate.parents('tr');
+            $('#insert_rank button.submit').attr("id", "update_meta_save");
+            $('#insert_rank').modal('show');
+            var tdArr = trObj.find("td");
+            var html = '<div class="form-group">'
+                + '<label  class="col-sm-2 control-label">词条名称'
+                +'<span class="must_sym">*</span>'
+                + '</label>'
+                + '<div class="col-sm-10">'
+                + '<input type="text" class="form-control"  data-id="'+dataId+'" id="insertwordname" value="' + tdArr[0].innerText + '"/>'
+                + '</div>'
+                + '</div>'
+                + '<div class="form-group">'
+                + '<label  class="col-sm-2 control-label">词条释义'
+                +'<span class="must_sym">*</span>'
+                + '</label>'
+                + '<div class="col-sm-10">'
+                + '<textarea type="text" class="form-control" id="insertworddes" value="' + tdArr[1].innerText + '">'+tdArr[1].innerText+'</textarea>'
+                + '</div>'
+                + '</div>'
+            $('#editbody').html(html);
+        });
+        /*编辑百科词条数据*/
+        $("#insert_meta_save").on('click',function() {
+            var tag=true;
+            var count=0;
+            $('#insert_rank .must_sym').each(function() {
+                var $input = $(this).parents('.form-group').find('input');
+                if ($input.val() == '') {
+                    layer.msg('您有未填写的必选项');
+                    tag = false;
+                    return;
+                }
+                count++;
+                if(tag&&count==$("#insert_rank .must_sym").length){
+                    var surl = LoadUrl() + "axis2/services/MyService/EditWikiSettingCustom";
+                    $.ajax({
+                        type: "POST",
+                        url: surl,
+                        data: {
+                            "id":$("#insertwordname").get(0).dataset.id,
+                            "title":$("#insertwordname").val(),
+                            "content":$("#insertworddes").val()
+                        },
+                        dataType: "text",
+                        /*contentType:"text/xml",*/
+                        success: function (result) {
+                            layer.msg("编辑百科词条成功",{time:1500});
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        });
+        /*添加百科词条数据*/
+        $("#add_meta_save").on('click',function() {
+            var tag=true;
+            var count=0;
+            $('#insert_meta .must_sym').each(function() {
+                var $input = $(this).parents('.form-group').find('input');
+                if ($input.val() == '') {
+                    layer.msg('您有未填写的必选项');
+                    tag = false;
+                    return false;
+                }
+                count++;
+                if(tag&&count==$("#insert_meta .must_sym").length){
+                    var surl = LoadUrl() + "axis2/services/MyService/AddWikiSettingCustom";
+                    $.ajax({
+                        type: "POST",
+                        url: surl,
+                        data: {
+                            "title":$("#addwordname").val(),
+                            "content":$("#addworddes").val()
+                        },
+                        dataType: "text",
+                        /*contentType:"text/xml",*/
+                        success: function (result) {
+                            layer.msg("添加百科词条成功",{time:1500});
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        });
+        /*删除百科词条数据*/
+        $("#tablebody").on('click', '.delete', function() {
+            var id=$(this).parent("td").siblings(".tagno").attr("data-id");
+            var surl = LoadUrl() + "axis2/services/MyService/DeleteWikiSettingCustom";
+            $.ajax({
+                type: "POST",
+                url: surl,
+                data: {
+                    "id":id
+                },
+                dataType: "text",
+                /*contentType:"text/xml",*/
+                success: function (result) {
+                    layer.msg("删除百科词条成功",{time:1500});
+                    window.location.reload();
+                }
+            });
+        });
+    })
+</script>
+</html>
+

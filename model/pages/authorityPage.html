@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css部分-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <link rel="stylesheet" href="../css/Paginate.css">
+    <!--js部分-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/jquery.paginate.js"></script>
+    <script src="../js/jQuery.md5.js"></script>
+</head>
+<body>
+    <div class="center" id="center">
+        <div class="mng_metas">
+            <div class="centop clear">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb">
+                            <li><a href="javascript:;">权限管理</a></li>
+                        </ol>
+                    </div>
+                    <div class="edit_btn pull-right">
+                        <button type="button" class="mybtn btn btn-primary insert_rank" id="addauthority">创建</button>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <table class="table table-hover table-bordered" id="meta-table">
+                    <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>级别</th>
+                        <th>审核权限</th>
+                        <th>编辑权限</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="authorityTableBody">
+                    </tbody>
+                </table>
+                <div class="nometa text-center hide" id="nometa">
+                    <p>暂无用户权限数据</p>
+                </div>
+            </div>
+            <!-- 编辑后台用户的模态框 -->
+            <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form class="form-horizontal" role="form">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">编辑后台用户</h4>
+                            </div>
+                            <div class="modal-body" id="editbody">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">用户名
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10 w32 marginl16 paddingl0">
+                                        <input type="text" class="form-control" id="EditUser"  placeholder="请输入用户名" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">级别
+                                        <span class="must_sel">*</span>
+                                    </label>
+                                    <div class="col-sm-10 w32 marginl16 paddingl0">
+                                        <select class="form-control dpi" id="EditRank" onchange="changeStatus(this.options[this.options.selectedIndex].value,this);">
+                                            <option value="普通管理员" data-repeat="0">普通管理员</option>
+                                            <option value="高级管理员" data-repeat="0">高级管理员</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">编辑权限
+                                        <span class="must_sel">*</span>
+                                    </label>
+                                    <div class="col-sm-10 paddingl0" id="editLimit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn btn-primary" id="edit_meta">保存</div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- 添加后台用户的模态框 -->
+            <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form class="form-horizontal" role="form" id="add_meta_form_rank">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabe2">添加后台用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">用户名
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10 w32 marginl16 paddingl0">
+                                        <input type="text" class="form-control" id="adduser"  placeholder="请输入用户名"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">级别
+                                        <span class="must_sel">*</span>
+                                    </label>
+                                    <div class="col-sm-10 w32 marginl16 paddingl0">
+                                        <select class="form-control dpi" id="addrank" onchange="changeStatus(this.options[this.options.selectedIndex].value,this);">
+                                            <option value="普通管理员" data-repeat="0">普通管理员</option>
+                                            <option value="高级管理员" data-repeat="0">高级管理员</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">编辑权限
+                                        <span class="must_sel">*</span>
+                                    </label>
+                                    <div class="col-sm-10 paddingl0" id="addLimit">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn btn-primary" id="add_meta">保存</div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--存储临时数据-->
+            <input type="text" id="selid" class="hide"/>
+            <input type="text" id="allLimitAdd"  value="1" class="hide"/>
+            <input type="text" id="allLimitEdit"  value="1" class="hide"/>
+            <input type="text" id="changeAllLimitAdd"  value="1" class="hide"/>
+            <input type="text" id="changeAllLimitEdit"  value="1" class="hide"/>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/AuthorityList.js"></script>
+<script src="../js/Authority.js"></script>
+</html>

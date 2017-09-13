@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css部分-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <link rel="stylesheet" href="../css/Paginate.css">
+    <!--js部分-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/jquery.paginate.js"></script>
+</head>
+<body>
+    <div class="center" id="center">
+        <div class="mng_metas">
+            <div class="centop clear slideCentop" id="centop">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb">
+                            <li><a href="javascript:;">幻灯片管理</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content entry">
+                <div id="setSlideContent">
+                    <div class="row unSlideTab padding0">
+                        <div class="content paddingl0">
+                            <ol class="breadcrumb">
+                                <li><a href="javascript:;">幻灯片管理</a></li>
+                                <li><a href="javascript:;">幻灯片设定</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active" data-id="1">
+                                    <a href="#allSearch" data-toggle="tab" class="fontSize14">
+                                        全局查找
+                                    </a>
+                                </li>
+                                <li data-id="2"><a class="fontSize14" href="#IDSearch" data-toggle="tab">ID查找</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content overflowHidden marginT6B6">
+                                <div class="tab-pane fade in active" id="allSearch">
+                                    <div class="col-sm-2 subPage paddingl0">
+                                        <div class="input-group submenu">
+                                            <span class="input-group-addon">子菜单</span>
+                                            <div class="input-group">
+                                                <select class="form-control w32 dpi" id="searchSubmenu">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 subPage padding0 paddingl16">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">关键字</span>
+                                            <input type="text" class="form-control" placeholder="请输入关键字" id="searchKeyword"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="IDSearch">
+                                    <div class="col-sm-2 subPage paddingl0">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">ID检索</span>
+                                            <input type="text" class="form-control" placeholder="新闻ID" id="IndexId"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 subPage pull-right padding0">
+                                    <button class="btn btn-info pull-right" id="setSlide">幻灯片设置</button>
+                                    <button class="btn btn-primary pull-right marginr4" id="search">检索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="slidetableWrap" class="PageingMinHeight">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th>索引ID</th>
+                                <th>标题</th>
+                                <th>子菜单</th>
+                            </tr>
+                            </thead>
+                            <tbody id="Unslide">
+                            <tr class="hide">
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="nometa text-center hide" id="unslidenometa">
+                            <p>暂无任何数据项</p>
+                        </div>
+                    </div>
+                    <div class="PagingCommon PagingUnSlideWrap">
+                        <div id="pagingidUnSlide">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="cancelSlideContent" class="marginT64">
+                    <div class="row">
+                        <div class="col-sm-12 paddingTB10LF0 marginT6">
+                            <div class="col-sm-4">
+                                <div class="pull-left">
+                                    <ol class="breadcrumb">
+                                        <li><a href="javascript:;">幻灯片管理</a></li>
+                                        <li><a href="javascript:;">幻灯片列表</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 subPage pull-right padding0 marginr15">
+                                <button class="btn btn-danger pull-right" id="cancelSlide">取消幻灯片</button>
+                                <div class="btn btn-info pull-right marginr4" id="editSlide">编辑</div>
+                                <div class="btn btn-primary pull-right marginr4" id="AddSlide">追加</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="unslidetableWrap" style="height:282px!important;">
+                        <table class="table table-hover table-bordered" >
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>摘要</th>
+                                <th>图片</th>
+                                <th>链接</th>
+                            </tr>
+                            </thead>
+                            <tbody id="Slide">
+                            </tbody>
+                        </table>
+                        <div class="nometa text-center hide" id="slidenometa">
+                            <p>暂无任何数据项</p>
+                        </div>
+                    </div>
+                    <div class="PagingCommon PagingSlideWrap">
+                        <div id="pagingidSlide">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 编辑幻灯片的模态框 -->
+        <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="add_meta_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel" style="text-align: center">编辑幻灯片</h4>
+                        </div>
+                        <div class="modal-body" id="editSlidebody">
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="edit_meta_save">保存</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--临时存储选中新闻id-->
+        <input type="text" class="hide" id="set1"/>
+        <input type="text" class="hide" id="set2"/>
+        <!--存储临时数据-->
+        <input type="text" id="selid" class="hide"/>
+        <input type="text" id="imgPath" class="hide"/>
+        <input type="text" id="hugeImgePath" class="hide"/>
+        <input type="text" id="SticktopFlag" class="hide"/>
+        <input type="text" id="existsImg" class="hide"/>
+    </div>
+</body>
+<script type="text/javascript" src="../js/SlideList.js"></script>
+<script src="../js/reviewImg.js"></script>
+<script src="../js/unloadImg.js"></script>
+<script src="../js/selectTr.js"></script>
+</html>

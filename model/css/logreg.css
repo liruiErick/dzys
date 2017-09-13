@@ -1,0 +1,179 @@
+html,body{
+    margin:0;
+    padding:0;
+    height: 100%;
+    font-size: 15px;
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+a:hover, a:focus{
+    text-decoration: none;
+}
+.clear{
+    clear: both;
+}
+.hide{
+    display: none;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mt40{
+    margin-top: 40px;
+}
+.mt46{
+    margin-top: 46px;
+}
+.pt30{
+    padding-top: 30px;
+}
+.plr30{
+    padding: 0 30px;
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    background: url(../image/bg_anan.jpg) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+.bgout {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.main{
+    position: absolute;
+    height:100%;
+    width:100%;
+}
+.box{
+    position: absolute;
+    width: 430px;
+    height: 440px;
+    top:50%;
+    left: 50%;
+    margin-top:-220px;
+    margin-left:-200px;
+    background: #F9F9F9;
+    border-radius: 3px;
+    padding:30px;
+    padding-top: 10px;
+    opacity: 0.6;
+    border-radius: 3%;
+}
+form{
+    display: none;
+}
+.form-title{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+}
+.register .form-title{
+    margin-top: 10px;
+}
+.form-title h3 {
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    background-color: #fff;
+    color: #666;
+    font-weight: 400;
+    z-index: 1;
+    margin-bottom: 0px;
+    font-family: "宋体";
+    font-size: 36px;
+}
+.form-group.mb25{
+    margin-bottom: 25px;
+}
+/*.login .form-group {*/
+/*margin-bottom: 30px;*/
+/*}*/
+.login .form-group.mb50{
+    margin-bottom: 50px;
+}
+.register .form-group.mb15{
+    margin-bottom: 15px;
+}
+.register .form-group.mb35{
+    margin-bottom: 35px;
+}
+.form-group.pt10{
+    padding-top: 10px;
+}
+.form-group.pt30{
+    padding-top: 30px;
+}
+.form-group input{
+    height:40px;
+    padding-left: 75px;
+}
+.form-group{
+    position: relative;
+}
+.form-group span{
+    position: absolute;
+    left: 14px;
+    top: 9px;
+}
+.register .form-group{
+    margin-bottom: 20px;
+}
+.register .form-group input{
+    padding-left: 95px;
+    height:35px;
+}
+.register .form-group span{
+    top: 7px;
+}
+.btn-primary{
+    height: 40px;
+    background: #007acf;
+    border:0px;
+}
+.btn-primary:hover{
+    background: #158EE5;
+    border:0px;
+}
+.btn-primary a{
+    color:#fff;
+    display: inline-block;
+    height: 100%;
+    width:100%;
+    line-height: 30px;
+}
+.btn-primary a:hover{
+    color:#fff;
+}
+
+.btn, .form-control{
+    font-size: 15px;
+}
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.modal-open .fade.in{
+    background: rgba(0,0,0,0.5);
+    filter:alpha(0.5);
+}
+.user{
+    font-family: "宋体", "Microsoft Yahei";
+}
+#login span,#reg_btn span{
+    position: absolute;
+    left: 50%;
+    top:10px;
+    margin-left: -15px;
+}
+@media (min-width:768px){.form-horizontal .control-label {padding-left: 15px;}}
+@media (min-width:768px){.form-horizontal .form-group-lg .control-label{padding-left: 15px;}}
+@media (min-width:768px){.form-horizontal .form-group-sm .control-label{padding-left: 15px;}}

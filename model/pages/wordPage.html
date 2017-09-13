@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css部分-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <!--js部分-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+</head>
+<body>
+   <div class="center" id="center">
+      <div class="mng_metas">
+            <div class="centop clear" id="centop">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb">
+                            <li><a href="javascript:;">词条内容设定</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content entry">
+                <div id="wordManger">
+                    <div class="leftPart">
+                        <form role="form" class="form-inline marginB16">
+                            <div class="form-group pull-right">
+                                <input type="text" class="form-control paddingl32" id="InterNationalName" placeholder="请输入词条名"/>
+                                <button class="btn btn-primary" type="button" id="InterNationalWordAdd">添加</button>
+                            </div>
+                            <div class="wordHeader">
+                                <ol class="breadcrumb">
+                                    <li class="btn btn-default"><a href="javascript:;">国内词条</a></li>
+                                </ol>
+                            </div>
+                        </form>
+                        <table class="table table-hover table-bordered meta-table">
+                            <thead>
+                            <tr>
+                                <th>词条名称</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="InterNationalWordList">
+                            </tbody>
+                        </table>
+                        <div class="nometa text-center hide" id="nometaInter">
+                            <p>暂无国内词条数据</p>
+                        </div>
+                    </div>
+                    <div class="rightPart">
+                        <form role="form" class="form-inline marginB16">
+                            <div class="form-group pull-right">
+                                <input type="text" class="form-control paddingl32" id="NationalName" placeholder="请输入词条名"/>
+                                <button class="btn btn-primary" type="button" id="NationalWordAdd">添加</button>
+                            </div>
+                            <div class="wordHeader">
+                                <ol class="breadcrumb">
+                                    <li class="btn btn-default"><a href="javascript:;">国际词条</a></li>
+                                </ol>
+                            </div>
+                        </form>
+                        <table class="table table-hover table-bordered meta-table">
+                            <thead>
+                            <tr>
+                                <th>词条名称</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="NationalWordList">
+                            </tbody>
+                        </table>
+                        <div class="nometa text-center hide" id="nometa">
+                            <p>暂无国际词条数据</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</body>
+<script type="text/javascript" src="../js/WordList.js"></script>
+</html>

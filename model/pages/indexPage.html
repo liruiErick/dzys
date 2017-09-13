@@ -1,0 +1,595 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css样式-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <!--js-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+</head>
+<body>
+<div class="center" id="center">
+    <!-- 数据项管理 -->
+    <div class="mng_metas">
+        <div class="centop clear" id="centop">
+            <div class="lastnavwrap">
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="indexPage.html">首页</a></li>
+                    </ol>
+                </div>
+                <div class="edit_btn pull-right">
+                    <button type="button" class="insert_meta mybtn btn btn-primary">添加数据项</button>
+                    <button type="button" class="insert_rank mybtn btn btn-info">数据类别</button>
+                    <button type="button" class="manage_users mybtn btn">管理用户</button>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="content">
+            <table class="table table-hover table-bordered" id="meta-table">
+                <thead>
+                <tr>
+                    <th>内部标识符</th>
+                    <th>中文名称</th>
+                    <th>英文名称</th>
+                    <th>定义</th>
+                    <th>数据类型</th>
+                    <th>数据格式</th>
+                    <th>值域</th>
+                    <th>关系</th>
+                    <th>计量单位</th>
+                    <th>备注</th>
+                    <th>编辑</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-tagno="010101001">
+                    <td class="tagno">010101001</td>
+                    <td class="chname">企业名称（中文）</td>
+                    <td class="enname">Chinese name of company</td>
+                    <td class="definition" title="一个企业的中文名称，该名称须经登记机关或批准机关所核准。">一个企业的中文名称...</td>
+                    <td class="type">字符型</td>
+                    <td class="format">c..50</td>
+                    <td class="range"></td>
+                    <td class="relation"></td>
+                    <td class="measureunit"></td>
+                    <td class="note" title=" 必须是企业的全称。"> 必须是企业...</td>
+                    <td class="last" data-chnamespell="qi-ye-ming-cheng(zhong wen)" data-expression="名称"
+                        data-objectclass="工商登记信息" data-speciality="名称" data-synonymy="企业中文名"><span class="update"><a
+                            href="javascript:void (0);"></a></span><span class="delete"><a href="javascript:void (0);"></a></span></td>
+                </tr>
+                <tr data-tagno="010101002">
+                    <td class="tagno">010101002</td>
+                    <td class="chname">企业名称（英文）</td>
+                    <td class="enname">English name of company</td>
+                    <td class="definition" title="一个企业的英文名称，该名称须经登记机关或批准机关所核准。">一个企业的英文名称...</td>
+                    <td class="type">字符型</td>
+                    <td class="format">c..100</td>
+                    <td class="range"></td>
+                    <td class="relation"></td>
+                    <td class="measureunit"></td>
+                    <td class="note" title=" 必须是企业的全称。"> 必须是企业...</td>
+                    <td class="last" data-chnamespell="qi-ye-ming-cheng(ying-wen)" data-expression="名称"
+                        data-objectclass="工商登记信息" data-speciality="名称" data-synonymy="企业英文名"><span class="update"><a
+                            href="javascript:void (0);"></a></span><span class="delete"><a href="javascript:void (0);"></a></span></td>
+                </tr>
+                <tr data-tagno="010101003">
+                    <td class="tagno">010101003</td>
+                    <td class="chname">营业执照注册号</td>
+                    <td class="enname">business license registration number</td>
+                    <td class="definition" title="企业营业执照上唯一标识企业的代码。">企业营业执照上唯一...</td>
+                    <td class="type">字符型</td>
+                    <td class="format">c..30</td>
+                    <td class="range"></td>
+                    <td class="relation"></td>
+                    <td class="measureunit"></td>
+                    <td class="note" title=""></td>
+                    <td class="last" data-chnamespell="ying-ye-zhi-zhao-zhu-ce-hao" data-expression="代码"
+                        data-objectclass="工商登记信息" data-speciality="名称" data-synonymy="企业注册号"><span class="update"><a
+                            href="javascript:void (0);"></a></span><span class="delete"><a href="javascript:void (0);"></a></span></td>
+                </tr>
+                <tr data-tagno="010101004">
+                    <td class="tagno">010101004</td>
+                    <td class="chname">登记机关</td>
+                    <td class="enname">registration authority</td>
+                    <td class="definition" title="企业所属地区的工商行政管理局。">企业所属地区的工商...</td>
+                    <td class="type">字符型</td>
+                    <td class="format">c..100</td>
+                    <td class="range"></td>
+                    <td class="relation"></td>
+                    <td class="measureunit"></td>
+                    <td class="note" title=""></td>
+                    <td class="last" data-chnamespell="deng-ji-ji-guan" data-expression="名称" data-objectclass="工商登记信息"
+                        data-speciality="名称" data-synonymy=""><span class="update"><a
+                            href="javascript:void (0);"></a></span><span class="delete"><a href="javascript:void (0);"></a></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="nometa text-center hide">
+                <p>暂无任何数据项</p>
+            </div>
+        </div>
+
+        <!-- 添加数据项的模态框 -->
+        <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="add_meta_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">添加数据项</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="chname" class="col-sm-2 control-label">所在类别
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control w32 dpi" id="first">
+                                        <option value="01" data-repeat="0">园区企业信息</option>
+                                        <option value="02" data-repeat="0">园区实验仪器设备</option>
+                                        <option value="03" data-repeat="0">园区专家库信息</option>
+                                        <option value="04" data-repeat="0">管委会自由固定资产</option>
+                                        <option value="05" data-repeat="0">高教园区整体固定资产投资</option>
+                                    </select>
+                                    <select class="form-control w32 dpi" id="second">
+                                        <option value="0101" data-repeat="0">基本信息</option>
+                                        <option value="0102" data-repeat="0">经营管理信息</option>
+                                        <option value="0103" data-repeat="0">提示信息</option>
+                                    </select>
+                                    <select class="form-control w345 dpi pull-right" id="third">
+                                        <option value="010101" data-repeat="0">企业工商登记信息</option>
+                                        <option value="010102" data-repeat="0">税务登记信息</option>
+                                        <option value="010103" data-repeat="0">组织机构代码登记信息</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chname" class="col-sm-2 control-label">中文名称
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="chname" placeholder="数据项的中文名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tagno" class="col-sm-2 control-label">内部标识符</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tagno" placeholder="数据项的编号" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="enname" class="col-sm-2 control-label">英文名称
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="enname" placeholder="数据项的英文名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chnamespell" class="col-sm-2 control-label">中文全拼
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="chnamespell"
+                                           placeholder="数据项的中文全拼，拼音之间用“-”隔开">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="definition" class="col-sm-2 control-label">定义
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="definition" placeholder="数据项的定义">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="objectclass" class="col-sm-2 control-label">对象类词
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="objectclass" placeholder="数据项所属的对象类词">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">特性词
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="speciality" placeholder="数据项中文名称中的特性词">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="expression" class="col-sm-2 control-label">表示词
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select id="expression" class="form-control">
+                                        <option>名称</option>
+                                        <option>数字代码</option>
+                                        <option>字母代码</option>
+                                        <option>代码</option>
+                                        <option>号码</option>
+                                        <option>日期</option>
+                                        <option>描述</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="col-sm-2 control-label">数据类型
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10" id="type">
+                                    <label class="mr80">
+                                        <input type="radio" name="type" data-value="字符型" checked> 字符型
+                                    </label>
+                                    <label class="mr80">
+                                        <input type="radio" name="type" data-value="数字型"> 数字型
+                                    </label>
+                                    <label class="mr80">
+                                        <input type="radio" name="type" data-value="日期型"> 日期型
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="type" data-value="二进制"> 二进制
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">数据格式
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="normal">
+                                        <select class="form-control w45 dpi mrp10" id="format1">
+                                            <option value="..">变长</option>
+                                            <option value="">定长</option>
+                                        </select>
+                                        <input type="text" class="form-control w50 dpi pull-right" id="format2"
+                                               placeholder="请输入数据的长度限制">
+                                    </div>
+                                    <div class="date hide">
+                                        <label class="mr80">
+                                            <input type="radio" name="format" data-value="YYYYMMDD" checked> YYYYMMDD
+                                        </label>
+                                        <label class="mr80">
+                                            <input type="radio" name="format" data-value="YYYY"> YYYY
+                                        </label>
+                                        <label class="mr80">
+                                            <input type="radio" name="format" data-value="MM"> MM
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="format" data-value="DD"> DD
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="must" class="col-sm-2 control-label">必选性质
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10" id="must">
+                                    <label class="mr100">
+                                        <input type="radio" name="must" data-value="1" checked> 必选项
+                                    </label>
+                                    <label class="mr100">
+                                        <input type="radio" name="must" data-value="0"> 非必选项
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeat" class="col-sm-2 control-label">重复性质
+                                    <span class="must_sel">*</span>
+                                </label>
+                                <div class="col-sm-10" id="repeat">
+                                    <label class="mr100">
+                                        <input type="radio" name="repeat" data-value="0" checked> 不重复
+                                    </label>
+                                    <label class="mr100">
+                                        <input type="radio" name="repeat" data-value="1"> 自身重复
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="repeat" data-value="2"> 父级重复
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="range" class="col-sm-2 control-label">值域</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control dpi" id="range"
+                                           placeholder="多个值域之间请用英文逗号 “ , ” 分隔">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="synonymy" class="col-sm-2 control-label">同义名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="synonymy" placeholder="数据项的其他相似名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="relation" class="col-sm-2 control-label">关系</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="relation" placeholder="该数据项和其他数据项的关系">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="measureunit" class="col-sm-2 control-label">计量单位</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="measureunit" placeholder="计量单位">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="note" class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="note" placeholder="备注">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary submit" id="insert_meta_save">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 添加数据类别的模态框 -->
+        <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog mt100">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="add_title_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="H1">添加数据类别</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="expression" class="col-sm-2 control-label">添加级别</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="addtype">
+                                        <option value="1">一级数据类别</option>
+                                        <option value="2">二级数据类别</option>
+                                        <option value="3">三级数据类别</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group add3 ranks hide">
+                                <label for="expression" class="col-sm-2 control-label">所属类别</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control w45 dpi" id="rank_first">
+                                        <option value="01">园区企业信息</option>
+                                        <option value="02">园区实验仪器设备</option>
+                                        <option value="03">园区专家库信息</option>
+                                        <option value="04">管委会自由固定资产</option>
+                                        <option value="05">高教园区整体固定资产投资</option>
+                                    </select>
+                                    <select class="form-control w45 dpi pull-right" id="rank_second">
+                                        <option value="0101">基本信息</option>
+                                        <option value="0102">经营管理信息</option>
+                                        <option value="0103">提示信息</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="note" class="col-sm-2 control-label">类别名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="rank_title" placeholder="请输入长度小于10的名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeat" class="col-sm-2 control-label">是否重复</label>
+                                <div class="col-sm-10 mt6" id="rank_repeat">
+										<span class="mr100">
+										<input type="radio" name="repeat" data-value="0" checked>
+										不重复
+									</span>
+                                    <span class="mr100">
+										<input type="radio" name="repeat" data-value="1">
+										重复
+									</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" id="rank_save">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 用户管理 -->
+    <div class="mng_users hide">
+        <div class="content" style="padding-top:0;">
+            <div class="lastnavwrap">
+                <div class="pull-left">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;">管理用户</a></li>
+                    </ol>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="backhome btn btn-primary"
+                            style="text-decoration:none;margin-right:0;margin-top:0;">返回首页
+                    </button>
+                </div>
+            </div>
+            <!-- 查看所有用户 -->
+            <table class="table table-hover table-bordered" id="user-table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>是否在线</th>
+                    <th>编辑</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-id="58b0520ce877bfbffcbffaed">
+                    <td>1</td>
+                    <td class="name">测试1</td>
+                    <td>1@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a
+                            href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaee">
+                    <td>2</td>
+                    <td class="name">测试2</td>
+                    <td>2@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a
+                            href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520de877bfbffcbffaef">
+                    <td>3</td>
+                    <td class="name">测试3</td>
+                    <td>3@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a
+                            href="javascript:;"></a></span></td>
+                </tr>
+                <tr data-id="58b0520fe877bfbffcbffaf0">
+                    <td>4</td>
+                    <td class="name">测试4</td>
+                    <td>4@qq.com</td>
+                    <td>在线</td>
+                    <td><span class="update"><a href="javascript:;"></a></span><span class="delete"><a
+                            href="javascript:;"></a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 设置用户权限的模态框 -->
+        <div class="modal fade" id="user_set" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog mt100">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="user_set_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="H2">设置用户权限</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名
+                                    <span class="must_sym">*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="user_set_name" placeholder="请输入用户名"/>
+                                </div>
+                            </div>
+                            <table class="table table-hover table-bordered w90" id="user_set_table">
+                                <thead>
+                                <tr>
+                                    <th>数据类别</th>
+                                    <th>查看数据项</th>
+                                    <th>修改数据项</th>
+                                    <th>添加数据项</th>
+                                    <th>删除数据项</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-tagno="01">
+                                    <td>园区企业信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="02">
+                                    <td>实验仪器信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="03">
+                                    <td>园区专家库信息</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="04">
+                                    <td>管委会自由固定资产</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                <tr data-tagno="05">
+                                    <td>园区整体固定资产投资</td>
+                                    <td>
+                                        <input type="checkbox" class="select" checked="checked">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="update">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="insert">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" class="delete">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="user_set_save">保存
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

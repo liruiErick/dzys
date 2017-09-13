@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理系统</title>
+    <!--<link rel="icon" href="image/newlogo.ico" type="image/x-icon"/>-->
+    <link rel="shortcut icon" href="image/newlogo.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="layer/skin/default/layer.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/Common.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        function setRem() {
+            var scale = 100 / 1920;
+            var w = window.innerWidth||1920;
+            var rem = w * scale;
+            $('html').css('font-size', rem + 'px');
+            $(window).height()==950?$("#mainframe").height($(window).height()/rem-1.3+"rem"):$("#mainframe").height($(window).height()/rem-1.4+"rem");
+        }
+
+        if (sessionStorage.getItem("loginName")) {
+            $.ajax({
+                type: 'POST',
+                url: LoadUrl() + 'axis2/services/MyService/checkUserValidCustom',
+                data: {
+                    'user': sessionStorage.getItem("loginName"),
+                    'guid': sessionStorage.getItem("guid")
+                },
+                dataType: 'text',
+                success: function (res) {
+                    res = JSON.parse(loadXML(res));
+                    if (res) {
+                        setRem()
+                    } else {
+                        window.location.href = "logreg.html";
+                    }
+                }
+            });
+        } else {
+            window.location.href = "logreg.html";
+        }
+    </script>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="top">
+        <div class="logo pull-left">
+            <img src="image/newlogo_w.png">
+            <span class="logo-txt">后台管理系统</span>
+            <span class="glyphicon glyphicon-list pull-right close_menu"></span>
+        </div>
+        <div class="info">
+            <div class="user pull-right">
+                <img src="image/user_m.png">您好,<span id="user_name"></span>
+                <span id="user_identify"></span>|<a href="javascript:void (0);" class="logout" id="logout">
+                <span class="glyphicon glyphicon-off"></span></a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="main pull-left openMenu" id="main">
+        <div class="nvg pull-left">
+            <ul class="firnav">
+                <li class="active" id="baseSet">
+                    <p class="before"><span class="glyphicon glyphicon-asterisk icon"></span><a href="javascript:void (0)">基础设置</a></p>
+                    <ul class="secnav">
+                        <li data-tagno="pages/menuPage.html" class="active sactive"><a href="javascript:void (0)">菜单管理</a></li>
+                        <li data-tagno="pages/areaPage.html" class="active"><a href="javascript:void (0)">领域管理</a></li>
+                        <li data-tagno="pages/linkUrlPage.html" class="active"><a href="javascript:void (0)">友情链接</a></li>
+                        <li data-tagno="pages/emailPage.html" class="active"><a href="javascript:void (0)">邮箱设置</a></li>
+                        <li data-tagno="pages/blackwhitePage.html" class="active"><a href="javascript:void (0)">黑名单</a></li>
+                        <li data-tagno="pages/advertisePage.html" class="active"><a href="javascript:void (0)">广告设置</a></li>
+                        <li data-tagno="pages/indexNumberPage.html" class="active"><a href="javascript:void (0)">指数类型</a></li>
+                        <li data-tagno="pages/wordPage.html" class="active"><a href="javascript:void (0)">词条管理</a></li>
+                    </ul>
+                </li>
+                <li id="securityMan">
+                    <p class="before"><span class="glyphicon glyphicon-wrench icon"></span><a href="javascript:void (0)">安全管理</a></p>
+                    <ul class="secnav">
+                        <li data-tagno="pages/authorityPage.html" class="active"><a href="javascript:void (0)">权限管理</a></li>
+                        <li data-tagno="pages/logPage.html" class="active"><a href="javascript:void (0)">log查看</a></li>
+                    </ul>
+                </li>
+                <li id="InterNetEdit">
+                    <p class="before"><span class="glyphicon glyphicon-pencil icon"></span><a href="javascript:void (0)">网站编辑</a></p>
+                    <ul class="secnav">
+                        <li data-tagno="pages/newsPage.html" class="active"><a href="javascript:void (0)">新闻管理</a></li>
+                        <li data-tagno="pages/slidePage.html" class="active"><a href="javascript:void (0)">幻灯片管理</a></li>
+                        <li data-tagno="pages/stickPage.html" class="active"><a href="javascript:void (0)">置顶管理</a></li>
+                        <li data-tagno="pages/subPlatPage.html" class="active"><a href="javascript:void (0)">子平台管理</a></li>
+                        <!--<li data-tagno="pages/BrandObserver.html" class="active"><a href="javascript:void (0)">品牌检测</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="wrapIframe">
+            <iframe id="mainframe" src="pages/menuPage.html" scrolling="auto"></iframe>
+        </div>
+        <div class="footers">
+            <p>欢迎使用后台管理系统 | 意见反馈 | 京ICP证XXXXXX号</p>
+        </div>
+        <div class="scrollTop hide" id="scrollTop">顶部</div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/IndexList.js"></script>
+<script>
+    var tree = document.getElementsByClassName("active");
+    for (var i = 0; i < tree.length; i++) {
+        (function (a) {
+            tree[a].onclick = function () {
+                var url = this.getAttribute("data-tagno");
+                if (url !== null) {
+                    parent.document.getElementById("mainframe").src = url;
+                }
+            };
+        })(i);
+    }
+    $("#logout").click(function () {
+        deleteCookie();
+    });
+    function deleteCookie() {
+        sessionStorage.removeItem("loginName");
+        sessionStorage.removeItem("guid");
+        $.cookie("SelectedSubMenuitemid", "");
+        $.cookie("SelectedSubMenuName", "");
+        $.cookie("pageX", "");
+        $.cookie("pageY", "");
+    }
+    window.onresize = function () {
+        setRem()
+    };
+</script>
+</body>
+</html>

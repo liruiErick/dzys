@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css样式-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <!--树形结构-->
+    <link rel="stylesheet" href="../css/tree/animate.min.css">
+    <link rel="stylesheet" href="../css/tree/main.css">
+    <link rel="stylesheet" href="../css/tree/share_style0_24.css">
+    <!--js部分-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+</head>
+<body id="menuBody">
+    <div class="xiaoF_weiyun" id="xiaoF_weiyun">
+        <!--工具菜单toolMenu start-->
+        <div class="toolMenu">
+            <!--工具按钮-->
+            <a href="javascript:void(0)" class="btn btn-primary" id="rename" >
+                <i class="glyphicon glyphicon-edit"></i>
+                <span class="">编辑菜单</span>
+            </a>
+            <!--切换视图及排序区-->
+            <div class="view">
+                <!--查看目录树-->
+                <a href="javascript:void(0)" class="treeMenu btn btn-primary margin0" id="changeView" data-view="view" title="切换视图方式">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                    <span>切换视图</span>
+                </a>
+            </div>
+        </div>
+        <!--工具菜单toolMenu start-->
+        <!--mainContent-->
+        <div class="mainMenu" id="mainView">
+            <!--left-->
+            <div class="left treeMenu" id="treeMenuWrap">
+                <!--树形目录-->
+                <div id="treeMenu">
+                </div>
+            </div>
+            <!--right-->
+            <div class="right" id="panelArea">
+                <!--nav 面包屑导航-->
+                <div class="nav">
+                    <div class="navbox">
+                        <a href="javascript:void(0)" class="selectFiles" id="selectAllFiles" title="selectAll"></a>
+                        <ul id="breadNav">
+                            <li>
+                               <span class="currPath active" data-file-id="0">全部菜单</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--暂无菜单提示-->
+                <div class="noFileTips" id="noFileTips">
+                    <div class="nullfile">
+                        <p>暂无子菜单</p>
+                    </div>
+                </div>
+                <!--视图方式：图标形式-->
+                <div class="view-of-icon" id="view-of-icon">
+                    <div class="vi-panel">
+                        <!--视图列表-->
+                        <div class="toolpanel details" id="filesView">
+                        </div>
+                        <!--详细列表-->
+                        <div class="fileListView details" id="filesLists">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nometa text-center hide" id="nometa">
+            <p>暂无菜单数据</p>
+        </div>
+    </div>
+    <input type="hidden" id="bodyMes"/>
+</body>
+<script type="text/javascript" src="../js/tree/data.js"></script>
+<script type="text/javascript" src="../js/tree/dataControl.js"></script>
+<script type="text/javascript" src="../js/tree/template.js"></script>
+<script type="text/javascript" src="../js/tree/tm_tips.js"></script>
+<script type="text/javascript" src="../js/tree/index.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        randerArea();
+    });
+</script>
+</html>
+
+

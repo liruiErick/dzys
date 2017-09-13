@@ -1,0 +1,880 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--css部分-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <link rel="stylesheet" href="../css/ReptilePage.css">
+    <!--js-->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/paginationReptile.js"></script>
+    <!--编辑器样式-->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/default.css">
+    <link href="../css/editor.css" type="text/css" rel="stylesheet"/>
+    <!--编辑器js-->
+    <script src="../js/editor.js"></script>
+</head>
+<body>
+  <div id="wrap">
+    <div class="center" id="center">
+        <div class="mng_metas">
+            <div class="centop clear" id="centop">
+                <div class="lastnavwrap">
+                    <div class="pull-left">
+                        <ol class="breadcrumb fontSize14">
+                            <li><a href="newsPage.html">新闻管理</a></li>
+                            <li><a href="javascript:;" id="selectedSubNews"></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content entry news">
+                <div class="row overflowHidden" id="news">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active" data-id="1">
+                            <a href="#allSearch" data-toggle="tab" class="fontSize14">
+                                全局查找
+                            </a>
+                        </li>
+                        <li data-id="2"><a class="fontSize14" href="#IDSearch" data-toggle="tab">ID查找</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content overflowHidden">
+                        <div class="tab-pane fade in active" id="allSearch">
+                            <div class="col-sm-12 paddingl10r0">
+                                <div class="col-sm-2 subPage padding0">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">发布起始时间</span>
+                                        <input type="date" class="newsTime fontSize14" id="startTime"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2  col-sm-offset-1 subPage padding0">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">责任人</span>
+                                        <input type="text" class="form-control" placeholder="请输入责任人" id="author"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 paddingl10r0">
+                                <div class="col-sm-2 subPage padding0" >
+                                    <div class="input-group">
+                                        <span class="input-group-addon">发布截至时间</span>
+                                        <input type="date" class="newsTime fontSize14" id="endTime"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2  col-sm-offset-1 subPage padding0">
+                                    <div class="input-group">
+                                        <span class="input-group-addon marginT2">关键字</span>
+                                        <input type="text" class="form-control" placeholder="请输入关键字" id="keyword"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 paddingl10r0">
+                                <div class="col-sm-5 subPage padding0" >
+                                    <div class="input-group">
+                                        <span class="input-group-addon borderl2">领域</span>
+                                        <div class="input-group fontSize14 text-left marginl16" id="area">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 paddingl10r0">
+                                <div class="col-sm-3 subPage padding0">
+                                    <div class="input-group">
+                                        <span class="input-group-addon borderl2 checkSpan">审核状态</span>
+                                        <div id="checkflag" class="input-group fontSize14 text-left marginl16"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="IDSearch">
+                            <div class="col-sm-12 paddingl10r0">
+                                <div class="col-sm-2 subPage padding0">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">索引ID</span>
+                                        <input type="text" class="form-control" placeholder="请输入索引ID" id="IndexId"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingl10r0">
+                        <div class="col-sm-9 subPage padding0 text-left">
+                            <button class="btn" id="getAll" onclick="setAll(this);">全选</button>
+                            <button class="btn btn-info insert_meta" id="addNews">追加</button>
+                            <button class="btn btn-success" id="flagCheck">审核通过</button>
+                            <button class="btn btn-warning" id="CheckFail">审核未通过</button>
+                            <button class="btn btn-danger" id="delete">删除</button>
+                            <button class="btn btn-primary col-sm-offset-1" id="search" style="width: 96px;">检索</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="Reptilewrap" class="overflowHidden reptile">
+                    <div class="table-responseive">
+                        <table class="table table-hover table-bordered fontSize14" id="meta-table">
+                            <thead>
+                            <tr>
+                                <th>批量处理</th>
+                                <th>索引ID</th>
+                                <th>标题</th>
+                                <th>领域</th>
+                                <th>责任人</th>
+                                <th>发布时间</th>
+                                <th>审核状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tablebody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nometa text-center hide" id="nometa">
+                        <p>暂无任何数据项</p>
+                    </div>
+                    <div class="PagingCommon PagingWrap">
+                        <div class="marginT32 padding0">
+                            <ul class="pagination margin0" id="pagingid">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 添加新闻的模态框 -->
+        <div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" id="add_meta_form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title text-center" id="myModalLabel" >添加新闻</h4>
+                        </div>
+                        <div class="modal-body overflowHidden" id="addNewsBody">
+                            <div class="row overflowHidden">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">子菜单
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control  dpi" id="subMenuAdd" onchange="IgnoreField(this[selectedIndex].dataset.itemid,1)"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">标题
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入标题" id="titleAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">摘要
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <textarea cols="3" rows="4" class="form-control"  placeholder="请输入摘要" id="abstractAdd"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">领域
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10 fontSize14 text-left paddingl10" id="areaAdd">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">内容
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10"  id="addcontentWrap">
+                                            <textarea cols="3" rows="4"  class="form-control"  placeholder="请输入摘要" id="contentAdd"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">图片
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10" id="addimg">
+                                            <input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/jpg" name="up_img_wu_file_0"  id="up_img_wu_file_0"  onchange="selectImage(this);" class="form-control selectImg" multiple="multiple" placeholder="图片链接"/>
+                                            <div class="upload btn btn-primary uploadImg uploadNews" id="UploadOne" onclick="unLoadImg(this);">上传图片</div>
+                                            <div class="suggectSize">
+                                                <span>建议比例351:494(像素)</span>
+                                                <span class="ml10">上传图片必须点击上传按钮!!</span>
+                                            </div>
+                                            <div class="imgSetting imgSettingUpdate" id="PicAdd">
+                                                <img id="imgShow_wu_file_0"  class="prevImg"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">热点推荐
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10 text-left hotflagWrap">
+                                            <label  class="checkbox-inline">
+                                                <input type="checkbox" class="hotflag" id="hotflagAdd"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 resetIgnoreFieldAdd time startTimeTitle">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">起始时间
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" id="startTimeAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 resetIgnoreFieldAdd time applyendtimeTitle">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">报名时间
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" id="applyendtimeAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 resetIgnoreFieldAdd time">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">截至时间
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control endtimeInput" id="endtimeAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 resetIgnoreFieldAdd code">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类编码
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入分类编码" id="codeAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAdd resetIgnoreFieldAdd publishRegion">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">发布区域
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入发布区域" id="publishRegionAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">原文链接
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入原文链接" id="urlAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">内容来源
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入内容来源" id="sourceAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAdd resetIgnoreFieldAdd location locationTitle">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">培训地点
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control locationInput"  placeholder="请输入培训地点" id="locationAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAdd resetIgnoreFieldAdd dcoType">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">文献类型
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control dpi" id="dcoTypeAdd" onchange="EditName(this[selectedIndex].dataset.itemid,$('#itemid').val());">
+                                                <option value="报告" data-repeat="0" data-itemid="报告">报告</option>
+                                                <option value="期刊" data-repeat="0" data-itemid="期刊">期刊</option>
+                                                <option value="图书" data-repeat="0" data-itemid="图书">图书</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAdd resetIgnoreFieldAdd interpretType">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label paddingl0">法律解读类型
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control dpi" id="interpretTypeAdd">
+                                                <option value="专家" data-repeat="0">专家</option>
+                                                <option value="媒体" data-repeat="0">媒体</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAddOther resetIgnoreFieldAdd law organizationTitle">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">法律发文机构
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入法律发文机构" id="organizationAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAddOther resetIgnoreFieldAdd law unitTitle">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">法律发文单位
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control dpi" id="unitAdd">
+                                                <option value="中央" data-repeat="0">中央</option>
+                                                <option value="地方" data-repeat="0">地方</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 IgnoreFieldAddOther resetIgnoreFieldAdd lawUnit">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">法律发文字号
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control"  placeholder="请输入法律发文字号" id="docNumAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">中图分类号
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入中图分类号" id="enkeywordsAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">关键词
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入关键词" id="keywordsAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">作者
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入作者"  id="bk_authorAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">出版社
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入出版社" id="journalnameAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">出版时间
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control time" id="lastmodifiedAdd" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">语种
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入语种" id="languageAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">页数
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入页数" id="pageAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group ISSN">
+                                        <label class="col-sm-2 control-label paddingl0">ISSN
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入ISSN"  id="ISSNAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">DOI
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入DOI"  id="DOIAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">卷
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入卷名" id="volumeAdd"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 wenxian hide">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label paddingl0">期
+                                            <span class="must_sym">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入期号" id="periodAdd"/>
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="meta_add">保存</div>
+                            <div class="btn btn-default" data-dismiss="modal">取消</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 编辑新闻的模态框 -->
+        <div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" >
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title text-center" id="myModalLabe2" >编辑新闻</h4>
+                        </div>
+                        <div class="modal-body overflowHidden" id="editNewsbody">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">子菜单
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control  dpi" id="subMenuEdit" onchange="IgnoreField(this[selectedIndex].dataset.itemid,2);"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">标题
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  placeholder="请输入标题" id="titleEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">摘要
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <textarea cols="3" rows="4"  class="form-control"  placeholder="请输入摘要" id="abstractEdit"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">领域
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10 fontSize14 text-left paddingl10" id="areaEdit"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">内容
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10 fontSize14" id="contentWrap">
+                                        <textarea cols="3" rows="4"  class="form-control"  placeholder="请输入内容" id="contentEdit"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">图片
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10" id="Editimg">
+                                        <input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/jpg" name="up_img_wu_file_1"  id="up_img_wu_file_1"  onchange="selectImage(this);" class="form-control selectImg" multiple="multiple" placeholder="图片链接"/>
+                                        <div class="upload btn btn-primary uploadImg uploadNews" id="UploadTwo" onclick="unLoadImg(this);">上传图片</div>
+                                        <div class="suggectSize">
+                                            <span>建议比例351:494(像素)</span>
+                                            <span class="ml10">上传图片必须点击上传按钮!!</span>
+                                        </div>
+                                        <div class="imgSetting imgSettingUpdate" id="imgSetting">
+                                            <img id="imgShow_wu_file_1"  class="prevImg" src=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">热点推荐
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10 text-left hotflagWrap">
+                                        <label  class="checkbox-inline">
+                                            <input type="checkbox" class="hotflag" id="hotflagEdit"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 resetIgnoreFieldEdit time startTimeTitle">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" >起始时间
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="startTimeEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 resetIgnoreFieldEdit time">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">截止时间
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control endtimeInput"  id="endtimeEdit" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 resetIgnoreFieldEdit time applyendtimeTitle">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">报名时间
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="applyendtimeEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 resetIgnoreFieldEdit code">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">分类编码
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入分类编码"  id="codeEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEdit resetIgnoreFieldEdit publishRegion">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">发布区域
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入发布区域"  id="publishRegionEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">原文链接
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入原文链接" id="urlEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">内容来源
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  placeholder="请输入内容来源" id="sourceEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEdit resetIgnoreFieldEdit location locationTitle">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">培训地点
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control locationInput" placeholder="请输入培训地点"  id="locationEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEdit resetIgnoreFieldEdit dcoType">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">文献类型
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control dpi" id="dcoTypeEdit" onchange="EditName(this[selectedIndex].dataset.itemid,$('#itemid').val());">
+                                            <option value="报告" data-repeat="0" data-itemid="报告">报告</option>
+                                            <option value="期刊" data-repeat="0" data-itemid="期刊">期刊</option>
+                                            <option value="图书" data-repeat="0" data-itemid="图书">图书</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEdit resetIgnoreFieldEdit interpretType">
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label paddingl0">法律解读类型
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control dpi" id="interpretTypeEdit">
+                                            <option value="专家" data-repeat="0">专家</option>
+                                            <option value="媒体" data-repeat="0">媒体</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEditOther resetIgnoreFieldEdit law organizationTitle">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">法律发文机构
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入法律发文机构"  id="organizationEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEditOther resetIgnoreFieldEdit law unitTitle">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">法律发文单位
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control dpi" id="unitEdit">
+                                            <option value="中央" data-repeat="0">中央</option>
+                                            <option value="地方" data-repeat="0">地方</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 IgnoreFieldEditOther resetIgnoreFieldEdit lawUnit">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">法律发文字号
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入法律发文字号"  id="docNumEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">中图分类号
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入中图分类号"  id="enkeywordsEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">关键词
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入关键词"  id="keywordsEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">作者
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入作者"  id="bk_authorEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">出版社
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入出版社"  id="journalnameEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">出版时间
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control resetIgnoreFieldEdit time" id="lastmodifiedEdit" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">语种
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入语种" id="languageEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">页数
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入页数"  id="pageEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group ISSN">
+                                    <label class="col-sm-2 control-label paddingl0">ISSN
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入ISSN" id="ISSNEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">DOI
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入DOI" id="DOIEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">卷
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入卷名"  id="volumeEdit"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 wenxian hide">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label paddingl0">期
+                                        <span class="must_sym">*</span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请输入期号" id="periodEdit"/>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn btn-primary" id="rank_edit">保存</div>
+                            <div class="btn btn-default" data-dismiss="modal">取消</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--存储临时数据-->
+        <input type="text" id="selid" class="hide"/>
+        <input type="text" id="imgPath" class="hide"/>
+        <input type="text" id="hugeImgePath" class="hide"/>
+        <input type="text" id="existImg" class="hide"/>
+        <!--全选or取消-->
+        <input type="text" id="allcheckflag"  value="1" class="hide"/>
+        <input type="text" id="allarea"  value="1" class="hide"/>
+        <input type="text" id="allareaAdd"  value="1" class="hide"/>
+        <input type="text" id="allareaEdit"  value="1" class="hide"/>
+        <input type="text" id="allData"  value="1" class="hide"/>
+        <input type="text" id="itemid"  value="1" class="hide"/>
+    </div>
+</div>
+  <input type="hidden" value="1" id="footerUpdate"/>
+</body>
+<script type="text/javascript" src="../js/showNewsInfo.js"></script>
+<script src="../js/news_reptile.js"></script>
+<script type="text/javascript" src="../js/NewsDetailsList.js"></script>
+<script src="../js/reviewImg.js"></script>
+<script src="../js/unloadImg.js"></script>
+</html>

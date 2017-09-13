@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>领域管理</title>
+	<link rel="icon" href="../image/newlogo.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="../image/newlogo.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/index.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/Common.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/upload.js"></script>
+	<script src="../js/jquery.ajaxfileupload.js"></script>
+	<script src="../js/jquery.form.js"></script>
+</head>
+<body>
+    <div class="center">
+		<!-- 数据项管理 -->
+		<div class="mng_metas">
+			<div class="centop clear">
+				<div class="lastnavwrap">
+					<div class="pull-left">
+						<ol class="breadcrumb">
+							<li><a href="javascript:;">领域管理</a></li>
+						</ol>
+					</div>
+					<div class="edit_btn pull-right ">
+						<button type="button" class="insert_rank mybtn btn btn-primary">添加领域</button>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<table class="table table-hover table-bordered" id="meta-table">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>中文名称</th>
+							<th>英文名称</th>
+							<th>链接</th>
+							<th>图片链接</th>
+							<th>编辑</th>
+						</tr>
+					</thead>
+					<tbody id="tablebody">
+					</tbody>
+				</table>
+				<div class="nometa text-center hide">
+					<p>暂无任何数据项</p>
+				</div>
+			</div>
+
+			<!-- 添加数据项的模态框 -->
+			<div class="modal fade" id="insert_meta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal" role="form" id="add_meta_form">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">编辑领域</h4>
+							</div>
+							<div class="modal-body" id="editbody">
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">内部ID
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="Idinsert" placeholder="内部ID" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">中文名称
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="nameinsert" placeholder="中文名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">英文名称
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="ennameinsert" placeholder="英文名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">链接
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="urlinsert" placeholder="链接">
+									</div>
+								</div>
+								<div class="form-group imgSelect">
+									<label  class="col-sm-2 control-label">图片链接
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10" style="text-align: left;">
+										<!--<form action="">
+											<input type="file" name="up_img_wu_file_0"  id="up_img_wu_file_0"  onchange="selectImage(this);" style="padding: 0;" class="form-control" multiple="multiple" placeholder="图片链接"/>
+											<input type="button" value="上传" id="upload"/>
+										</form>
+										<div  class="suggectSize">建议比例4:3</div>
+										<img id="imgShow_wu_file_0" style="display: inline-block;width: 80%;height: 60%;" src="../image/Desert.jpg"/>-->
+										<input type="file" name="up_img_wu_file_0"  id="up_img_wu_file_0"  style="padding: 0;" class="form-control" multiple="multiple" placeholder="图片链接"/>
+										<input type="button" value="上传" id="upload"/>
+										<div  class="suggectSize">建议比例4:3</div>
+										<img id="imgShow_wu_file_0" style="display: inline-block;width: 80%;height: 60%;" src="../image/Desert.jpg"/>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-success submit" id="insert_meta_save">保存</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- 添加数据类别的模态框 -->
+			<div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog mt100">
+					<div class="modal-content">
+						<form class="form-horizontal" role="form" id="add_title_form">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="H1">添加领域</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">内部id
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="Idadd" placeholder="内部ID" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">中文名称
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="nameadd" placeholder="中文名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">英文名称
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="ennameadd" placeholder="英文名称">
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label">链接
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="urladd">
+									</div>
+								</div>
+
+								<div class="form-group imgSelect">
+									<label  class="col-sm-2 control-label">图片链接
+										<span class="must_sym">*</span>
+									</label>
+									<div class="col-sm-10" style="text-align: left;">
+										<form action="">
+											<input type="file" name="up_img_wu_file_1"  id="up_img_wu_file_1"  style="padding: 0;" class="form-control" multiple="multiple" placeholder="图片链接"/>
+											<input type="button" id="uploadBtn" value="上传">
+										</form>
+										<div  class="suggectSize">建议比例4:3</div>
+										<img id="imgShow_wu_file_1" style="display: inline-block;width: 80%;height: 60%;"/>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-success" id="rank_save">保存</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+	<div class="footer">
+		<p>欢迎使用后台管理系统 | 意见反馈 | 京ICP证XXXXXX号</p>
+	</div>
+</body>
+<script type="text/javascript">
+	/*请求并渲染数据*/
+    $(function () {
+        var surl = LoadUrl() + "axis2/services/MyService/GetAllAreaCustom";
+        var start = 0;
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                //"fromIndex": start,
+                //"Size": pageSize
+            },
+            dataType: "text",
+            contentType:"text/xml",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                result = jQuery.parseJSON(result);
+                var num = 1;
+                $.each(result, function (a, b) {
+                    html += '<tr>'
+                        + '<td class="tagno">' + b._id + '</td>'
+                        + '<td class="chname">' + b.name + '</td>'
+                        + '<td class="enname">' + b.enname + '</td>'
+                        + '<td class="type">' + b.picurl + '</td>'
+                        + '<td class="note">' + b.url + '</td>'
+                        + '<td class="last" data-chnamespell="qi-ye-ming-cheng(zhong wen)" data-expression="名称" data-objectclass="工商登记信息" data-speciality="名称" data-synonymy="企业中文名"><span class="update"><a href="javascript:;"></a></span><span class="delete"><a href="javascript:;"></a></span></td>'
+                        + '</tr>';
+                    num++;
+                });
+                $("#tablebody").html(html);
+            }
+        })
+    });
+    // 模态框：“修改数据项”
+    $('#meta-table').on('click', '.update', function () {
+        var thisUpdate = $(this);
+        var trObj = thisUpdate.parents('tr');
+        $('#insert_meta button.submit').attr("id", "update_insert_meta_save");
+        $('#insert_meta').modal('show');
+        var tdArr = trObj.find("td");
+        //tdArr(0).val();
+        /*var html = '<div class="form-group"><label  class="col-sm-2 control-label">内部id<span class="must_sym">*</span></label><div class="col-sm-10"><input type="text" class="form-control" id="Idinsert" value="' + tdArr[0].innerText + '" disabled/></div></div>'
+            + '<div class="form-group"><label  class="col-sm-2 control-label">中文名称<span class="must_sym">*</span></label><div class="col-sm-10"><input type="text" class="form-control" id="nameinsert" value="' + tdArr[1].innerText + '"/></div></div>'
+            + '<div class="form-group"><label  class="col-sm-2 control-label">英文名称<span class="must_sym">*</span></label><div class="col-sm-10"><input type="text" class="form-control" id="ennameinsert" value="' + tdArr[2].innerText + '"/></div></div>'
+            + '<div class="form-group"><label  class="col-sm-2 control-label">链接<span class="must_sym">*</span></label><div class="col-sm-10"><input type="text" class="form-control" id="urlinsert" value="' + tdArr[4].innerText + '"/></div></div>'
+            + '<div class="form-group imgSelect"><label for="objectclass" class="col-sm-2 control-label">图片链接<span class="must_sym">*</span></label><div class="col-sm-10" style="text-align: left;" ><input type="file" style="padding: 0;" multiple="multiple" class="form-control" name="up_img_wu_file_0"  id="up_img_wu_file_0" onchange="file_click(this)" value="' + tdArr[3].innerText + '"/><div  class="suggectSize">建议比例4:3</div><img id="imgShow_wu_file_0" style="display: inline-block;width: 80%;height: 60%;" src=""/></div></div>'
+        $('#editbody').html(html);*/
+        $("#Idinsert").val(tdArr[0].innerText);
+        $("#nameinsert").val(tdArr[1].innerText);
+        $("#ennameinsert").val(tdArr[2].innerText);
+        $("#urlinsert").val(tdArr[4].innerText);
+        $("#imgShow_wu_file_0").val(tdArr[3].innerText);
+    });
+	/*添加数据*/
+    /*$("#rank_save").on('click',function() {
+        var tag=true;
+        var count=0;
+        $('#insert_meta .must_sym').each(function() {
+            var $input = $(this).parents('.form-group').find('input');
+            if ($input.val() == '') {
+                layer.msg('您有未填写的必选项');
+                tag = false;
+                return false;
+            }
+            count++;
+            if(tag&&count==$("#insert_meta .must_sym").length){
+                var surl = LoadUrl() + "axis2/services/MyService/EditAreaCustom";
+                var start = 0;
+                $.ajax({
+                    type: "POST",
+                    url: surl,
+                    data: {
+                        "id":$("#Idinsert").val(),
+                        "name":$("#nameinsert").val(),
+                        "enname":$("#ennameinsert").val(),
+                        "picurl":$("#up_img_wu_file_0").get(0).value,
+                        "url":$("#urlinsert").val()
+                    },
+                    dataType: "text",
+					/!*contentType:"text/xml",*!/
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            }
+        });
+    });*/
+	/*编辑数据*/
+    /*function selectImage(file) {
+        if(!file.files||!file.files[0]){
+            return;
+        }
+        var reader=new FileReader();
+        reader.onload=function (evt) {
+            document.getElementById("imgShow_wu_file_0").src=evt.target.result;
+            console.log(evt.target.result);
+        }
+        reader.readAsDataURL(file.files[0]);
+        $.cookie("fileName",file.files[0].name);
+    }
+
+    $("#upload").click(function () {
+        var surl=LoadUrl() + "axis2/services/MyService/SavePng";
+        console.log(document.getElementById("imgShow_wu_file_0").src,$.cookie("fileName"));
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                "stream":document.getElementById("imgShow_wu_file_0").src,
+                "picname":$.cookie("fileName")
+            },
+            dataType: "text",
+			/!*contentType:"text/xml",*!/
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    });*/
+    /*编辑数据*/
+	$("#insert_meta_save").on('click',function() {
+		 var tag=true;
+		 var count=0;
+		 $('#insert_meta .must_sym').each(function() {
+			 var $input = $(this).parents('.form-group').find('input');
+			 if ($input.val() == '') {
+				 layer.msg('您有未填写的必选项');
+				 tag = false;
+				 return false;
+			 }
+			 count++;
+			 if(tag&&count==$("#insert_meta .must_sym").length){
+				 var surl = LoadUrl() + "axis2/services/MyService/EditAreaCustom";
+				 var start = 0;
+				 $.ajax({
+					 type: "POST",
+					 url: surl,
+					 data: {
+					 "id":$("#Idinsert").val(),
+					 "name":$("#nameinsert").val(),
+					 "enname":$("#ennameinsert").val(),
+					 /*"picurl":$("#up_img_wu_file_0").get(0).value,*/
+                     /*"picurl":imageData,*/
+					 "url":$("#urlinsert").val()
+					 },
+					 dataType: "text",
+					 /*contentType:"text/xml",*/
+					 success: function (result) {
+					    console.log("写入成功");
+                         $('#insert_meta').modal('hide');
+					 }
+				  });
+			 }
+		 });
+	 });
+	/*删除数据*/
+    $("#meta-table").on('click', '.delete', function() {
+        layer.confirm('删除后将不可恢复，您确定要删除吗？', {
+            btn: ['取消', '删除']
+        }, function(index) {
+            layer.close(index);
+        }, function() {
+            layer.msg('恭喜您，已删除成功！', {
+                time: 1000
+            }, function() {
+                console.log("未写");
+            });
+        });
+    });
+    /*加载图片并预览*/
+    /*$("#up_img_wu_file_0").change(function () {
+        console.log(this.file[0]);
+    });*/
+    /*function  ShowImgInfo(obj) {
+        console.log(obj);
+    }*/
+   /* function ShowImgInfo(obj) {
+        $("#up_img_wu_file_0").on('change',function () {
+
+            if(objUrl){
+                $("#imgShow_wu_file_0").attr("src",objUrl);
+            }
+        });
+        var objUrl=getUrl(this.file[0]);
+        console.log(this);
+    }*/
+    /*function getUrl(file) {
+        var url=null;
+        if(window.createObjectURL!=undefined){
+            url=window.createObjectURL(file);
+        }
+        else if(window.URL!=undefined){
+            url=window.URL.createObjectURL(file);
+        }
+        else if(window.webkitURL!=undefined){
+            url=window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }*/
+    function file_click() {
+        new uploadPreview({UpBtn:"up_img_wu_file_"+0 ,ImgShow:"imgShow_wu_file_"+0});
+        new uploadPreview({UpBtn:"up_img_wu_file_"+1 ,ImgShow:"imgShow_wu_file_"+1});
+    }
+    window.onload=file_click;
+    /*上传数据*/
+    /*$("#insert_meta_save").click(function () {
+        var surl = LoadUrl() + "axis2/services/MyService/SavePng";
+        console.log($("#up_img_wu_file_1"));
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                "picname":$("#up_img_wu_file_0").get(0).value
+            },
+            dataType: "text",
+			/!*contentType:"text/xml",*!/
+            success: function (result) {
+
+            }
+        });
+        /!*console.log($.cookie("tempUrl"));*!/
+    });*/
+
+
+	/*$(function () {
+		$("#upload").click(function () {
+            ajaxFileUpload();
+        });
+		function ajaxFileUpload() {
+            var surl = LoadUrl() + "axis2/services/MyService/SavePng";
+             $.ajaxFileUpload({
+				 url:surl,
+                 secureuri:false,
+                 fileElementId:'up_img_wu_file_0',
+				 dataType:"json",
+				 success:function (data) {
+					 console.log(data);
+                 }
+			 });
+        }
+    });*/
+
+	/*$("#upload").click(function () {
+        var surl = LoadUrl() + "axis2/services/MyService/SavePng";
+		var formData=new FormData($("#upfile")[0]);
+		$.ajax({
+			url:surl,
+            type:"post",
+            data: {
+                "stream":formData,
+                "picname":$.cookie("fileName")
+            },
+            dataType: "text",
+			/!*contentType:"text/xml",*!/
+            success: function (result) {
+                console.log("编辑成功");
+            }
+		});
+    });*/
+    //上传图片
+	var surl=LoadUrl() + "axis2/services/MyService/SavePng";
+	$('#up_img_wu_file_1').ajaxfileupload({
+		action:surl,
+		submit_button:$("#uploadBtn")
+	});
+</script>
+</html>

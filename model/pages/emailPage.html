@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!--css部分-->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+	<!--js部分-->
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/index.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/Common.js"></script>
+</head>
+<body>
+	<div class="center">
+		<!-- 数据项管理 -->
+		<div class="mng_metas">
+			<div class="centop clear">
+				<div class="lastnavwrap">
+					<div class="pull-left">
+						<ol class="breadcrumb">
+							<li><a href="javascript:;">邮箱设定</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- 编辑邮件的模态框 -->
+			<div class="content" id="email">
+				<ul id="imgTab" class="nav nav-tabs">
+					<li data-id="1" class="active"><a href="#kehichaxin" data-toggle="tab" class="fontSize14" id="getkehichaxin">科技查新</a></li>
+					<li data-id="2"><a href="#yuanwenqingqiu" data-toggle="tab" class="fontSize14" id="getyuanwenqingqiu">原文请求</a></li>
+				</ul>
+				<div id="imgTabContent" class="tab-content overflowHidden">
+					<div class="tab-pane active in" id="kehichaxin">
+						<div class="col-sm-12 paddingTB10LF0">
+							<div class="rows col-sm-offset-2" id="editkejichaxinEmailTableBody">
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">邮件服务器</span>
+											<input type="text" class="form-control" placeholder="邮件服务器" id="server"  />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱地址</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱地址" id="eaddress" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">名称</span>
+											<input type="text" class="form-control" id="eusername" placeholder="请输入名称" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱密码</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱密码" id="epassword" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱SMTP</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱SMTP" id="esmtp" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">接收邮箱地址</span>
+											<input type="text" class="form-control" placeholder="请输入接收邮箱地址" id="ereceiveadd"  />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0 text-center">
+										<div class="col-sm-3 pull-right paddingr0">
+											<button class="btn btn-danger pull-right mr6">取消</button>
+											<button class="btn btn-primary pull-right" id="meta_save">提交</button>
+											<div class="clear"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="nometa text-center hide" id="kejichaxinnometa">
+								<p>暂无邮箱数据</p>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="yuanwenqingqiu">
+						<div class="col-sm-12 paddingTB10LF0">
+							<div class="rows col-sm-offset-2" id="edityuanwenlianjieEmailTableBody">
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">邮件服务器</span>
+											<input type="text" class="form-control" placeholder="邮件服务器" id="yuanwenlianjieserver"  />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱地址</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱地址" id="yuanwenlianjieeaddress" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">名称</span>
+											<input type="text" class="form-control" id="yuanwenlianjieeusername" placeholder="请输入名称" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱密码</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱密码" id="yuanwenlianjieepassword" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">发送邮箱SMTP</span>
+											<input type="text" class="form-control" placeholder="请输入发送邮箱SMTP" id="yuanwenlianjieesmtp" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0">
+										<div class="input-group">
+											<span class="input-group-addon">接收邮箱地址</span>
+											<input type="text" class="form-control" placeholder="请输入接收邮箱地址" id="yuanwenlianjieereceive" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 paddingl10r0">
+									<div class="col-sm-10 subPage padding0 text-center">
+										<div class="col-sm-3 pull-right paddingr0">
+											<button class="btn btn-danger pull-right mr6">取消</button>
+											<button class="btn btn-primary pull-right" id="yuanwenlianjie_meta_save">提交</button>
+											<div class="clear"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="nometa text-center hide" id="yuanwenlianjienometa">
+								<p>暂无邮箱数据</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/EmailList.js"></script>
+</html>
+

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!--css部分-->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" href="../layer/skin/default/layer.css"/>
+	<!--js部分-->
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/index.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/Common.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+</head>
+<body>
+	<div class="center">
+		<div class="mng_metas overflowHidden">
+			<div class="centop clear">
+				<div class="lastnavwrap">
+					<div class="pull-left">
+						<ol class="breadcrumb">
+							<li><a href="javascript:;">黑名单设定</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>　
+			<div id="BlackWhite" class="overflowHidden">
+				<div class="content">
+					<div class="rows">
+						<div class="col-sm-12 paddingl10r0">
+							<div class="col-sm-2 subPage padding0">
+								<div class="input-group">
+									<span class="input-group-addon">黑名单名称</span>
+									<input type="text" class="form-control" id="blackTitle" placeholder="请输入黑名单">
+								</div>
+							</div>
+							<div class="col-sm-2 subPage padding0l16">
+								<div class="input-group">
+									<span class="input-group-addon height" >服务类型</span>
+									<div class="input-group selected" id="selected">
+										<select class="form-control w32 dpi" id="blackSrvType">
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-2 subPage textlignRight padding0 mar margin0 pull-right">
+								<button class="btn btn-info" id="searchBlackWord">检索</button>
+								<button class="btn btn-primary add_rank" id="blackadd">追加</button>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<table class="table table-hover table-bordered">
+						<thead>
+						<tr>
+							<th>词条名称</th>
+							<th>服务类型</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody id="BlackList">
+						</tbody>
+					</table>
+					<div class="nometa text-center hide" id="blacknometa">
+						<p>暂无数据</p>
+					</div>
+				</div>
+			</div>
+			<!-- 编辑黑名单数据的模态框 -->
+			<div class="modal fade" id="insert_rank" tabindex="-1" role="dialog" aria-labelledby="myModalLabe4" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal" role="form" >
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabe4">编辑黑名单</h4>
+							</div>
+							<div class="modal-body" id="editbodyblack">
+							</div>
+							<div class="modal-footer">
+								<div class="btn btn-primary" id="edit_rank_black">保存</div>
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/WhiteBlackList.js"></script>
+</html>
