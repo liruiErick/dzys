@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户激活</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -300px;
+            background: #00a4f4;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        #msg {
+            color: #fcfcfc;
+            font-size: 40px;
+            margin-top: 90px;
+        }
+
+        .box a {
+            color: #fcfcfc;
+            text-decoration: none;
+            transition: .1s;
+        }
+
+        .box a:hover {
+            color: #2B2B2B;
+            transition: .1s;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <p id="msg"></p>
+    <a href="index.html">进入首页</a>
+</div>
+<script src="js/jquery-1.9.0.min.js"></script>
+<script>
+    var msg = document.getElementById('msg');
+    msg.innerHTML = 'waiting...';
+    var data = [];
+    var _data = window.location.search.substring(1);
+    if (_data) {
+        data = _data.split('&');
+        for (var i = 0, len = data.length; i < len; i++) {
+            data[i] = data[i].split('=')
+        }
+        if (data && data[0][0] === 'code' && data[1][0] === 'user') {
+            var code = data[0][1];
+            var user = data[1][1];
+            $.ajax({
+                type: 'POST',
+                url: 'http://10.0.0.21:8080/axis2/services/MyService/activationUser',
+                // url: 'http://124.193.169.149:8080/axis2/services/MyService/activationUser',
+                data: {
+                    'code': code,
+                    'user': user
+                },
+                dataType: 'text',
+                success: function (res) {
+                    var obj = null;
+                    var txt = '';
+                    if (document.all) {
+                        obj = new ActiveXObject('Microsoft.XMLDOM');
+                        obj.async = false;
+                        txt = obj.loadXML(res);
+                    } else {
+                        obj = new DOMParser().parseFromString(res, 'text/xml');
+                        txt = obj.documentElement.textContent
+                    }
+                    if (txt === '0') {
+                        msg.innerHTML = '\u8be5\u5e10\u53f7\u5df2\u88ab\u6fc0\u6d3b\uff01'
+                    } else if (txt === '1') {
+                        msg.innerHTML = '\u606d\u559c\u60a8\uff0c\u6fc0\u6d3b\u6210\u529f\uff01'
+                    } else if (txt === '2') {
+                        msg.innerHTML = '\u6fc0\u6d3b\u5931\u8d25\uff01'
+                    }
+                }
+            })
+        } else {
+            window.location = '404.html'
+        }
+    } else {
+        window.location = '404.html'
+    }
+</script>
+</body>
+</html>

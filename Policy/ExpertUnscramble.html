@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css">
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="../index.html">首页</a> &gt; <a href="ExpertUnscramble.html?menu=1">政策法规</a> &gt; <a href="ExpertUnscramble.html?menu=1">法律解读</a>
+        </li>
+    </ul>
+    <div class="blank20"></div>
+    <div class="falvjiedu_toutiao">
+        <ul id="topid"></ul>
+    </div>
+</div>
+<div class="part_jiedu">
+    <div class="w1200 columns ">
+        <div class="w556 fl zjjd">
+            <h1>专家解读<span class="more"></span></h1>
+        </div>
+        <div class="w556 fl meitjd">
+            <h1>媒体解读<span class="more"></span></h1>
+        </div>
+        <div class="blank20"></div>
+        <div class="part_jiedu_suj clearfloat">
+            <div class=" w530 fl ">
+                <ul class="lists" id="zjjdid"></ul>
+            </div>
+            <div class="w560 fr">
+                <ul class="lists" id="mtjdid"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script src="../js/Common.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });
+    });
+    function FindContent(obj) {
+        var type = $(obj).text();
+        SetLocal("ExpertChildType", type);
+        location.href = "ExpertChild.html";
+    }
+    var menu = "";
+    if (getUrl()[0].slice(0, 4) === 'menu') {
+        menu = getUrl()[0].substring(5);
+    }
+
+    $(function () {
+        //top
+        var turl = LoadUrl() + "axis2/services/MyService/getStickNewsList";
+        $.ajax({
+            type: "POST",
+            url: turl,
+            data: {
+                "sub_srv": "14",
+                "area_type": "",
+                "top_flag": 0,
+                "fromIndex": 0,
+                "Size": 3
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    $("#topid").empty();
+                    $.each(result, function (a, b) {
+                        html += '<li><a href="ExpertDetail.html?menu=&pid=' + b.id + '"><img src="../images/' + b.stick_pic + '" width="300" height="168" alt=""/></a>'
+                            + '<h2 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="ExpertDetail.html?menu=' + menu + '&pid=' + b.id + '" title="' + b.title + '">' + b.title + '</a></h2>'
+                            + '<p><a href="ExpertDetail.html?menu=&pid=' + b.id + '">' + b.stick_abstract + '</a></p>'
+                            + '</li>';
+                    });
+                    $("#topid").html(html);
+                }
+            }
+        });
+        //专家
+        var wurl = LoadUrl() + "axis2/services/MyService/getNormalNewsList";
+        $.ajax({
+            type: "POST",
+            url: wurl,
+            data: {
+                "area_type": "",
+                "sub_srv": "14",
+                "doc_Type": "",
+                "interpret_type": "专家",
+                "fromIndex": 0,
+                "Size": 9
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    $("#zjjdid").empty();
+                    $.each(result, function (a, b) {
+                        html += '<li><a href="ExpertDetail.html?menu=' + menu + '&pid=' + b.id + '">' + b.title + ' </a><span>' + b.fromTime.substring(5, 10) + '</span></li>';
+                    });
+                    $("#zjjdid").html(html);
+                }
+            }
+        });
+        //媒体
+        var yurl = LoadUrl() + "axis2/services/MyService/getNormalNewsList";
+        $.ajax({
+            type: "POST",
+            url: yurl,
+            data: {
+                "area_type": "",
+                "sub_srv": "14",
+                "doc_Type": "",
+                "interpret_type": "媒体",
+                "fromIndex": 0,
+                "Size": 9
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    $("#mtjdid").empty();
+                    $.each(result, function (a, b) {
+                        html += '<li><a href="ExpertDetail.html?menu=' + menu + '&pid=' + b.id + '">' + b.title + ' </a><span>' + b.fromTime.substring(5, 10) + '</span></li>';
+                    });
+                    $("#mtjdid").html(html);
+                }
+            }
+        })
+    });
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

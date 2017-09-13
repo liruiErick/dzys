@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--列表页 start-->
+<div class="listconbox">
+    <div class="listcon">
+        <div style="background:#ffffff;">
+            <ul class="mbxcon" style="margin:0 40px;">
+                <li class="mbx" id="currentId">...</li>
+            </ul>
+            <!--Edit开始-->
+            <div class="Edit">
+                <h1 class="biaoti"></h1>
+                <div class="daodu" id="daoduid"></div>
+                <div class="Editneirong" id="Editneirongid"></div>
+                <div id="pagingid" style="margin-left:250px; margin-top:50px;"></div>
+                <div class="xgnews"></div>
+            </div>
+            <!--Edit结束-->
+            <div class="clear"></div>
+        </div>
+        <!--列表左侧结束-->
+        <!--列表右侧结束-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!--列表页 end-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jquery.paginate.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+        var menu = "";
+        if (getUrl()[0].slice(0, 4) === 'menu') {
+            menu = getUrl()[0].substring(5);
+        }
+        $("#currentId").html("<a href='../index.html'>首页</a> &gt; 科技文献 &gt; <a href='LiteratureService.html?menu=" + menu + "'>文献服务</a> &gt; 文献详情");
+    });
+</script>
+<script type="text/javascript">
+    var ContentLength = 100;
+    var Content;
+    var title = '';
+    var user = getCookie('loginName') || localStorage['loginName'] || "";
+    var pid = getUrl()[1].slice(0, 3) === 'pid' ? getUrl()[1].substring(4) : '';
+
+    function CollType() {
+        //var c = document.getElementsByName("radiog_dark");
+        var c = $("#radio1");
+        if (c[0].checked) {
+            c[0].removeAttribute("checked");
+            CancleCollection(user, pid);
+        }
+        else {
+            AddCollection(user, pid, title, "10");
+            c[0].setAttribute("checked", true);
+        }
+    }
+
+    function SourceColls(obj) {
+        var temp = $(obj).next().text();
+        var temps = temp.split(',');
+        var users = temps[0];
+        var id = temps[1];
+        var title = temps[2];
+        var type = temps[3];
+        var surl = location.href;
+        $("#req_id").css("background", "url(../images/yw_ask.png) 0 -14px no-repeat");
+        $("#req_id").removeAttr("onclick").attr("onclick", "SourceColl(this)");
+        LiteratureServiceDetail.SourceRequest(users, id, title, type, surl);
+    }
+
+    function SourceColl(obj) {
+        layer.msg("已经发送原文请求！");
+    }
+
+    var LiteratureServiceDetail = {
+        init: function () {
+            this.IsCollectoin(user, pid);
+        },
+        IsCollectoin: function (UserName, DetailId) {
+            var url = LoadUrl() + "axis2/services/MyService/checkFavorite";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "user": UserName,
+                    "id": DetailId
+                },
+                dataType: "text",
+                success: function (result) {
+                    result = loadXML(result);
+                    result = jQuery.parseJSON(result);
+                    LiteratureServiceDetail.IsRequest(UserName, DetailId, result);
+                }
+            })
+        },
+        ShowInfo: function (isShow, isRequest) {
+            var url = LoadUrl() + "axis2/services/MyService/getIndustryNewsDetails";
+            //var id = location.search.substring(location.search.indexOf("=")+1);
+            if (typeof (pid) != "undefined") {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {"indexId": pid},
+                    dataType: "text",
+                    success: function (data) {
+                        data = loadXML(data);
+                        if (data) {
+                            var b = jQuery.parseJSON(data);
+                            var html = "";
+                            var app = b.applyendtime ? b.applyendtime.substring(0, 10) : "";
+                            var starts = b.starttime ? b.starttime.substring(0, 10) : "";
+                            var collstr = '';
+                            var source = "";
+                            if (user) {
+                                if (isRequest) {
+                                    source = '<span class="req-yw" style="display:inline;position: absolute;left: 700px;">原文请求:</span>'
+                                        + '<span class="req-yw" onclick="SourceColl(this)" id="req_id" style="position: absolute;left: 774px;top:13px;display:-webkit-inline-box;background: url(../images/yw_ask.png) 0 -14px no-repeat; background-size: cover;width: 14px;height: 14px;"></span>'
+                                        + '<span style="display:none;">' + user + ',' + pid + ',' + htmldecode(b.title).replace("<br/>", "") + ',' + b.doc_type + '</span>';
+                                }
+                                else {
+                                    source = '<span class="req-yw" style="display:inline;position: absolute;left: 700px;">原文请求:</span>'
+                                        + '<span class="req-yw" onclick="SourceColls(this)" id="req_id" style="position: absolute;left: 774px;top:13px;display:-webkit-inline-box;background: url(../images/yw_ask.png) 0 0 no-repeat; background-size: cover;width: 14px;height: 14px;cursor:pointer;"></span>'
+                                        + '<span style="display:none;">' + user + ',' + pid + ',' + htmldecode(b.title).replace("<br/>", "") + ',' + b.doc_type + '</span>';
+                                }
+                                collstr = '<div class="fawen_all radio_styles" onclick="CollType();return false;" style="color:#a9a9a9;font-size:15px; padding-top:0; float:right;">'
+                                    + '收藏：'
+                                    + '<input type="radio" name="radiog_dark" id="radio1" class="css-checkbox" ' + ((isShow) ? 'checked' : '') + '>'
+                                    + '<label for="radio1" class="css-label radGroup1 radGroup2" style="color:#a9a9a9;font-size:15px;"></label>'
+                                    + '</div>';
+                            }
+                            html += htmldecode(b.title).replace("<br/>", "") + '<br/>'
+                                + '<span><span style="display:inline-block;width:580px;white-space:nowrap;text-overflow: ellipsis;overflow:hidden;">日期：' + b.fromTime.substring(0, 10) + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源：<a href="' + b.url + '">' + b.page_source + '</a></span>' + source + '' + collstr + '</span>';
+                            $(".biaoti").html(html);
+                            title = b.title;
+                            html = '<table style="width:100%;font-weight:bolder;margin-bottom:10px;">'
+                                + '<tr>'
+                                + '<td>ISSN：' + b.ISSN + '</td>'
+                                + '<td>DOI：' + b.DOI + '</td>'
+                                + '</tr>'
+                                + '<tr>'
+                                + '<td>刊物主名称：' + htmldecode(b.title).replace("<br/>", "") + '</td>'
+                                + ' <td>年：' + b.fromTime.substring(0, 4) + '</td>'
+                                + '</tr>'
+                                + '<tr>'
+                                + '<td>卷：' + b.volume + '</td>'
+                                + '<td>期：' + b.period + '</td>'
+                                + '</tr>'
+                                + '<tr>'
+                                + '<td>数据来源类型：OAJ</td>'
+                                + '<td>出版单位：' + b.bk_author + '</td>'
+                                + '</tr>'
+                                + '<tr>'
+                                + '<td>出版类型：刊</td>'
+                                + '<td>数据集：' + b.journalname + '</td>'
+                                + '</tr>'
+                                + '<tr>'
+                                + '<td colspan="2">下载地址：' + b.url + '</td>'
+                                + '</tr>'
+                                + '</table>'
+                                + '<span>导读:</span> ' + b.stick_abstract;
+                            $("#daoduid").html(html);
+                            var content = htmldecode("<p>" + b.content + "</p>");
+                            $("#Editneirongid").html(content);
+                        }
+                    }
+                })
+            }
+        },
+        IsRequest: function (user, id, isShow) {
+            var url = LoadUrl() + "axis2/services/MyService/checkRequestDoc";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "user": user,
+                    "id": id
+                },
+                dataType: "text",
+                success: function (result) {
+                    result = loadXML(result);
+                    result = jQuery.parseJSON(result);
+                    LiteratureServiceDetail.ShowInfo(isShow, result);
+                }
+            })
+        },
+        SourceRequest: function (user, id, title, type, surl) {
+            var url = LoadUrl() + "axis2/services/MyService/addRequestDoc";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "user": user,
+                    "id": id,
+                    "title": title,
+                    "type": type,
+                    "url": surl
+                },
+                dataType: "text",
+                success: function (result) {
+                    result = loadXML(result);
+                    if (result) {
+                        layer.confirm('你所请求的原文将发送到邮箱：<br/>' + result + '<br/>请注意查收！', {
+                            btn: ['确定']
+                        }, function (index) {
+                            layer.close(index);
+                        }, function (index) {
+
+                        });
+                    }
+                }
+            })
+        }
+    };
+    LiteratureServiceDetail.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<div class="listconbox">
+    <div class="listcon">
+        <div style="background:#fff;padding-bottom: 100px;">
+            <ul class="mbxcon" style="margin:0 40px;">
+                <li class="mbx" id="currentId">...</li>
+            </ul>
+            <!--Edit开始-->
+            <div class="Edit">
+                <h1 class="biaoti"></h1>
+                <div class="daodu" id="daoduid"></div>
+                <div class="Editneirong" id="Editneirongid"></div>
+            </div>
+            <!--Edit结束-->
+            <div class="clear"></div>
+        </div>
+        <!--列表左侧结束-->
+        <!--列表右侧结束-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jquery.paginate.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+<script type="text/javascript" src="../js/MarketTrendChildDetail.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+        var menu = "";
+        if (getUrl()[0].slice(0, 4) === 'menu') {
+            menu = getUrl()[0].substring(5);
+        }
+        $(".mbx").html("<a href='../index.html'>首页</a> &gt; <a href='MarketTrend.html?menu=" + menu + "'>产业商情</a> &gt; <a href='MarketTrend.html?menu=" + menu + "'>市场观察</a> &gt; 市场详情");
+    });
+</script>
+</body>
+</html>

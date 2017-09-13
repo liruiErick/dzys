@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="../index.html">首页</a> &gt; <a href="ShowInfo.html?menu=5">会展培训</a> &gt; <a href="TradeShow.html?menu=5">行业展览</a>
+        </li>
+    </ul>
+    <div class="law_searech">
+        <div class="published">
+            <div class="control_time">
+                <label class="w_label80">时间</label>
+                <div class="w_r_100"><select id="control_time_zhaocaixinxi" required placeholder="选择时间">
+                    <option value="1">全部</option>
+                    <option value="2">近一周</option>
+                    <option value="3">近一月</option>
+                    <option value="4">近三个月</option>
+                    <option value="5">近一年</option>
+                </select></div>
+            </div>
+            <div class="control_jigou">
+                <label class="w_label80">地点</label>
+                <div class="fawen_all radio_style" onclick="checkall()">
+                    <input type="radio" name="radiog_dark" id="radio1" class="css-checkbox"/>
+                    <label for="radio1" class="css-label radGroup1 radGroup2">全选</label>
+                </div>
+                <div class="fawen_tab">
+                    <ul class="tab_menu tab_ment_ctiy_country">
+                        <li class="current">国际</li>
+                        <li>国内</li>
+                    </ul>
+                    <div class="tab_box fawen_tab_1 checkbox_style">
+                        <div class="tab_box_con" style="min-height:inherit;">
+                            <ul class="fuxuanlist">
+                                <li>
+                                    <input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox"/>
+                                    <label for="checkboxG1" class="css-label radGroup1">中国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG2" id="checkboxG2" class="css-checkbox"/>
+                                    <label for="checkboxG2" class="css-label radGroup1">俄罗斯</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG3" id="checkboxG3" class="css-checkbox"/>
+                                    <label for="checkboxG3" class="css-label radGroup1">美国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox"/>
+                                    <label for="checkboxG4" class="css-label radGroup1">英国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG5" id="checkboxG5" class="css-checkbox"/>
+                                    <label for="checkboxG5" class="css-label radGroup1">德国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG6" id="checkboxG6" class="css-checkbox"/>
+                                    <label for="checkboxG6" class="css-label radGroup1">法国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG7" id="checkboxG7" class="css-checkbox"/>
+                                    <label for="checkboxG7" class="css-label radGroup1">意大利</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG8" id="checkboxG8" class="css-checkbox"/>
+                                    <label for="checkboxG8" class="css-label radGroup1">波兰</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG9" id="checkboxG9" class="css-checkbox"/>
+                                    <label for="checkboxG9" class="css-label radGroup1">瑞典</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG10" id="checkboxG10" class="css-checkbox"/>
+                                    <label for="checkboxG10" class="css-label radGroup1">荷兰</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG11" id="checkboxG11" class="css-checkbox"/>
+                                    <label for="checkboxG11" class="css-label radGroup1">澳大利亚</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG12" id="checkboxG12" class="css-checkbox"/>
+                                    <label for="checkboxG12" class="css-label radGroup1">泰国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG13" id="checkboxG13" class="css-checkbox"/>
+                                    <label for="checkboxG13" class="css-label radGroup1">缅甸</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG14" id="checkboxG14" class="css-checkbox"/>
+                                    <label for="checkboxG14" class="css-label radGroup1">越南</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG15" id="checkboxG15" class="css-checkbox"/>
+                                    <label for="checkboxG15" class="css-label radGroup1">朝鲜</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG16" id="checkboxG16" class="css-checkbox"/>
+                                    <label for="checkboxG16" class="css-label radGroup1">韩国</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG17" id="checkboxG17" class="css-checkbox"/>
+                                    <label for="checkboxG17" class="css-label radGroup1">加拿大</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG18" id="checkboxG18" class="css-checkbox"/>
+                                    <label for="checkboxG18" class="css-label radGroup1">巴西</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG19" id="checkboxG19" class="css-checkbox"/>
+                                    <label for="checkboxG19" class="css-label radGroup1">古巴</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG20" id="checkboxG20" class="css-checkbox"/>
+                                    <label for="checkboxG20" class="css-label radGroup1">阿根廷</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG21" id="checkboxG21" class="css-checkbox"/>
+                                    <label for="checkboxG21" class="css-label radGroup1">新加坡</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG22" id="checkboxG22" class="css-checkbox"/>
+                                    <label for="checkboxG22" class="css-label radGroup1">马来西亚</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG23" id="checkboxG23" class="css-checkbox"/>
+                                    <label for="checkboxG23" class="css-label radGroup1">印度</label></li>
+                                <li>
+                                    <input type="checkbox" name="checkboxG24" id="checkboxG24" class="css-checkbox"/>
+                                    <label for="checkboxG24" class="css-label radGroup1">巴基斯坦</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hide tab_box_con" style="min-height:inherit;">
+                            <ul class="fuxuanlist">
+                                <li><input type="checkbox" name="city_checkboxG1" id="city_checkboxG1"
+                                           class="css-checkbox"/><label for="city_checkboxG1"
+                                                                        class="css-label radGroup1">北京</label></li>
+                                <li><input type="checkbox" name="city_checkboxG2" id="city_checkboxG2"
+                                           class="css-checkbox"/><label for="city_checkboxG2"
+                                                                        class="css-label radGroup1">天津</label></li>
+                                <li><input type="checkbox" name="city_checkboxG3" id="city_checkboxG3"
+                                           class="css-checkbox"/><label for="city_checkboxG3"
+                                                                        class="css-label radGroup1">上海</label></li>
+                                <li><input type="checkbox" name="city_checkboxG4" id="city_checkboxG4"
+                                           class="css-checkbox"/><label for="city_checkboxG4"
+                                                                        class="css-label radGroup1">重庆</label></li>
+                                <li><input type="checkbox" name="city_checkboxG5" id="city_checkboxG5"
+                                           class="css-checkbox"/><label for="city_checkboxG5"
+                                                                        class="css-label radGroup1">沈阳</label></li>
+                                <li><input type="checkbox" name="city_checkboxG6" id="city_checkboxG6"
+                                           class="css-checkbox"/><label for="city_checkboxG6"
+                                                                        class="css-label radGroup1">长春</label></li>
+                                <li><input type="checkbox" name="city_checkboxG7" id="city_checkboxG7"
+                                           class="css-checkbox"/><label for="city_checkboxG7"
+                                                                        class="css-label radGroup1">哈尔滨</label></li>
+                                <li><input type="checkbox" name="city_checkboxG8" id="city_checkboxG8"
+                                           class="css-checkbox"/><label for="city_checkboxG8"
+                                                                        class="css-label radGroup1">南京</label></li>
+                                <li><input type="checkbox" name="city_checkboxG9" id="city_checkboxG9"
+                                           class="css-checkbox"/><label for="city_checkboxG9"
+                                                                        class="css-label radGroup1">武汉</label></li>
+                                <li><input type="checkbox" name="city_checkboxG10" id="city_checkboxG10"
+                                           class="css-checkbox"/><label for="city_checkboxG10"
+                                                                        class="css-label radGroup1">广州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG11" id="city_checkboxG11"
+                                           class="css-checkbox"/><label for="city_checkboxG11"
+                                                                        class="css-label radGroup1">成都</label></li>
+                                <li><input type="checkbox" name="city_checkboxG12" id="city_checkboxG12"
+                                           class="css-checkbox"/><label for="city_checkboxG12"
+                                                                        class="css-label radGroup1">西安</label></li>
+                                <li><input type="checkbox" name="city_checkboxG13" id="city_checkboxG13"
+                                           class="css-checkbox"/><label for="city_checkboxG13"
+                                                                        class="css-label radGroup1">石家庄</label></li>
+                                <li><input type="checkbox" name="city_checkboxG14" id="city_checkboxG14"
+                                           class="css-checkbox"/><label for="city_checkboxG14"
+                                                                        class="css-label radGroup1">太原</label></li>
+                                <li><input type="checkbox" name="city_checkboxG15" id="city_checkboxG15"
+                                           class="css-checkbox"/><label for="city_checkboxG15"
+                                                                        class="css-label radGroup1">唐山</label></li>
+                                <li><input type="checkbox" name="city_checkboxG16" id="city_checkboxG16"
+                                           class="css-checkbox"/><label for="city_checkboxG16"
+                                                                        class="css-label radGroup1">包头</label></li>
+                                <li><input type="checkbox" name="city_checkboxG17" id="city_checkboxG17"
+                                           class="css-checkbox"/><label for="city_checkboxG17"
+                                                                        class="css-label radGroup1">大连</label></li>
+                                <li><input type="checkbox" name="city_checkboxG18" id="city_checkboxG18"
+                                           class="css-checkbox"/><label for="city_checkboxG18"
+                                                                        class="css-label radGroup1">南昌</label></li>
+                                <li><input type="checkbox" name="city_checkboxG19" id="city_checkboxG19"
+                                           class="css-checkbox"/><label for="city_checkboxG19"
+                                                                        class="css-label radGroup1">青岛</label></li>
+                                <li><input type="checkbox" name="city_checkboxG20" id="city_checkboxG20"
+                                           class="css-checkbox"/><label for="city_checkboxG20"
+                                                                        class="css-label radGroup1">杭州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG21" id="city_checkboxG21"
+                                           class="css-checkbox"/><label for="city_checkboxG21"
+                                                                        class="css-label radGroup1">苏州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG22" id="city_checkboxG22"
+                                           class="css-checkbox"/><label for="city_checkboxG22"
+                                                                        class="css-label radGroup1">昆明</label></li>
+                                <li><input type="checkbox" name="city_checkboxG23" id="city_checkboxG23"
+                                           class="css-checkbox"/><label for="city_checkboxG23"
+                                                                        class="css-label radGroup1">郑州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG24" id="city_checkboxG24"
+                                           class="css-checkbox"/><label for="city_checkboxG24"
+                                                                        class="css-label radGroup1">长沙</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control_keywords">
+                <label class="w_label80">关 键 词</label>
+                <div class="sousuo_con"><input type="search" id="keyid"/></div>
+                <div class="sousuo_btn"><a onclick="SearchBtn()">搜 索</a></div>
+                <div class="sousuo_btn_jieguo"><a onclick="SearchAgain()">在结果中检索</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="law_list ">
+        <div class="law_list_con caibiaoxinxi_list">
+            <ul class="tab1list listid" id="listid"></ul>
+        </div>
+        <div class="law_list_fenye" style="text-align:center;">
+            <div class="pagination" id="pagingid"></div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    var pageIndex = 0;
+    var pageSize = 12;
+    var pageCount = 0;
+    var displayNums = 5;
+    var menu = "";
+    if (getUrl()[0].slice(0, 4) === 'menu') {
+        menu = getUrl()[0].substring(5);
+    }
+    function ShowPage(currentIndex) {
+        var time1 = $("#control_time_zhaocaixinxi").text();
+        var morecheck = "";
+        $('input:checkbox[class=css-checkbox]:checked').each(function (i, b) {
+            if (i == 0) {
+                morecheck = b.labels[0].innerText;
+            }
+            else {
+                morecheck += ("," + b.labels[0].innerText);
+            }
+        });
+        var kwords = $("#keyid").val();
+        ShowInfo(currentIndex, time1, morecheck, kwords);
+    }
+    function ShowInfo(currentIndex, time1, checks, words) {
+        var surl = LoadUrl() + "axis2/services/MyService/searchMeetingOrExhibition";
+        var start = (currentIndex - 1) * pageSize;
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                "sub_srv": "21",
+                "keyword": words,
+                "datescope": time1,
+                "unit": checks,
+                "fromIndex": start,
+                "size": pageSize
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                result = jQuery.parseJSON(result);
+                $("#listid").empty();
+                $.each(result, function (a, b) {
+                    if (pageCount == 0) {
+                        pageCount = b.total;
+                    }
+                    html += '<li>'
+                        + '<a href="ShowInfoDetail.html?menu=5&pid=' + b.id + '" title="' + b.title + '">' + b.title + '</a><span>' + b.fromTime.substring(5, 10) + '</span>'
+                        + '</li>';
+                });
+                $("#listid").html(html);
+                var num = 0;
+                //pageCount = 12;
+                if (pageCount % pageSize == 0) {
+                    num = Math.floor(pageCount / pageSize);
+                }
+                else {
+                    num = Math.floor(pageCount / pageSize) + 1;
+                }
+                if (html) {
+                    $("#listid").html("无结果");
+                }
+                if (pageCount != 0) {
+                    //$("#pagingid").css("display", "block");
+                    //$("#pagingid").paginate({
+                    //    count: num,
+                    //    start: currentIndex,
+                    //    display: displayNums,
+                    //    border: true,
+                    //    border_color: '#fffff',
+                    //    text_color: '#828282',
+                    //    background_color: '#f2f2f2',
+                    //    border_hover_color: '#fff',
+                    //    text_hover_color: '#fff',
+                    //    background_hover_color: '#00aaff',
+                    //    images: false,
+                    //    mouse: 'press',
+                    //    onChange: function (p) {
+                    //        ShowInfo(p, time1, checks, words);
+                    //    }
+                    //});
+                    $("#pagingid").empty();
+                    $("#pagingid").pagination(currentIndex, num, displayNums);
+                }
+                else {
+                    $("#pagingid").empty();
+                }
+            }
+        })
+
+    }
+    function SearchBtn() {
+        var time1 = $("#control_time_zhaocaixinxi").text();
+        var morecheck = "";
+        $('input:checkbox[class=css-checkbox]:checked').each(function (i, b) {
+            if (i == 0) {
+                morecheck = b.labels[0].innerText;
+            }
+            else {
+                morecheck += ("," + b.labels[0].innerText);
+            }
+        });
+        var kwords = $("#keyid").val();
+        SetLocal("TimesP", time1);
+        SetLocal("CheckboxsP", morecheck);
+        SetLocal("keysP", kwords);
+        pageCount = 0;
+        ShowInfo(1, time1, morecheck, kwords);
+    }
+    function SearchAgain() {
+        var keys = $("#keyid").val();
+        if (keys != GetLocal("keysP")) {
+            keys = GetLocal("keysP") + "," + keys;
+        }
+        pageCount = 0;
+        ShowInfo(1, GetLocal("TimesP"), GetLocal("CheckboxsP"), keys);
+    }
+    function SearchP(obj) {
+        var id = $(obj).next().text();
+        SetLocal("showinfoID", id);
+        location.href = 'ShowInfoDetail.html';
+    }
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+
+        ShowInfo(1, "", "", "");
+    });
+</script>
+<script type="text/javascript">
+    $('#control_time_zhaocaixinxi').selectize({
+        create: true,
+        sortField: {
+            field: 'value',
+            direction: 'asc'
+        },
+        dropdownParent: 'body'
+    });
+
+    function checkall() {
+        var c = document.getElementsByName("radiog_dark");
+        var r = document.getElementsByTagName("input");
+        AllChecked(c, r);
+    }
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

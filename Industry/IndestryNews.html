@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--列表页 start-->
+<div class="listconbox">
+    <div class="listcon">
+        <div class="listleft h1960">
+            <ul class="mbxcon" style="margin-bottom:20px;">
+                <li class="mbx">
+                    <a href="../index.html">首页</a> &gt; <a href="IndestryNews.html?menu=0">产业动态</a> &gt; <a href="IndestryNews.html?menu=0">产业新闻</a>
+                </li>
+            </ul>
+            <div class="pagenews">
+                <ul id="newsid"></ul>
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <div id="pagingid" class="pagination"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--列表左侧结束-->
+        <div class="listright h1960">
+            <div class="hottit"><img src="../images/hot.jpg" alt=""></div>
+            <ul class="tenhot" id="hotid"></ul>
+            <div class="ad" id="sid"></div>
+            <div class="ad" id="bid"></div>
+        </div>
+        <!--列表右侧结束-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!--列表页 end-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    var pageSize = 12;
+    var pageCount = 0;
+    var displayNums = 10;
+
+    function ShowPage(currentIndex) {
+        ShowInfo(currentIndex);
+    }
+
+    function ShowInfo(currentIndex) {
+        var nurl = LoadUrl() + "axis2/services/MyService/getNormalNewsList";
+        var start = (currentIndex - 1) * pageSize;
+        $.ajax({
+            type: "POST",
+            url: nurl,
+            data: {
+                "area_type": "",
+                "sub_srv": "10",
+                "doc_Type": "",
+                "interpret_type": "",
+                "fromIndex": start,
+                "Size": pageSize
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    $("#newsid").empty();
+                    $.each(result, function (a, b) {
+                        if (pageCount == 0) {
+                            pageCount = b.total;
+                        }
+                        var time1 = b.fromTime.substring(0, 7);
+                        var time2 = b.fromTime.substring(8, 10);
+                        html += '<li>'
+                            + '<div class="time">' + time1 + '<strong>' + time2 + '</strong></div>'
+                            + '<div class="time-txt">'
+                            + '<h3><a href="NewsShow.html?menu=0&pid=' + b.id + '">' + b.title + '</a><span style="display:none;">' + b.id + '</span></h3>'
+                            + '<p>' + b.stick_abstract + '</p>'
+                            + '</div>'
+                            + '<div class="clear"></div>'
+                            + '</li>';
+                    });
+                    $("#newsid").html(html);
+                    //pageCount = 444; //result.total;
+                    var num = 0;
+                    if (pageCount % pageSize == 0) {
+                        num = Math.floor(pageCount / pageSize);
+                    }
+                    else {
+                        num = Math.floor(pageCount / pageSize) + 1;
+                    }
+
+                    if (pageCount > 0) {
+                        $("#pagingid").empty();
+                        $("#pagingid").pagination(currentIndex, num, displayNums);
+                    }
+                    else {
+                        $("#pagingid").empty();
+                    }
+                }
+                //$("#pagingid").paginate({
+                //    count: num,
+                //    start: currentIndex,
+                //    display: displayNums,
+                //    border: true,
+                //    border_color: '#fffff',
+                //    text_color: '#828282',
+                //    background_color: '#f2f2f2',
+                //    border_hover_color: '#fff',
+                //    text_hover_color: '#fff',
+                //    background_hover_color: '#00aaff',
+                //    images: false,
+                //    mouse: 'press',
+                //    onChange: function (p) {
+                //        ShowInfo(p);
+                //    }
+                //});
+            }
+        });
+        // 右侧热点推荐
+//        var url = LoadUrl() + "axis2/services/MyService/getIndustryNewsHotRecommendList";
+//        $.ajax({
+//            type: "POST",
+//            url: url,
+//            data: {
+//                "fromIndex": 0,
+//                "Size": displayNums
+//            },
+//            dataType: "text",
+//            success: function (result) {
+//                var html = "";
+//                result = loadXML(result);
+//                result = jQuery.parseJSON(result);
+//                $("#hotid").empty();
+//                $.each(result, function (a, b) {
+//                    html += '<li> <a href="Industry/NewsShow.html?menu=&pid='+ b.id +'">' + b.title + '</a> <span style="display:none;">' + b.id + '</span></li>';
+//                });
+//                $("#hotid").html(html);
+//            }
+//        })
+    }
+
+    function GetPic(isBig) {
+        var url = LoadUrl() + "axis2/services/MyService/getPoster";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                "isBig": isBig
+            },
+            dataType: "text",
+            success: function (result) {
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    var temp = result[0].url;
+                    if (temp) {
+                        if (temp.indexOf("http://") != 0) {
+                            temp = "http://" + temp;
+                        }
+                    }
+                    var html = '<a href="' + temp + '" target="_blank"><img src="../images/' + result[0].pic + '" alt=""></a>';
+                    if (isBig == "1") {
+                        $("#bid").html(html);
+                    }
+                    else {
+                        $("#sid").html(html);
+                    }
+                }
+            }
+        })
+    }
+    $(function () {
+        ShowInfo(1);
+        GetPic("0");
+        GetPic("1");
+    })
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

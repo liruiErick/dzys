@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/selectize.default.css">
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="index.html">首页</a> &gt; <a href="Technological/LiteratureService.html?menu=3">科技文献</a> &gt; <a href="Technological/LiteratureService.html?menu=3">文献服务</a> &gt; 搜索结果
+        </li>
+    </ul>
+    <div class="blank20"></div>
+    <div class="law_list ">
+        <div class="law_list_top">
+            <div class="search_r_title1">搜索结果</div>
+            <div class="search_r_sousuo">
+                <div class="sousuo_con"><input type="search" id="search_id"/></div>
+                <div class="sousuo_btn"><a onclick="SearchAgain()">结果中检索</a></div>
+            </div>
+        </div>
+        <div class="law_list_con caibiaoxinxi_list serach_jieguo_list">
+            <ul class="tab1list checkbox_style" id="listid">
+                <!--<li>-->
+                <!--<div class="serach_jieguo_list_fuxuan">-->
+                <!--<input type="checkbox" name="searchresult" id="searchresultG1" class="css-checkbox"/>-->
+                <!--<label for="searchresultG1" class="css-label radGroup1"></label>-->
+                <!--</div>-->
+                <!--<a href="#" title="两化融合管理体系工作简报(2016年第7期/总第19期)">【期刊】两化融合管理体系工作简报(2016年第7期/总第19期)</a><span>11-13</span>-->
+                <!--</li>-->
+            </ul>
+            <div class="checkbox_style serach_jieguo_list_fuxuan_all">
+                <div class="serach_jieguo_list_fuxuan">
+                    <input type="checkbox" name="searchresult_all" id="searchresult_all" class="css-checkbox"/>
+                    <label for="searchresult_all" class="css-label radGroup1">全选</label>
+                </div>
+                <div class="sousuo_btn"><a>原文请求</a></div>
+            </div>
+        </div>
+        <div class="law_list_fenye">
+            <ul class="pagination"></ul>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="application/javascript" src="js/selectize.js"></script>
+<script type="application/javascript" src="js/jspatch.js"></script>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/jquery.tabs.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<!--<script type="text/javascript" src="js/esl.js"></script>-->
+<script type="text/javascript" src="js/Last_Menu.js"></script>
+<script type="text/javascript">
+    var com_pageSize = 20;
+    var pageCount = 0;
+    var displayNums = 5;
+    function ShowList(key, currentindex) {        
+        var fromindex = (currentindex - 1) * com_pageSize;
+        var url = getUrl();
+
+        var keyword = url[1].substring(url[1].indexOf("=") + 1);
+        if (key != "") {
+            keyword = keyword + ',' + key;
+        }
+        keyword = decodeURIComponent(keyword);
+        var starttime = decodeURIComponent(url[2].substring(url[2].indexOf("=") + 1));
+        var endtime = decodeURIComponent(url[3].substring(url[3].indexOf("=") + 1));
+        var filetype = "";
+        var filetype1 = url[4].substring(url[4].indexOf("=") + 1);
+        if (filetype1.indexOf(",") != -1) {
+            var arr = filetype1.split(",");
+            for (var i = 0; i < arr.length; i++) {
+                if (i == arr.length - 1) {
+                    filetype += arr[i];
+                }
+                else {
+                    filetype += arr[i] + ",";
+                }
+            }
+        }
+        else {
+            filetype = filetype1;
+        }
+        filetype = decodeURIComponent(filetype);
+        var code = decodeURIComponent(url[5].substring(url[5].indexOf("=") + 1));
+        var surl = LoadUrl() + "axis2/services/MyService/searchLiterature";
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                "sub_srv": "18",
+                "keyword": keyword,
+                "code": code,
+                "doctype": filetype,
+                "startdate": starttime,
+                "enddate": endtime,
+                "fromIndex": fromindex,
+                "size": com_pageSize
+            },
+            dataType: "text",
+            success: function (result) {
+                result = loadXML(result);
+                if (result != "") {
+                    result = jQuery.parseJSON(result);
+                    // console.log(result);
+                    var html = "";
+                    $.each(result, function (a, b) {
+                        html += '<li>'
+                            + '<div class="serach_jieguo_list_fuxuan">'
+                            + '<input type="checkbox" name="searchresult" id="searchresultG' + a + '" class="css-checkbox"/>'
+                            + '<label for="searchresultG' + a + '" class="css-label radGroup1"></label>'
+                            + '</div>'
+                            + '<a href="Technological/LiteratureServiceDetail.html?menu=3&pid=' + b.id + '" title="' + htmldecode(b.title).replace("<br/>", "") + '">【' + b.doc_type + '】' + htmldecode(b.title).replace("<br/>", "") + '</a><span>' + b.fromTime.substring(0,10) + '</span>'
+                            + '</li>';
+                    });
+                    $("#listid").html(html);
+                }
+            }
+        })
+    }
+
+    function SearchAgain() {
+        var key = $("#search_id").val();
+        ShowList(key, 1);
+    }
+
+    $(function () {
+        ShowList("", 1);
+    })
+
+    $("input:checkbox[id='searchresult_all']").change(function () {
+        var c = document.getElementsByName("searchresult_all");
+        var r = document.getElementsByTagName("input");
+        AllChecked(c, r);
+    })
+</script>
+</body>
+</html>

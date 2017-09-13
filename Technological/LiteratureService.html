@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body bgcolor="#FFFFFF">
+<!-- header -->
+<div id="header"></div>
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="../index.html">首页</a> &gt; <a href="LiteratureService.html?menu=3">科技文献</a> &gt; <a href="LiteratureService.html?menu=3">文献服务</a>
+        </li>
+    </ul>
+    <!--2017-02-10科技文献左侧部分-->
+    <div class="kejiwenxian_left" style="height:1438px;overflow-y:auto; overflow-x:hidden;">
+        <div id="jquery-accordion-menu" class="jquery-accordion-menu red" style="width:auto;">
+            <ul id="demo-list">
+                <!--<li><a href="#about">基础学科</a>
+                  <ul>
+                    <li><a href="#">自然科学</a></li>
+                    <li><a href="#">数学</a></li>
+                    <li><a href="#">语文</a></li>
+                  </ul>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <!--2017-02-10科技文献右侧部分-->
+    <div class="kejiwenxian_right">
+        <div class="law_searech">
+            <div class="published">
+                <div class="control_time">
+                    <label class="w_label80">发表时间</label>
+                    <div class="w_r_100"><select id="control_time_01" required placeholder="选择时间">
+                        <option value="">选择时间</option>
+                        <option value="1">2016</option>
+                        <option value="2">2015</option>
+                        <option value="3">2014</option>
+                        <option value="4">2013</option>
+                    </select></div>
+                    <div class="lianjie_txt">至</div>
+                    <div class="w_r_100">
+                        <select id="control_time_02" required placeholder="选择时间">
+                            <option value="">选择时间</option>
+                            <option value="4">2016</option>
+                            <option value="3">2015</option>
+                            <option value="2">2014</option>
+                            <option value="1">2013</option>
+                        </select></div>
+                </div>
+                <div class="control_jigou">
+                    <label class="w_label80">文献类型</label>
+                    <div class="wenxian_leixing checkbox_style">
+                        <ul class="wenxian_leixing_list">
+                            <li><input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox"/><label
+                                    for="checkboxG1" class="css-label radGroup1" value="报告">研究报告</label></li>
+                            <li><input type="checkbox" name="checkboxG2" id="checkboxG2" class="css-checkbox"/><label
+                                    for="checkboxG2" class="css-label radGroup1" value="文献">文献</label></li>
+                            <li><input type="checkbox" name="checkboxG3" id="checkboxG3" class="css-checkbox"/><label
+                                    for="checkboxG3" class="css-label radGroup1" value="期刊">期刊</label></li>
+                            <li><input type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox"/><label
+                                    for="checkboxG4" class="css-label radGroup1" value="图书">图书</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control_keywords">
+                    <label for="keyid" class="w_label80">关 键 词</label>
+                    <div class="sousuo_con"><input type="search" id="keyid"/></div>
+                    <div class="sousuo_btn"><a onclick="GoSearch()">搜 索</a></div>
+                    <!--<div class="sousuo_btn_jieguo"><a>在结果中检索</a></div>-->
+                </div>
+            </div>
+        </div>
+        <div class="law_list wenxian_list_con">
+            <ul class="wenxian_list_title tab-cursor tab-box">
+                <li class="current" value="报告">研究报告</li><!--onclick="Bg_Show(1)"-->
+                <li value="图书">图书</li><!--onclick="Bg_Show(2)"-->
+                <li value="期刊">期刊</li><!--onclick="Bg_Show(3)"-->
+                <li value="文献">文献</li><!--onclick="Bg_Show(4)"-->
+            </ul>
+            <div class="tab_box wenxian_box_tab">
+                <div class="wenxian_list">
+                    <ul id="bg_id">
+
+                    </ul>
+                    <div style="text-align:center;">
+                        <div id="pagingid" class="pagination">
+
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="law_list_con wenxianqikan_list">-->
+                    <!--<ul class="tab1list " id="wx_id">-->
+
+                    <!--</ul>-->
+                    <!--<div style="width:200px;margin:0 auto;">-->
+                        <!--<div  id="wspagingid"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="law_list_fenye">
+            <!--<ul class="pagination">
+             <li class="law_list_fenye_sy"><a href="#">首页</a></li>
+              <li class="law_list_fenye_up"><a href="#">上一页</a></li>
+              <li><a href="#">1</a></li>
+              <li><a class="active" href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li class="law_list_fenye_next"><a href="#">下一页</a></li>
+               <li class="law_list_fenye_wy"><a href="#">最后</a></li>
+            </ul>-->
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<!--20170210加入右侧tab切换-->
+<script type="text/javascript">
+    $(function () {
+        $('.wenxian_list_con').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        })
+    });
+</script>
+<script type="text/javascript" src="../js/jquery-accordion-menu.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript" src="../js/LiteratureService.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

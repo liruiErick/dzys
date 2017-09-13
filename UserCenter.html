@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/selectize.default.css"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        #demo-list li ul .current a {
+            background-color: #0066b4;
+        }
+
+        .modal-dz-box {
+            /*width: 926px;*/
+            display: none;
+            /*margin-left: 20px;*/
+        }
+
+        .sea {
+            top: 0;
+            position: relative;
+            left: 300px;
+        }
+
+        input.txt {
+            width: 96%;
+            height: 30px;
+            border: 1px solid #ddd;
+            margin: 5px;
+            padding: 0 10px;
+            font-size: 16px;
+        }
+
+        .sea input.btnss {
+            width: 50px;
+            height: 30px;
+            left: 360px;
+            position: relative;
+        }
+
+        .dz-btn {
+            /*margin: 24px;*/
+            width: 60px;
+            height: 30px;
+            position:absolute;
+            top:36px;
+        }
+
+        .m-table {
+            /*width: 926px;*/
+            text-align: center;
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        .m-table tbody tr td {
+            border: 1px solid #ddd;
+        }
+
+        .first {
+            width: 20%;
+        }
+
+        .m-div, .m-div ul {
+            height: 50%;
+        }
+
+        .m-div ul li {
+            list-style: none;
+            float: left;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .box-shadow {
+            box-shadow: 1px 1px 3px #888;
+        }
+
+        .user-icon {
+            display: inline-block;
+            position: relative;
+            top: 5px;
+            width: 21px;
+            height: 21px;
+            margin: 0 10px 0 5px;
+        }
+
+        .user-icon.icon-menu {
+            background: url('images/icon_menu.png') left top no-repeat;
+            background-size: cover;
+        }
+
+        .user-icon.icon-col {
+            background: url('images/icon_col.png') left top no-repeat;
+            background-size: cover;
+        }
+
+        .user-icon.icon-cus {
+            background: url('images/icon_cus.png') left top no-repeat;
+            background-size: cover;
+        }
+
+        .user-icon.icon-ask {
+            background: url('images/icon_ask.png') left top no-repeat;
+            background-size: cover;
+        }
+
+        #dz-menu-id span, #dz-field-id span, #dz-key-id span {
+            border-radius: 10px;
+            background-color: #00abff;
+            width: 80px;
+            height: 16px;
+            line-height: 16px;
+            float: left;
+            color: #fff;
+            padding: 2px 0;
+            margin: 3px;
+            font-size: 12px;
+            text-align: center;
+            /*box-shadow: 1px 1px 0 #888;*/
+        }
+
+        .xq-input {
+            font-size: 16px;
+            width: 238px;
+            border: 1px solid #ddd;
+        }
+
+        #EditInfoId {
+            position: absolute;
+            top: 0px;
+            background: rgb(119, 119, 119);
+            opacity: 0.6;
+            left: 0px;
+            width: 1903px;
+            height: 2200px;
+            z-index: 10000;
+            display:none;
+        }
+
+        .xg-mm {
+            position:absolute;
+            width:300px;
+            max-height:280px;
+            /*top: 263px;
+            left: 900px;*/
+            top:20%;
+            left:50%;
+            background-color:#ddd;
+            border-radius:10px;
+            display:none;
+            z-index:10001;
+        }
+        .xg-title {
+            height: 40px;
+            width: 100%;
+            line-height: 40px;
+            background-color:#00a4f4;
+            border-radius:3px;
+        }
+        .xg-title span {
+            margin:0 20px;
+        }
+        .ed-mm {
+            float:right;
+        }
+        .mm-div {
+            display:none;
+        }
+        .xx-span {
+            height: 40px;
+            width: 100%;
+            line-height: 40px;
+            border-bottom:1px solid #dfe6e9;
+        }
+        .xx-span span {
+            margin-left:20px;
+        }
+        .xx-span input {
+            border:1px solid #ddd;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx"><a href="index.html">首页</a> &gt; <a href="javascript:void(0)">个人中心</a></li>
+    </ul>
+    <!--2017-02-10科技文献左侧部分-->
+    <div class="user-cen-left" style="min-height:1256px;overflow-y:auto; overflow-x:hidden;">
+        <div id="jquery-accordion-menu" class="jquery-accordion-menu" style="width:auto;">
+            <ul id="demo-list">
+                <li>
+                    <a href="javascript:void(0)"><span class="user-icon icon-menu"></span><span
+                        style="font-size:16px; color:#fff;">菜单</span></a>
+                    <ul>
+                        <li class="current"><a onclick="Checks(this)"><span class="user-icon icon-col"></span>我的收藏</a>
+                        </li>
+                        <li><a onclick="Checks(this)"><span class="user-icon icon-cus"></span>我的定制</a></li>
+                        <li><a onclick="Checks(this)"><span class="user-icon icon-ask"></span>我的原文请求</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--2017-02-10科技文献右侧部分-->
+    <div class="user-cen-right">
+        <div class="law_searech" style="padding:20px 20px;">
+            <div style="height:30px;">个人信息栏</div>
+            <div class="box-shadow" style="padding:20px 10px;height:80px;border-radius:8px;background:#fff;">
+                <div style="width:90%;float:left;">
+                    <div style="margin:5px 10px;"><span>用户：</span><span id="name_id"></span></div>
+                    <div style="margin:5px 10px;"><span>电话：</span><span id="tel_id"></span></div>
+                    <div style="margin:5px 10px;"><span>邮箱：</span><span id="mail_id"></span></div>
+                </div>
+                <div style="width:10%;float:right; position:relative;">
+                    <input type="button" class="dz-btn" id="xq_btnid" value="修改" style="top:26px;" />
+                </div>
+                <div class="fl"></div>
+            </div>
+        </div>
+        <div>
+            <div class="law_list wenxian_list_con" style=" border-top:1px solid #ddd; display:block;">
+                <div style="margin:20px;border:1px solid #ddd; min-height:100px;display:none;">
+                    <label style="margin:10px 20px;">我的收藏：</label>
+                    <input type="button" value="修改" style="width:50px;height:30px; float:right; margin:36px 20px;"/>
+                </div>
+                <div class="box-shadow" style="margin:20px;border-radius:8px;min-height:1022px;background:#fff;">
+                    <div class="law_list_con">
+                        <div style="height:30px; line-height:30px; border-bottom: 1px solid #ddd;background-color:#808080;">
+                            <span style="margin:0 0 0 40px;">
+                                <input type="checkbox" class="css-checkbox" id="searchresult_all" name="searchresult_all" />
+                                <label>全选</label>
+                            </span>
+                            <span>
+                                <input type ="button" id="Cancle_id" style="width:80px;background-color:#808080;" value="取消收藏" />
+                            </span>
+                            <span style="position: relative;left: 200px;">标题</span>
+                            <span style="float:right;position:relative;right:42px;">日期</span>
+                        </div>
+                        <ul class="tab1list ab-right" id="listid">
+
+                        </ul>
+                    </div>
+                    <div class="law_list_fenye" style="text-align:center;">
+                        <div id="pagingid" class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="law_list wenxian_list_con" style=" border-top:1px solid #ddd; display:none;">
+                <div class="box-shadow fl"
+                     style="padding:20px 0;margin:20px;min-height:124px;border-radius:8px;background:#fff;width:978px;">
+                    <label style="margin:10px 20px;">我的定制：</label>
+                    <div style="width:90%;float:left;">
+                        <div style="padding:15px 20px 5px; width:800px;">
+                            <div style="float:left; width:100px; vertical-align:middle;">菜&emsp;&emsp;单：</div>
+                            <div style="float:right;width:700px;" id="dz-menu-id"></div>
+                            <div class="clearfloat"></div>
+                        </div>
+                        <div style="padding:5px 20px;width:800px;">
+                            <div style="float:left; width:100px;">领&emsp;&emsp;域：</div>
+                            <div style="float:right;width:700px;" id="dz-field-id"></div>
+                            <div class="clearfloat"></div>
+                        </div>
+                        <div style="padding:5px 20px;width:800px;">
+                            <div style="float:left; width:100px;">关&nbsp;键&nbsp;&nbsp;字：</div>
+                            <div style="float:right;width:700px;" id="dz-key-id"></div>
+                            <div class="clearfloat"></div>
+                        </div>
+                    </div>
+                    <div style="width:10%; height:100px;float:right;position:relative;">
+                        <input type="button" value="定制设置" id="btn_id" class="dz-btn"/>
+                    </div>
+                </div>
+                <div class="box-shadow fl" id="modal-dz" style="margin:0 20px;">
+                    <div class="modal-dz-box pro">
+                        <div class="model-dz-body pro">
+                            <div class="m-head f-l">
+                                <span class="wel"></span>
+                                <span class="sea">
+                                    <input type="button" class="btnss" id="dz_id" value="确定"/>
+                                </span>
+                                <span class="close-icon" id="closeid"></span>
+                            </div>
+                            <div class="m-dz-content" style="background:#fff;">
+                                <table class="m-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="m-table first">菜单</td>
+                                        <td>
+                                            <div class="m-div">
+                                                <ul id="menu_id">
+
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>领域</td>
+                                        <td>
+                                            <div class="m-div">
+                                                <ul id="field_id">
+
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>关键字</td>
+                                        <td>
+                                            <div class="m-div">
+                                                <input type="text" id="dz-txtid" class="txt" onfocus="placeholder=''"
+                                                       onblur="placeholder='定制关键字'" placeholder='定制关键字'/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-shadow fl" id="dz_contentid"
+                     style="margin:20px;border-radius:8px;background:#fff;min-height:470px; overflow-y:auto;overflow-x:hidden;padding-bottom:30px; width:978px;">
+                    <div class="law_list_con">
+                        <ul class="tab1list ab-right" id="dz_listid">
+
+                        </ul>
+                    </div>
+                    <div class="law_list_fenye" style="text-align:center;padding-top:12px;">
+                        <div id="dz_pagingid" class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="law_list wenxian_list_con" style=" border-top:1px solid #ddd; display:none;">
+                <div class="box-shadow"
+                     style="padding:20px 0;margin:20px;border-radius:8px;background:#fff;min-height:100px;display:none;">
+                    <label style="margin:10px 20px;">我的原文请求：</label>
+                    <input type="button" value="修改" style="width:50px;height:30px; float:right; margin:36px 20px;"/>
+                </div>
+                <div class="box-shadow" style="margin:20px;border-radius:8px;background:#fff;min-height:1023px;">
+                    <div class="law_list_con">
+                        <ul class="tab1list ab-right" id="ywqq_id">
+
+                        </ul>
+                    </div>
+                    <div class="law_list_fenye" style="text-align:center;padding-top:12px;">
+                        <div id="ywqq_pagingid" class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<div id="EditInfoId"></div>
+<div class="xg-mm" id="xg_modal_id">
+    <div class="xg-title">
+        <span>修改信息：</span>
+        <span class="ed-mm"><input type="checkbox" id="EditPass_id" /><label>修改密码</label><!--<a style="color:#ddd;" onclick="EditPass(this)">修改密码</a>--></span>
+    </div>
+    <div>
+        <div class="xx-span">
+            <span>电&emsp;&emsp;话：</span>
+            <span><input type="text" id="edtel_id" /></span>
+        </div>
+        <!--<div class="xx-span">
+            <span>邮&emsp;&emsp;箱：</span>
+            <span><input type="text" id="edmail_id" /></span>
+        </div>-->
+        <div id="mm_div_id" class="mm-div">
+            <div class="xx-span">
+                <span>初始密码：</span>
+                <span><input type="password" id="oldpass_id" /></span>
+            </div>
+            <div class="xx-span">
+                <span>新设密码：</span>
+                <span><input type="password" id="newpass_id" /></span>
+            </div>
+            <div class="xx-span">
+                <span>确认密码：</span>
+                <span><input type="password" id="newspass_id" /></span>
+            </div>
+        </div>
+    </div>
+    <div class="xg-title">
+        <input type="button" id="btn_ok_id" style="width: 70px;height: 20px;margin: 0 52px;" value="确定" />
+        <input type="button" id="btn_res_id" style="width: 70px;height: 20px;" value="取消" />
+    </div>
+</div>
+
+<script type="text/javascript" src="js/Last_Menu.js"></script>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.tabs.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/selectize.js"></script>
+<script type="text/javascript" src="js/jspatch.js"></script>
+<!--20170210加入右侧tab切换-->
+<script type="text/javascript">
+    $(function () {
+        $('.wenxian_list_con').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+    });
+</script>
+<script type="text/javascript" src="js/jquery-accordion-menu.js"></script>
+<script type="text/javascript" src="js/pagination-custom.js"></script>
+<script type="text/javascript" src="js/UserCenter.js"></script>
+</body>
+</html>

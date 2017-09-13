@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--列表页 start-->
+<div class="listconbox">
+    <div class="listcon">
+        <div class="listleft h1557" style="width:100%;">
+            <ul class="mbxcon" style="margin-left:50px;">
+                <li class="mbx detail-news-mb">...</li>
+            </ul>
+            <!--Edit开始-->
+            <div class="Edit">
+                <h1 class="biaoti"></h1>
+                <div class="daodu" id="daoduid"></div>
+                <div class="Editneirong" id="Editneirongid"></div>
+                <div id="pagingid" style="margin-left:250px; margin-top:50px;"></div>
+            </div>
+            <!--Edit结束-->
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--列表页 end-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jquery.paginate.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+<script type="text/javascript">
+    var menu = '';
+    var title = '';
+    var user = getCookie('loginName') || localStorage['loginName'] || '';
+    var pid = '';
+
+    if (getUrl()[4].slice(0, 3) === 'pid') {
+        pid = getUrl()[4].substring(4);
+    }
+    if (getUrl()[0].slice(0, 4) === 'menu') {
+        menu = getUrl()[0].substring(5);
+    }
+
+    function CollType() {
+        //var c = document.getElementsByName("radiog_dark");
+        var c = $("#radio1");
+        if (c[0].checked) {
+            c[0].removeAttribute("checked");
+            CancleCollection(user, pid);
+        }
+        else {
+            AddCollection(user, pid, title, "10");
+            c[0].setAttribute("checked", true);
+        }
+    }
+
+    var NewsShow = {
+        init: function () {
+            this.IsCollectoin(user, pid);
+        },
+        IsCollectoin: function (UserName, DetailId) {
+            var url = LoadUrl() + "axis2/services/MyService/checkFavorite";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "user": UserName,
+                    "id": DetailId
+                },
+                dataType: "text",
+                success: function (result) {
+                    result = loadXML(result);
+                    result = jQuery.parseJSON(result);
+                    NewsShow.ShowInfo(result);
+                }
+            })
+        },
+        ShowInfo: function (isShow) {
+            var url = LoadUrl() + "axis2/services/MyService/getIndustryNewsDetails";
+            if (typeof (pid) != '') {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {"indexId": pid},
+                    dataType: "text",
+                    success: function (data) {
+                        data = loadXML(data);
+                        if (data) {
+                            var b = jQuery.parseJSON(data);
+                            // console.log(b);
+                            title = b.title;
+                            var html = "";
+                            var collstr = '';
+                            if (user) {
+                                collstr = '<div class="fawen_all radio_styles" onclick="CollType();return false;" style="color:#a9a9a9;font-size:15px; padding-top:0; float:right;">'
+                                    + '收藏：'
+                                    + '<input type="radio" name="radiog_dark" id="radio1" class="css-checkbox" ' + ((isShow) ? 'checked' : '') + '>'
+                                    + '<label for="radio1" class="css-label radGroup1 radGroup2" style="color:#a9a9a9;font-size:15px;"></label>'
+                                    + '</div>';
+                            }
+                            html += b.title + '<br/>'
+                                + '<span>日期：' + b.fromTime.substring(0, 10) + '&nbsp;&nbsp;&nbsp;&nbsp;来源：<a href="' + b.url + '">' + b.page_source + '</a>' + collstr + '</span>';
+                            $(".biaoti").html(html);
+                            html = '<span>导读:</span> ' + b.stick_abstract;
+                            $("#daoduid").html(html);
+                            var content = htmldecode("<p>" + b.content + "</p>");
+                            content += '<div>'
+                                + '<a href="' + b.url + '" style="float:right;">查看原文</a>'
+                                + '</div>';
+                            $("#Editneirongid").html(content);
+
+                            var area = getUrl()[0].substring(5);
+                            var submenu = getUrl()[3].substring(4);
+                            var id = getUrl()[2].substring(3);
+                            var sid = getUrl()[1].substring(8);
+                            var mb_html = '<a href="../index.html">首页</a> &gt; <a href="../SubIndex.html?area=' + area + '&submenu=&id=-1">' + CustomDecode(area) + '</a> &gt; <a href="ThingsList.html?area=' + area + '&submenu=' + sid + '&id=' + id + '&top=' + submenu + '">' + CustomDecode(submenu) + '</a> &gt; ' + '正文';
+                            $('.detail-news-mb').html(mb_html);
+                        }
+                    }
+                })
+            }
+        }
+    };
+    NewsShow.init();
+</script>
+</body>
+</html>

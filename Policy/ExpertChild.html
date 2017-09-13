@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">首页 &gt; 政策法规 &gt; 专家解读</li>
+    </ul>
+    <div class="law_list">
+        <div class="law_list_top">
+            <div class="law_list_top_title1">标题</div>
+            <div class="law_list_top_title3">发布时间</div>
+        </div>
+        <div class="law_list_con five-m-b">
+            <ul class="tab1list ab-right" id="list1">
+
+            </ul>
+        </div>
+        <div class="law_list_fenye">
+            <div id="pagingid" class="pagination"></div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+    })
+</script>
+<script type="text/javascript">
+    var pageSize = 20;
+    var pageCount = 0;
+    var displayNums = 5;
+    function ShowPage(currentIndex) {
+        var type = CustomDecode(getUrl()[1].substring(3));
+        ShowInfo(currentIndex,type);
+    }
+    function ShowInfo(index, type) {
+        var start = (index - 1) * pageSize;
+        var wurl = LoadUrl() + "axis2/services/MyService/getNormalNewsList";
+        $.ajax({
+            type: "POST",
+            url: wurl,
+            data: {
+                "area_type": "",
+                "sub_srv": type,
+                "doc_Type": "",
+                "interpret_type": '',
+                "fromIndex": start,
+                "Size": pageSize
+            },
+            dataType: "text",
+            success: function (result) {
+                var html1 = "";
+                result = loadXML(result);
+                result = jQuery.parseJSON(result);
+                for (var i = 0; i < result.length; i++) {
+                    var b = result[i];
+                    pageCount = b.total;
+                    html1 += '<li><a href="ExpertDetail.html?menu=&pid=' + b.id + '">' + b.title + ' </a><span>' + b.fromTime.substring(5, 10) + '</span></li>';
+                }
+                $("#list1").html(html1);
+                var num = 0;
+                if (pageCount % pageSize == 0) {
+                    num = Math.floor(pageCount / pageSize);
+                }
+                else {
+                    num = Math.floor(pageCount / pageSize) + 1;
+                }
+
+                if (pageCount != 0) {
+                    //$("#pagingid").css("display", "block");
+                    //$("#pagingid").paginate({
+                    //    count: num,
+                    //    start: index,
+                    //    display: displayNums,
+                    //    border: true,
+                    //    border_color: '#fffff',
+                    //    text_color: '#828282',
+                    //    background_color: '#f2f2f2',
+                    //    border_hover_color: '#fff',
+                    //    text_hover_color: '#fff',
+                    //    background_hover_color: '#00aaff',
+                    //    images: false,
+                    //    mouse: 'press',
+                    //    onChange: function (p) {
+                    //        ShowInfo(p, type);
+                    //    }
+                    //});
+                    $("#pagingid").empty();
+                    $("#pagingid").pagination(index, num, displayNums);
+                }
+                else {
+                    $("#pagingid").empty();
+                }
+            }
+        })
+    }
+    $(function () {
+        var type = CustomDecode(getUrl()[1].substring(3));
+        ShowInfo(1, type);
+    })
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

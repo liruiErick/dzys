@@ -1,0 +1,949 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" type="text/css" rel="Stylesheet"/>
+    <style type="text/css">
+        .table {
+            width: 260px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            /*background-color: #a0c5e2;*/
+            font-size: 12px;
+            height: 300px;
+        }
+
+        .fixedThead {
+            display: block;
+            width: 100%;
+            background-color: #badcf7;
+        }
+
+        .table th, .table td {
+            border: 1px solid #DDD;
+            padding: 2px 3px 3px 4px;
+            height: 20px;
+        }
+
+        .scrollTbody {
+            display: block;
+            height: 350px;
+            overflow: auto;
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+        }
+    </style>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--企业指数start-->
+<div class="zcenter column qiye_tab qyzs_span">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="../index.html">首页</a> &gt; <a href="IndicesRefer.html?menu=2">产业商情</a> &gt; <a
+            href="IndicesRefer.html?menu=2">指数资讯</a>
+        </li>
+    </ul>
+    <h1 style="margin-top:30px;">综合<span class="more"></span></h1>
+    <ul class="tab_menu qyzs_menu clearfloat tab-cursor">
+        <li class="current">国内生产总值GDP</li>
+        <li>采购经理人指数PMI</li>
+        <li>企业景气及企业家信心指数</li>
+    </ul>
+    <div class="tab_box tab_box_qy">
+        <div class="clearfloat ">
+            <div class="qy_left_870 resizable resizable1" style="height: 355px; width:832px;">
+                <div id="pid" style="width: 100%; height: 100%;">
+                </div>
+                <div style="float:right; font-size:12px;">
+                    <span>来源：</span><span id="pid_id">东方财富网</span>
+                </div>
+            </div>
+            <div class="qy_r_260 resizable resizable2" style="width:304px;">
+                <div style="width: 100%; height: 410px;">
+                    <table class="table" style="width: 800px;">
+                        <thead class="fixedThead">
+                        <tr>
+                            <th rowspan="2" style="width: 165px;">季度</th>
+                            <th colspan="2" style="width: 140px;">国内生产总值</th>
+                            <th colspan="2" style="width: 140px;">第一产业</th>
+                            <th colspan="2" style="width: 140px;">第二产业</th>
+                            <th colspan="2" style="width: 140px;">第三产业</th>
+                            <th style="width: 10px;"></th>
+                        </tr>
+                        <tr>
+                            <th style="width: 100px;">绝对值（亿元）</th>
+                            <th style="width: 70px;">同比增长</th>
+                            <th style="width: 100px;">绝对值（亿元）</th>
+                            <th style="width: 70px;">同比增长</th>
+                            <th style="width: 100px;">绝对值（亿元）</th>
+                            <th style="width: 70px;">同比增长</th>
+                            <th style="width: 100px;">绝对值（亿元）</th>
+                            <th style="width: 70px;">同比增长</th>
+                            <th style="width: 10px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="scrollTbody" id="tbodyid">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="hide clearfloat">
+            <div class="clearfloat ">
+                <div class="qy_left_870 resizable resizable1" style="height: 355px;">
+                    <div id="cgid" style="width: 870px; height: 355px;">
+                    </div>
+                    <div style="float:right; font-size:12px;">
+                        <span>来源：</span><span id="cgid_id">东方财富网</span>
+                    </div>
+                </div>
+                <div class="qy_r_260 resizable resizable2">
+                    <div style="width: 100%; height: 410px;">
+                        <table class="table" style="width: 410px;">
+                            <thead class="fixedThead">
+                            <tr>
+                                <th rowspan="2" style="width: 150px;">月份</th>
+                                <th colspan="2" style="width: 140px;">制造业</th>
+                                <th colspan="2" style="width: 140px;">非制造业</th>
+                                <th style="width: 10px;"></th>
+                            </tr>
+                            <tr>
+                                <th style="width: 70px;">指数</th>
+                                <th style="width: 70px;">同比增长</th>
+                                <th style="width: 70px;">指数</th>
+                                <th style="width: 70px;">同比增长</th>
+                                <th style="width: 10px;"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="scrollTbody" id="cgtbodyid">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hide clearfloat">
+            <div class="clearfloat ">
+                <div class="qy_left_870 resizable resizable1" style="height: 355px;">
+                    <div id="qyid" style="width: 870px; height: 355px;">
+                    </div>
+                    <div style="float:right; font-size:12px;">
+                        <span>来源：</span><span id="qyid_id">东方财富网</span>
+                    </div>
+                </div>
+                <div class="qy_r_260 resizable resizable2">
+                    <div style="width: 100%; height: 410px;">
+                        <table class="table" style="width: 450px;">
+                            <thead class="fixedThead">
+                            <tr>
+                                <th rowspan="2" style="width: 110px;">季度</th>
+                                <th colspan="3" style="width: 140px;">企业景气指数</th>
+                                <th colspan="3" style="width: 140px;">企业家信心指数</th>
+                                <th style="width: 10px;"></th>
+                            </tr>
+                            <tr>
+                                <th style="width: 70px;">指数</th>
+                                <th style="width: 70px;">同比</th>
+                                <th style="width: 70px;">环比</th>
+                                <th style="width: 70px;">指数</th>
+                                <th style="width: 70px;">同比</th>
+                                <th style="width: 70px;">环比</th>
+                                <th style="width: 10px;"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="scrollTbody" id="qytbodyid">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.qiye_tab').Tabs({
+            //event:'mouseover',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+
+    });
+</script>
+<!--企业指数end-->
+<!--工业指数start-->
+<div class="zcenter column tab2 tab_menu_gy qyzs_span gyzs_span">
+    <h1>工业<span class="more"></span></h1>
+    <ul id="levelMenu1" class="tab_menu tab_menu_gy clearfloat tab-cursor">
+        <li class="current line46">工业增加值</li>
+        <li class="line46">工业增加值增长速度</li>
+        <li>各地区工业增加值 增长速度</li>
+        <li>规模以上工业企业 工业增加值增长速度</li>
+        <li>规模以上工业企业 主要效益</li>
+        <li>工业主要产品产量 及增长速度</li>
+        <li>工业分大类行业增 加值增长速度</li>
+        <li>各地区工业生产者 价格指数</li>
+        <li>工业生产者出厂价 格分类指数</li>
+        <li>工业生产者购进价 格指数</li>
+    </ul>
+    <div class="tabscroll clearfloat">
+        <span class="tishi">···</span>
+        <span class="prev"></span>
+        <span class="next"></span>
+    </div>
+    <div class="tab_box gongye_box">
+        <div class="clearfloat gongye_box_con">
+            <div class="gongye_box_img_left" id="gid" style="height: 353px;">
+                <!--<img src="../images/zhishu_gy_l.jpg" width="866" height="353" alt=""/>-->
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业增加值</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-60px; position:relative; ">
+                <span>来源：</span><span id="gid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left" style="height: 353px; width:850px;" id="gyid">
+
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业增加值增长速度</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-60px; position:relative; ">
+                <span>来源：</span><span id="gyid_id">东方财富网</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table border="1" class="table"
+                       style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead style="height: 40px;">
+                    <tr style="background-color: #efefef;">
+                        <th colspan="3" style="text-align: right;">
+                            时间：
+                            <select id="control_time_gongye3" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3" style="text-align: center;">各地区工业增加值增长速度</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" style="width:62%;">地区</th>
+                        <th colspan="2">比去年同期增长(%)</th>
+                    </tr>
+                    <tr>
+                        <th style="width:18%;">本月</th>
+                        <th>累计</th>
+                        <!--<th></th>-->
+                    </tr>
+                    </thead>
+                    <tbody style="height: 280px; text-align:center;">
+                    <tr>
+                        <td colspan="3">
+                            <div style="height:220px;overflow-x:auto;">
+                                <table id="areaid" width="100%" style="border-collapse:collapse;">
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot style="height: 20px;">
+                    <tr>
+                        <td colspan="3">注：按可比价格计算</td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <!--<img src="../images/zhishu_gy_l.jpg" width="866" height="353" alt=""/>-->
+            </div>
+            <div class="gongye_box_date">
+                <h2>各地区工业增加值 增长速度</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-60px; position:relative; ">
+                <span>来源：</span><span id="areaid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left" style="height: 353px;">
+                <!--<img src="../images/zhishu_gy_l.jpg" width="866" height="353" alt=""/>-->
+                <table class="table" style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th colspan="10" style="background-color:#f0f0f0; text-align:right;">
+                            地区：
+                            <select style=" margin:2px auto; width:100px;">
+                                <option value="1">全国</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="10">
+                            <span>规模以上工业企业工业增加值增长速度</span>
+                        </th>
+                    </tr>
+                    <tr id="headid">
+
+                    </tr>
+                    </thead>
+                    <tbody style="height:300px; text-align:center;">
+                    <tr>
+                        <td colspan="10">
+                            <div style="height:300px;overflow-y:auto;">
+                                <table id="gmid" width="100%" style="border-collapse:collapse;">
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>规模以上工业企业<br>工业增加值增长速度</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-36px; position:relative; ">
+                <span>来源：</span><span id="gmid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left" id="qyzzid" style="height: 353px;">
+
+            </div>
+            <div class="gongye_box_date">
+                <h2>规模以上工业企业<br>主要效益</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-36px; position:relative; ">
+                <span>来源：</span><span id="qyzzid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table border="1" class="table"
+                       style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead style="height: 40px;">
+                    <tr style="background-color: #efefef;">
+                        <th colspan="5" style="text-align: right;">
+                            时间：
+                            <select id="six_timeid" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" style="text-align: center;">工业主要产品产量及增长速度</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">指标</th>
+                        <th rowspan="2">本月</th>
+                        <th rowspan="2">累计</th>
+                        <th colspan="2">比去年同期增长（%）</th>
+                    </tr>
+                    <tr>
+                        <th>本月</th>
+                        <th>累计</th>
+                        <!--<th></th>-->
+                    </tr>
+                    </thead>
+                    <tbody id="six_tableid" style="height: 280px; text-align:center;">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业主要产品产量<br>及增长速度</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-36px; position:relative; ">
+                <span>来源：</span><span id="six_tableid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table border="1" class="table"
+                       style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead style="height: 40px;">
+                    <tr style="background-color: #efefef;">
+                        <th colspan="3" style="text-align: right;">
+                            时间：
+                            <select id="seven_timeid" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3" style="text-align: center;">工业分大类行业增加值增长速度</th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" style="width:62%;">指标</th>
+                        <th colspan="2">比去年同期增长(%)</th>
+                    </tr>
+                    <tr>
+                        <th style="width:18%;">本月</th>
+                        <th>累计</th>
+                        <!--<th></th>-->
+                    </tr>
+                    </thead>
+                    <tbody style="height: 280px; text-align:center;">
+                    <tr>
+                        <td colspan="3">
+                            <div style="height:220px;overflow-x:auto;">
+                                <table id="seven_tableid" width="100%" style="border-collapse:collapse;">
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot style="height: 20px;">
+                    <tr>
+                        <td colspan="3">注：按可比价格计算</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业分大类行业增<br>加值增长速度</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-36px; position:relative; ">
+                <span>来源：</span><span id="seven_tableid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table class="table" style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="background-color:#f0f0f0; text-align:right;">
+                            时间：
+                            <select id="eight_timeid" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <span>各地区工业生产者价格指数</span>
+                        </th>
+                    </tr>
+                    <tr id="eight_headid">
+
+                    </tr>
+                    </thead>
+                    <tbody style="height:300px; text-align:center;">
+                    <tr>
+                        <td colspan="3">
+                            <div style="height:300px;overflow-y:auto;">
+                                <table id="eight_tableid" width="100%" style="border-collapse:collapse;">
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>各地区工业生产者 价格指数</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-84px; position:relative; ">
+                <span>来源：</span><span id="eight_tableid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table class="table" style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="background-color:#f0f0f0; text-align:right;">
+                            时间：
+                            <select id="nine_timeid" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <span>工业生产者出厂价格分类指数</span>
+                        </th>
+                    </tr>
+                    <tr id="nine_headid">
+
+                    </tr>
+                    </thead>
+                    <tbody id="nine_tableid" style="height:300px; text-align:center;">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业生产者出厂价<br>格分类指数</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-24px; position:relative; ">
+                <span>来源：</span><span id="nine_tableid_id">国家统计局</span>
+            </div>
+        </div>
+        <div class="hide clearfloat gongye_box_con ">
+            <div class="gongye_box_img_left">
+                <table class="table" style="width: 100%; height: 350px; background: none; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="background-color:#f0f0f0; text-align:right;">
+                            时间：
+                            <select id="ten_timeid" style="width: 120px;" required placeholder="2016年12月">
+                                <option value="1">2016年12月</option>
+                                <option value="2">2016年11月</option>
+                                <option value="3">2016年10月</option>
+                                <option value="4">2016年9月</option>
+                                <option value="5">2016年8月</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <span>工业生产者购进价格指数</span>
+                        </th>
+                    </tr>
+                    <tr id="ten_headid">
+
+                    </tr>
+                    </thead>
+                    <tbody id="ten_tableid" style="height:300px; text-align:center;">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="gongye_box_date">
+                <h2>工业生产者购进价 格指数</h2>
+                <p>
+                    指工业企业在报告期内以货币表现
+                    的工业生产活动的最终成果。工业
+                    增加值有两种计算方法：一是生产
+                    法，即工业总产出减去工业中间投
+                    入加上应交增值税；二是收入法，
+                    即从收入的角度出发，根据生产要
+                    素在生产过程中应得到的收入份额
+                    计算，具体构成项目有固定资产折
+                    旧、劳动者报酬、生产税净额、营
+                    业盈余，这种方法也称要素分配法。
+                </p>
+            </div>
+            <div style="float:right; font-size:12px; bottom:-48px; position:relative; ">
+                <span>来源：</span><span id="ten_tableid_id">国家统计局</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--工业指数end-->
+<div class="w1200">
+    <!--科技指数开始-->
+    <div class="kejizhishu column qyzs_span kjzs_span">
+        <h1>科技<span class="more"></span></h1>
+        <div class="kejizs_title pointer">科技事业发展状况</div>
+        <div class="kejizhishu_con">
+            <div style="height:729px;">
+                <table class="table" style="border-collapse:collapse; width:100%;">
+                    <thead style="background-color:#efefef;">
+                    <tr>
+                        <th colspan="6">科技事业发展状况</th>
+                    </tr>
+                    </thead>
+                    <tbody id="kjzsid" style="background-color:#fff;">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--科技指数结束-->
+    <!--互联网指数开始-->
+    <div class="hulianwzhishu column qyzs_span hlwzs_span">
+        <h1>互联网<span class="more"></span></h1>
+        <div class="hlwzhs_title pointer">互联网主要指标</div>
+        <div class="hlwzhs_con">
+            <div style="width: 600px; height: 360px; position: absolute; top: 260px;" id="kid"></div>
+            <div style="width: 600px; height: 331px; position: absolute; top: 627px; overflow: auto;">
+                <table class="table" style="width: 900px; height: 320px; text-align: center; background-color: white;">
+                    <thead style="border: 1px solid red;" id="theadid">
+                    <tr style="height: 40px;">
+                        <td>指标</td>
+                        <td></td>
+                        <td>2015年</td>
+                        <td>2014年</td>
+                        <td>2013年</td>
+                        <td>2012年</td>
+                        <td>2011年</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                    </tr>
+                    </thead>
+                    <tbody style="border: 1px solid red;" id="ttid">
+                    <tr>
+                        <td>互联网上网人数（万人）</td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>68826</td>
+                        <td>64875</td>
+                        <td>61758</td>
+                        <td>56400</td>
+                        <td>51310</td>
+                    </tr>
+                    <tr>
+                        <td>互联网上网人数（万人）</td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>68826</td>
+                        <td>64875</td>
+                        <td>61758</td>
+                        <td>56400</td>
+                        <td>51310</td>
+                    </tr>
+                    <tr>
+                        <td>互联网上网人数（万人）</td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>68826</td>
+                        <td>64875</td>
+                        <td>61758</td>
+                        <td>56400</td>
+                        <td>51310</td>
+                    </tr>
+                    <tr>
+                        <td>互联网上网人数（万人）</td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>68826</td>
+                        <td>64875</td>
+                        <td>61758</td>
+                        <td>56400</td>
+                        <td>51310</td>
+                    </tr>
+                    <tr>
+                        <td>互联网上网人数（万人）</td>
+                        <td>
+                            <input type="checkbox" name="CheckBox_Internet"/></td>
+                        <td>68826</td>
+                        <td>64875</td>
+                        <td>61758</td>
+                        <td>56400</td>
+                        <td>51310</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--互联网指数结束-->
+</div>
+<div class="w1200">
+    <div style="width:560px; font-size:12px; text-align:right; float:left; margin-top:10px;">
+        <span>来源：</span><span id="kjzsid_id">国家统计局</span>
+    </div>
+    <div style="width:50%; font-size:12px; text-align:right;  margin-top:10px; float:right; ">
+        <span>来源：</span><span id="ttid_id">国家统计局</span>
+    </div>
+</div>
+<!--股票指数开始-->
+<div class="zcenter column tab_gp tab_menu_gp qyzs_span gpzs_span">
+    <h1>股票<span class="more"></span></h1>
+    <ul id="levelMenu2" class="tab_menu tab_menu_gy clearfloat tab-cursor">
+        <li class="current">物联网<p>885312</p>
+        </li>
+        <li>大数据<p>885452</p>
+        </li>
+        <li>人工智能
+            <p>885728</p>
+        </li>
+        <li>集成电路
+            <p>885675</p>
+        </li>
+        <li>云计算
+            <p>885362</p>
+        </li>
+    </ul>
+    <div class="tabscroll clearfloat">
+        <span class="tishi">···</span>
+        <span class="prev"></span>
+        <span class="next"></span>
+    </div>
+    <div class="tab_box gupiao_box">
+        <div class="clearfloat gupiao_box_con">
+            <div style="width:100%;">
+                <div style="width:97%;float:left;">
+                    <div id="gp_one_id" style="width:100%;height:360px; display:block;"></div>
+                    <div id="gp_one_fid" style="width:1100px;height:360px; display:none;"></div>
+                    <div id="gp_one_sid" style="width:1100px;height:360px; display:none;"></div>
+                </div>
+                <div style="width:3%; float:right; margin:150px auto;">
+                    <a onclick="Gupiao_One(this)" style="color:#c23531; cursor:pointer;">日K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">周K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">月K</a>
+                </div>
+                <div style="float:right; font-size:12px; bottom:-10px; right:-30px; position:relative; ">
+                    <span>来源：</span><span id="gp_one_id_id">同花顺财经</span>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function Gupiao_One(obj) {
+                    $(obj).parent().children().each(function (a, b) {
+                        if ($.trim(b.text) == $.trim($(obj).text())) {
+                            b.style.color = "#c23531";
+                            $(obj).parent().prev().children().each(function (c, d) {
+                                if (d.style.display == "block") {
+                                    if (a != c) {
+                                        d.style.display = "none";
+                                    }
+                                }
+                                else {
+                                    if (a == c) {
+                                        d.style.display = "block";
+                                    }
+                                }
+                            })
+                        }
+                        else {
+                            b.style.color = "#00abff";
+                        }
+                    })
+                }
+            </script>
+        </div>
+        <div class=" hide clearfloat gupiao_box_con">
+            <div style="width:100%;">
+                <div style="width:97%;float:left;">
+                    <div id="gp_two_id" style="width:1100px;height:360px; display:block;"></div>
+                    <div id="gp_two_fid" style="width:1100px;height:360px; display:none;"></div>
+                    <div id="gp_two_sid" style="width:1100px;height:360px; display:none;"></div>
+                </div>
+                <div style="width:3%; float:right; margin:150px auto;">
+                    <a onclick="Gupiao_One(this)" style="color:#c23531; cursor:pointer;">日K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">周K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">月K</a>
+                </div>
+                <div style="float:right; font-size:12px; bottom:-10px; right:-30px; position:relative; ">
+                    <span>来源：</span><span id="gp_two_id_id">同花顺财经</span>
+                </div>
+            </div>
+        </div>
+        <div class=" hide clearfloat gupiao_box_con">
+            <div style="width:100%;">
+                <div style="width:97%;float:left;">
+                    <div id="gp_three_id" style="width:1100px;height:360px;display:block;"></div>
+                    <div id="gp_three_fid" style="width:1100px;height:360px;display:none;"></div>
+                    <div id="gp_three_sid" style="width:1100px;height:360px;display:none;"></div>
+                </div>
+                <div style="width:3%; float:right; margin:150px auto;">
+                    <a onclick="Gupiao_One(this)" style="color:#c23531; cursor:pointer;">日K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">周K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">月K</a>
+                </div>
+                <div style="float:right; font-size:12px; bottom:-10px; right:-30px; position:relative; ">
+                    <span>来源：</span><span id="gp_three_id_id">同花顺财经</span>
+                </div>
+            </div>
+        </div>
+        <div class=" hide clearfloat gupiao_box_con">
+            <div style="width:100%;">
+                <div style="width:97%;float:left;">
+                    <div id="gp_four_id" style="width:1100px;height:360px;display:block;"></div>
+                    <div id="gp_four_fid" style="width:1100px;height:360px;display:none;"></div>
+                    <div id="gp_four_sid" style="width:1100px;height:360px;display:none;"></div>
+                </div>
+                <div style="width:3%; float:right; margin:150px auto;">
+                    <a onclick="Gupiao_One(this)" style="color:#c23531; cursor:pointer;">日K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">周K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">月K</a>
+                </div>
+                <div style="float:right; font-size:12px; bottom:-10px; right:-30px; position:relative; ">
+                    <span>来源：</span><span id="gp_four_id_id">同花顺财经</span>
+                </div>
+            </div>
+        </div>
+        <div class=" hide clearfloat gupiao_box_con">
+            <div style="width:100%;">
+                <div style="width:97%;float:left;">
+                    <div id="gp_five_id" style="width:1100px;height:360px;display:block;"></div>
+                    <div id="gp_five_fid" style="width:1100px;height:360px;display:none;"></div>
+                    <div id="gp_five_sid" style="width:1100px;height:360px;display:none;"></div>
+                </div>
+                <div style="width:3%; float:right; margin:150px auto;">
+                    <a onclick="Gupiao_One(this)" style="color:#c23531; cursor:pointer;">日K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">周K</a>
+                    <a onclick="Gupiao_One(this)" style="color:#00abff; cursor:pointer;">月K</a>
+                </div>
+                <div style="float:right; font-size:12px; bottom:-10px; right:-30px; position:relative; ">
+                    <span>来源：</span><span id="gp_five_id_id">同花顺财经</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--股票指数结束-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/jquery-resize.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<!--<script type="text/javascript" src="../js/esl.js"></script>-->
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jquery.paginate.js"></script>
+<script type="text/javascript" src="../js/IndicesRefer.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

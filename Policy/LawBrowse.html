@@ -1,0 +1,440 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/selectize.default.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href='../index.html'>首页</a> &gt; <a href='LawBrowse.html?menu=1'>政策法规</a> &gt; <a href='LawBrowse.html?menu=1'>法规浏览</a>
+        </li>
+    </ul>
+    <div class="law_searech">
+        <div class="published">
+            <div class="control_time">
+                <label class="w_label80">发表时间</label>
+                <div class="w_r_100"><select id="control_time_01" required placeholder="选择时间">
+                    <!--<option value="">选择时间</option>-->
+                    <!--<option value="1">2016</option>-->
+                    <!--<option value="2">2015</option>-->
+                    <!--<option value="3">2014</option>-->
+                    <!--<option value="4">2013</option>-->
+                </select></div>
+                <div class="lianjie_txt">至</div>
+                <div class="w_r_100">
+                    <select id="control_time_02" required placeholder="选择时间">
+                        <!--<option value="">选择时间</option>-->
+                        <!--<option value="4">2016</option>-->
+                        <!--<option value="3">2015</option>-->
+                        <!--<option value="2">2014</option>-->
+                        <!--<option value="1">2013</option>-->
+                    </select></div>
+                <script type="text/javascript">
+                    $(function () {
+                        var url = LoadUrl() + "axis2/services/MyService/getMaxOrMinValue";
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: {
+                                "sub_srv": "13",
+                                "type": "max"
+                            },
+                            dataType: "text",
+                            success: function (data) {
+                                var html = '<option value="">选择时间</option>';
+                                data = loadXML(data);
+                                if (data) {
+                                    var maxtime = jQuery.parseJSON(data);
+                                    var mintime = "";
+                                    var minurl = LoadUrl() + "axis2/services/MyService/getMaxOrMinValue";
+                                    $.ajax({
+                                        type: "POST",
+                                        url: url,
+                                        data: {
+                                            "sub_srv": "13",
+                                            "type": "min"
+                                        },
+                                        dataType: "text",
+                                        success: function (data) {
+                                            data = loadXML(data);
+                                            mintime = jQuery.parseJSON(data);
+                                            var n = 1;
+                                            for (var i = mintime; i <= maxtime; i++) {
+                                                html += "<option value='" + n + "'>" + i + "</option>";
+                                            }
+                                            $("#control_time_01").html(html);
+                                            $("#control_time_02").html(html);
+                                            $('#control_time_01,#control_time_02').selectize({
+                                                create: true,
+                                                sortField: {
+                                                    field: 'value',
+                                                    direction: 'asc'
+                                                },
+                                                dropdownParent: 'body'
+                                            });
+                                        }
+                                    })
+                                }
+                            }
+                        })
+                    });
+                    function checkall() {
+                        var c = document.getElementsByName("radiog_dark");
+                        var r = document.getElementsByTagName("input");
+                        AllChecked(c, r);
+                    }
+                </script>
+            </div>
+            <div class="control_jigou">
+
+                <label class="w_label80">发文机构</label>
+                <div class="fawen_all radio_style" onclick="checkall()"><input type="radio" name="radiog_dark"
+                                                                               id="radio1" class="css-checkbox"/><label
+                        for="radio1" class="css-label radGroup1 radGroup2">全选</label></div>
+                <div class="fawen_tab">
+                    <ul class="tab_menu tab_ment_ctiy_country tab-cursor">
+                        <li class="current">国家</li>
+                        <li>地方</li>
+                    </ul>
+                    <div class="tab_box fawen_tab_1 checkbox_style p-l" style="height: 125px;">
+                        <div class="tab_box_con">
+                            <ul class="fuxuanlist" id="unitid">
+                                <!--<li><input type="checkbox" name="checkboxG1" id="checkboxG1" class="css-checkbox" /><label for="checkboxG1" class="css-label radGroup1">中央办公厅</label></li>
+                                <li><input type="checkbox" name="checkboxG2" id="checkboxG2" class="css-checkbox" /><label for="checkboxG2" class="css-label radGroup1">发改委</label></li>
+                                <li><input type="checkbox" name="checkboxG3" id="checkboxG3" class="css-checkbox" /><label for="checkboxG3" class="css-label radGroup1">科技部</label></li>
+                                <li><input type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox" /><label for="checkboxG4" class="css-label radGroup1">北京市财政局</label></li>-->
+                                <!--<li><input type="checkbox" name="checkboxG5" id="checkboxG5" class="css-checkbox" /><label for="checkboxG5" class="css-label radGroup1">德国</label></li>
+                                <li><input type="checkbox" name="checkboxG6" id="checkboxG6" class="css-checkbox" /><label for="checkboxG6" class="css-label radGroup1">法国</label></li>
+                                <li><input type="checkbox" name="checkboxG7" id="checkboxG7" class="css-checkbox" /><label for="checkboxG7" class="css-label radGroup1">意大利</label></li>
+                                <li><input type="checkbox" name="checkboxG8" id="checkboxG8" class="css-checkbox" /><label for="checkboxG8" class="css-label radGroup1">波兰</label></li>
+                                <li><input type="checkbox" name="checkboxG9" id="checkboxG9" class="css-checkbox" /><label for="checkboxG9" class="css-label radGroup1">瑞典</label></li>
+                                <li><input type="checkbox" name="checkboxG10" id="checkboxG10" class="css-checkbox" /><label for="checkboxG10" class="css-label radGroup1">荷兰</label></li>
+                                <li><input type="checkbox" name="checkboxG11" id="checkboxG11" class="css-checkbox" /><label for="checkboxG11" class="css-label radGroup1">澳大利亚</label></li>
+                                <li><input type="checkbox" name="checkboxG12" id="checkboxG12" class="css-checkbox" /><label for="checkboxG12" class="css-label radGroup1">泰国</label></li>
+                                <li><input type="checkbox" name="checkboxG13" id="checkboxG13" class="css-checkbox" /><label for="checkboxG13" class="css-label radGroup1">缅甸</label></li>
+                                <li><input type="checkbox" name="checkboxG14" id="checkboxG14" class="css-checkbox" /><label for="checkboxG14" class="css-label radGroup1">越南</label></li>
+                                <li><input type="checkbox" name="checkboxG15" id="checkboxG15" class="css-checkbox" /><label for="checkboxG15" class="css-label radGroup1">朝鲜</label></li>
+                                <li><input type="checkbox" name="checkboxG16" id="checkboxG16" class="css-checkbox" /><label for="checkboxG16" class="css-label radGroup1">韩国</label></li>
+                                <li><input type="checkbox" name="checkboxG17" id="checkboxG17" class="css-checkbox" /><label for="checkboxG17" class="css-label radGroup1">加拿大</label></li>
+                                <li><input type="checkbox" name="checkboxG18" id="checkboxG18" class="css-checkbox" /><label for="checkboxG18" class="css-label radGroup1">巴西</label></li>
+                                <li><input type="checkbox" name="checkboxG19" id="checkboxG19" class="css-checkbox" /><label for="checkboxG19" class="css-label radGroup1">古巴</label></li>
+                                <li><input type="checkbox" name="checkboxG20" id="checkboxG20" class="css-checkbox" /><label for="checkboxG20" class="css-label radGroup1">阿根廷</label></li>
+                                <li><input type="checkbox" name="checkboxG21" id="checkboxG21" class="css-checkbox" /><label for="checkboxG21" class="css-label radGroup1">中央办公厅</label></li>
+                                <li><input type="checkbox" name="checkboxG22" id="checkboxG22" class="css-checkbox" /><label for="checkboxG22" class="css-label radGroup1">发改委</label></li>
+                                <li><input type="checkbox" name="checkboxG23" id="checkboxG23" class="css-checkbox" /><label for="checkboxG23" class="css-label radGroup1">科技部</label></li>
+                                <li><input type="checkbox" name="checkboxG24" id="checkboxG24" class="css-checkbox" /><label for="checkboxG24" class="css-label radGroup1">北京市财政局</label></li>-->
+                            </ul>
+                        </div>
+                        <div class="hide tab_box_con">
+                            <ul class="fuxuanlist">
+                                <li><input type="checkbox" name="city_checkboxG1" id="city_checkboxG1"
+                                           class="css-checkbox"/><label for="city_checkboxG1"
+                                                                        class="css-label radGroup1">北京</label></li>
+                                <li><input type="checkbox" name="city_checkboxG2" id="city_checkboxG2"
+                                           class="css-checkbox"/><label for="city_checkboxG2"
+                                                                        class="css-label radGroup1">天津</label></li>
+                                <li><input type="checkbox" name="city_checkboxG3" id="city_checkboxG3"
+                                           class="css-checkbox"/><label for="city_checkboxG3"
+                                                                        class="css-label radGroup1">上海</label></li>
+                                <li><input type="checkbox" name="city_checkboxG4" id="city_checkboxG4"
+                                           class="css-checkbox"/><label for="city_checkboxG4"
+                                                                        class="css-label radGroup1">重庆</label></li>
+                                <li><input type="checkbox" name="city_checkboxG5" id="city_checkboxG5"
+                                           class="css-checkbox"/><label for="city_checkboxG5"
+                                                                        class="css-label radGroup1">沈阳</label></li>
+                                <li><input type="checkbox" name="city_checkboxG6" id="city_checkboxG6"
+                                           class="css-checkbox"/><label for="city_checkboxG6"
+                                                                        class="css-label radGroup1">长春</label></li>
+                                <li><input type="checkbox" name="city_checkboxG7" id="city_checkboxG7"
+                                           class="css-checkbox"/><label for="city_checkboxG7"
+                                                                        class="css-label radGroup1">哈尔滨</label></li>
+                                <li><input type="checkbox" name="city_checkboxG8" id="city_checkboxG8"
+                                           class="css-checkbox"/><label for="city_checkboxG8"
+                                                                        class="css-label radGroup1">南京</label></li>
+                                <li><input type="checkbox" name="city_checkboxG9" id="city_checkboxG9"
+                                           class="css-checkbox"/><label for="city_checkboxG9"
+                                                                        class="css-label radGroup1">武汉</label></li>
+                                <li><input type="checkbox" name="city_checkboxG10" id="city_checkboxG10"
+                                           class="css-checkbox"/><label for="city_checkboxG10"
+                                                                        class="css-label radGroup1">广州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG11" id="city_checkboxG11"
+                                           class="css-checkbox"/><label for="city_checkboxG11"
+                                                                        class="css-label radGroup1">成都</label></li>
+                                <li><input type="checkbox" name="city_checkboxG12" id="city_checkboxG12"
+                                           class="css-checkbox"/><label for="city_checkboxG12"
+                                                                        class="css-label radGroup1">西安</label></li>
+                                <li><input type="checkbox" name="city_checkboxG13" id="city_checkboxG13"
+                                           class="css-checkbox"/><label for="city_checkboxG13"
+                                                                        class="css-label radGroup1">石家庄</label></li>
+                                <li><input type="checkbox" name="city_checkboxG14" id="city_checkboxG14"
+                                           class="css-checkbox"/><label for="city_checkboxG14"
+                                                                        class="css-label radGroup1">太原</label></li>
+                                <li><input type="checkbox" name="city_checkboxG15" id="city_checkboxG15"
+                                           class="css-checkbox"/><label for="city_checkboxG15"
+                                                                        class="css-label radGroup1">唐山</label></li>
+                                <li><input type="checkbox" name="city_checkboxG16" id="city_checkboxG16"
+                                           class="css-checkbox"/><label for="city_checkboxG16"
+                                                                        class="css-label radGroup1">包头</label></li>
+                                <li><input type="checkbox" name="city_checkboxG17" id="city_checkboxG17"
+                                           class="css-checkbox"/><label for="city_checkboxG17"
+                                                                        class="css-label radGroup1">大连</label></li>
+                                <li><input type="checkbox" name="city_checkboxG18" id="city_checkboxG18"
+                                           class="css-checkbox"/><label for="city_checkboxG18"
+                                                                        class="css-label radGroup1">南昌</label></li>
+                                <li><input type="checkbox" name="city_checkboxG19" id="city_checkboxG19"
+                                           class="css-checkbox"/><label for="city_checkboxG19"
+                                                                        class="css-label radGroup1">青岛</label></li>
+                                <li><input type="checkbox" name="city_checkboxG20" id="city_checkboxG20"
+                                           class="css-checkbox"/><label for="city_checkboxG20"
+                                                                        class="css-label radGroup1">杭州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG21" id="city_checkboxG21"
+                                           class="css-checkbox"/><label for="city_checkboxG21"
+                                                                        class="css-label radGroup1">苏州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG22" id="city_checkboxG22"
+                                           class="css-checkbox"/><label for="city_checkboxG22"
+                                                                        class="css-label radGroup1">昆明</label></li>
+                                <li><input type="checkbox" name="city_checkboxG23" id="city_checkboxG23"
+                                           class="css-checkbox"/><label for="city_checkboxG23"
+                                                                        class="css-label radGroup1">郑州</label></li>
+                                <li><input type="checkbox" name="city_checkboxG24" id="city_checkboxG24"
+                                           class="css-checkbox"/><label for="city_checkboxG24"
+                                                                        class="css-label radGroup1">长沙</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control_keywords">
+                <label class="w_label80">关 键 词</label>
+                <div class="sousuo_con"><input type="search" id="aa"/></div>
+                <div class="sousuo_btn"><a onclick="SearchInfo()">搜 索</a></div>
+                <div class="sousuo_btn_jieguo"><a onclick="SearchResult()">在结果中检索</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="law_list">
+        <div class="law_list_top">
+            <div class="law_list_top_title1">标题</div>
+            <div class="law_list_top_title2">发文机构</div>
+            <div class="law_list_top_title3">发布时间</div>
+        </div>
+        <div class="law_list_con">
+            <ul class="tab1list ab-right" id="listid">
+
+            </ul>
+        </div>
+        <div class="law_list_fenye" style="text-align:center;">
+            <div id="pagingid" class="pagination"></div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        });  //返回了this
+    });
+</script>
+<script type="text/javascript">
+    var pageSize = 12;
+    var pageCount = 0;
+    var displayNums = 5;
+    function ShowPage(currentIndex) {
+        
+        var time1 = $("#control_time_01").text().trim();
+        var time2 = $("#control_time_02").text().trim();
+        var all = $('input:radio[id=radio1]:checked').val();
+        var checks = "";
+        if (all != "on") {
+            var box = document.getElementsByClassName("css-checkbox");
+            for (var i = 0; i < box.length; i++) {
+                if (box[i].checked) {
+                    if (i == 0) {
+                        checks = box[i].nextSibling.innerText;
+                    }
+                    else {
+                        checks += ("," + box[i].nextSibling.innerText);
+                    }
+                }
+            }
+        }
+        var words = $("#aa").val();
+        ShowInfo(currentIndex, time1, time2, checks, words);
+    }
+    function SearchInfo() {
+        var time1 = $("#control_time_01").text();
+        var time2 = $("#control_time_02").text();
+        var tt = $("#aa").val();
+        var all = $('input:radio[id=radio1]:checked').val();
+        var morecheck = "";
+        if (all != "on") {
+            //$('input:checkbox[class=css-checkbox]:checked').each(function (i, b) {
+            //    //if (b.labels != null && b.labels.length > 0)
+            //    {
+            //        if (i == 0) {
+            //            //morecheck = b.labels[0].innerText;
+            //        }
+            //        else {
+            //            //morecheck += ("," + b.labels[0].innerText);
+            //        }
+            //    }
+            //})
+            var box = document.getElementsByClassName("css-checkbox");
+            for (var i = 0; i < box.length; i++) {
+                if (box[i].checked) {
+                    if (i == 0) {
+                        morecheck = box[i].nextSibling.innerText;
+                    }
+                    else {
+                        morecheck += ("," + box[i].nextSibling.innerText);
+                    }
+                }
+            }
+        }
+        SetLocal("Time1", time1);
+        SetLocal("Time2", time2);
+        SetLocal("Checkboxs", morecheck);
+        SetLocal("keys", tt);
+        pageCount = 0;
+        ShowInfo(1, time1, time2, morecheck, tt);
+    }
+    function SearchResult() {
+        var ss = $("#aa").val();
+        if (ss != GetLocal("keys")) {
+            ss = GetLocal("keys") + "," + ss;
+        }
+        pageCount = 0;
+        ShowInfo(1, GetLocal("Time1"), GetLocal("Time2"), GetLocal("Checkboxs"), ss);
+    }
+    function SearchContent(obj) {
+        var s = $(obj).next().text();
+        SetLocal("LawsId", s);
+        location.href = "DetailShow.html";
+    }
+    function GetLawUnit() {
+        var lawurl = LoadUrl() + "axis2/services/MyService/getLawUnitList";
+        $.ajax({
+            type: "POST",
+            url: lawurl,
+            data: {
+                "subSrv":13
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                result = jQuery.parseJSON(result);
+                var n = 1;
+                $.each(result, function (a, b) {
+                    html += '<li><input type="checkbox" name="checkboxG' + n + '" id="checkboxG' + n + '" class="css-checkbox" /><label for="checkboxG' + n + '" class="css-label radGroup1">' + b.unit + '</label></li>';
+                    n++;
+                });
+                $("#unitid").html(html);
+            }
+        });
+    }
+    function ShowInfo(currentIndex, time1, time2, checks, words) {
+        var surl = LoadUrl() + "axis2/services/MyService/searchLaw";
+        var start = (currentIndex - 1) * pageSize;
+        $.ajax({
+            type: "POST",
+            url: surl,
+            data: {
+                "sub_srv":"13",
+                "keywords": words,
+                "unit": checks,
+                "startdate": time1,
+                "enddate": time2,
+                "fromIndex": start,
+                "size": pageSize
+            },
+            dataType: "text",
+            success: function (result) {
+                var html = "";
+                result = loadXML(result);
+                if (result) {
+                    result = jQuery.parseJSON(result);
+                    //                console.log(result);
+                    $("#listid").empty();
+                    $.each(result, function (a, b) {
+                        if (pageCount == 0) {
+                            pageCount = b.total;
+                        }
+                        html += '<li>'
+                            + '<a href="../Policy/DetailShow.html?menu=1&pid=' + b.id + '" title="' + b.title + '">' + b.title + '</a><span style="display:none;">' + b.id + '</span><p class="jigou_t">' + b.organization + '</p><span>' + b.fromTime.substring(5, 10) + '</span>'
+                            + '</li>';
+                    });
+                    $("#listid").html(html);
+                    var num = 0;
+                    //pageCount = 12;
+                    if (pageCount % pageSize == 0) {
+                        num = Math.floor(pageCount / pageSize);
+                    }
+                    else {
+                        num = Math.floor(pageCount / pageSize) + 1;
+                    }
+
+                    if (pageCount != 0) {
+                        //$("#pagingid").css("display", "block");
+                        //$("#pagingid").paginate({
+                        //    count: num,
+                        //    start: currentIndex,
+                        //    display: displayNums,
+                        //    border: true,
+                        //    border_color: '#fffff',
+                        //    text_color: '#828282',
+                        //    background_color: '#f2f2f2',
+                        //    border_hover_color: '#fff',
+                        //    text_hover_color: '#fff',
+                        //    background_hover_color: '#00aaff',
+                        //    images: false,
+                        //    mouse: 'press',
+                        //    onChange: function (p) {
+                        //        ShowInfo(p, time1, time2, checks, words);
+                        //    }
+                        //});
+                        $("#pagingid").empty();
+                        $("#pagingid").pagination(currentIndex, num, displayNums);
+                    }
+                    else {
+                        $("#pagingid").empty();//.attr("style", "display:none;");
+
+                    }
+                }
+            }
+        })
+    }
+    $(function () {
+        GetLawUnit();
+        ShowInfo(1, "", "", "", "");
+    })
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

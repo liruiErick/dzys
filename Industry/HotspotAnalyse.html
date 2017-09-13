@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet">
+    <link href="../css/selectize.default.css" rel="stylesheet">
+    <link href="../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet">
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/china.js"></script>
+    <script type="text/javascript" src="../js/world.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--技术预警start-->
+<div class="graphictop">
+    <div class="zcenter column rdfx">
+        <ul class="mbxcon mbxcon_ny">
+            <li class="mbx">
+                <a href="../index.html">首页</a> &gt; <a href="IndestryNews.html?menu=0">产业动态</a> &gt; <a href="HotspotAnalyse.html?menu=0">热点分析</a>
+            </li>
+        </ul>
+        <h1>热点分析<span class="more rdfx"></span></h1>
+        <ul class="tabGraphBtn clearfloat">
+            <li class="current"><a href="javascript: void(0);" rel="1">物联网<span>The Internet of Thing</span></a></li>
+            <li><a href="javascript: void(0);" rel="2">云计算<span>Cloud Computing</span></a></li>
+            <li><a href="javascript: void(0);" rel="3">大数据<span>Big Data</span></a></li>
+            <li><a href="javascript: void(0);" rel="4">人工智能<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="5">未来计算<span>Network Communication</span></a></li>
+            <li><a href="javascript: void(0);" rel="6">信息安全<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="7">智能制造<span>Intelligent Manufacturing</span></a></li>
+            <li><a href="javascript: void(0);" rel="8">集成电路<span>Intefrated Circruit</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="graphic_con rdfxcon">
+    <div class="shadow"></div>
+    <div class="zcenter">
+        <h2 class="h2_eng" style="margin-top:20px">头条<span>HOT NEWS</span></h2>
+        <div class="scrollbox">
+            <div id="scrollDiv">
+                <ul id="HotNews_box">
+                    <!--<li>-->
+                    <!--<a href="#" class="linktit">-->
+                    <!--<span class="number">1</span>-->
+                    <!--<span>网贷平台二八效应突显 一季度成交环比增3.61%</span>-->
+                    <!--<span class="time fr">2017-04-18</span>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="scroltit">
+                <div class="updown" id="but_down"></div>
+                <div class="updown" id="but_up"></div>
+            </div>
+        </div>
+    </div>
+    <div class="zcenter">
+        <h2 class="h2_eng" style="margin-top:60px">词云<span>HOT WORDS CLOUD</span></h2>
+    </div>
+    <div class="wordscloud">
+        <div class="zcenter clearfloat">
+            <div class="fl w3dcloud_box">
+                <div id="w3dcloud"></div>
+            </div>
+            <div class="wordscloudnotes fr clearfloat">
+                <p>每个大类下的热点词云分布，字体越大的词表示词语的重要性越高。</p>
+                <!--<div class="btn_r_white fr"><a href="#">查看全文</a></div>-->
+            </div>
+        </div>
+    </div>
+    <div style="width:100%; background:#f7fcff;padding:60px 0">
+        <div class="zcenter">
+            <!-- svg 公共渐变特效(话题热度分布图中使用) -->
+            <svg width="0" height="0">
+                <defs>
+                    <linearGradient id="graCol">
+                        <stop offset="0" stop-color="#88D2FD"></stop>
+                        <stop offset="1" stop-color="#0092FF"></stop>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h2 class="h2_eng">话题热度分布<span>TOP HEAT DISTRIBUTION</span></h2>
+            <div class="graphic_box_full htrdfb clearfloat">
+                <div class="imgbox fl">
+                    <ul id="hotRankBox">
+                        <!--<li class="active">-->
+                        <!--<a href="#" class="linktit">-->
+                        <!--<span class="number">1</span>-->
+                        <!--<span>热词</span>-->
+                        <!--<span class="time fr">-->
+                        <!--<svg width="330" height="16">-->
+                        <!--<rect width="256" height="16" fill="url(#graCol)"></rect>-->
+                        <!--</svg>-->
+                        <!--</span>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+                <div class="fl">
+                    <p>每个大类下面的话题分布，横轴表示所有话题的分布占比，纵轴表示话题的文本，其数值按照从大到小排序，数值越高表示话题在该大类下面越重要。</p>
+                </div>
+            </div>
+            <div class="sdpx">
+                <div class="triangle_up"></div>
+                <h2>深度剖析</h2>
+                <div class="sdpx_box1 clearfloat">
+                    <h3>数据来源分布</h3>
+                    <div class="imgbox fl">
+                        <div id="topicData" style="width: 730px;height: 340px;"></div>
+                    </div>
+                    <div class="fl sdpx_box1_right graphic_txt">
+                        <p class="topic-data-page">数据来源分布的横轴表示的是数据来源地址，纵轴表示的是来源的数量。</p>
+                    </div>
+                </div>
+                <div class="clearfloat sdpx_box2_wraper">
+                    <div class="sdpx_box2 fl">
+                        <h3>热点关联词</h3>
+                        <div class="imgbox">
+                            <div id="hotRelate" style="width: 456px;height: 260px;"></div>
+                            <div class="range" id="hot_range">
+                                <div class="range-box">
+                                    <div class="range-slider"></div>
+                                    <div class="range-tip"></div>
+                                    <div class="range-mea"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graphic_txt">
+                            <p>图正中间的圆点代表中心词，其它的圆点距离中心词越近表示关系越紧密。下方是时间线，用户可以点击时间线上的时间节点，以观测到不同时间话题中心词和其热点词的关联关系。</p>
+                        </div>
+                    </div>
+                    <div class="sdpx_box2 fr">
+                        <h3>热点词趋势</h3>
+                        <div class="imgbox">
+                            <div id="hotWords" style="width: 456px;height: 310px;"></div>
+                        </div>
+                        <div class="graphic_txt">
+                            <p>横轴表示的是时间，纵轴表示的是热度数值，图中每一条曲线都代表的是该曲线对应的词随时间的变化趋势。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sdpx_box1 clearfloat">
+                    <h3>热点话题分布</h3>
+                    <div class="fl hot-btn-box">
+                        <span class="hot-btn current" rel="0">China</span>
+                        <span class="hot-btn" rel="1">World</span>
+                    </div>
+                    <div class="fl map-box">
+                        <div class="fl p-a">
+                            <div class="imgbox fl">
+                                <div id="chinaMap" style="width: 730px;height: 468px;"></div>
+                            </div>
+                            <div class="fl sdpx_box1_right">
+                                <ul class="region_sel clearfloat click-tab">
+                                    <li class="current" rel="0"><a href="javascript: void(0);">省份</a></li>
+                                    <li rel="1"><a href="javascript: void(0);">城市</a></li>
+                                </ul>
+                                <div class="area-box">
+                                    <table class="region_table">
+                                        <thead>
+                                        <tr>
+                                            <td width="5%"></td>
+                                            <td width="25%"></td>
+                                            <td width="70%"></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="pro_box"></tbody>
+                                    </table>
+                                    <table class="region_table v-h">
+                                        <thead>
+                                        <tr>
+                                            <td width="5%"></td>
+                                            <td width="25%"></td>
+                                            <td width="70%"></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="city_box"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fl p-a v-h">
+                            <div class="imgbox fl">
+                                <div id="worldMap" style="width: 730px;height: 468px;"></div>
+                            </div>
+                            <div class="fl sdpx_box1_right">
+                                <div class="area-box" style="padding-top:30px;">
+                                    <table class="region_table">
+                                        <thead>
+                                        <tr>
+                                            <td width="5%"></td>
+                                            <td width="25%"></td>
+                                            <td width="70%"></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="world_pro_box"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fl graphic_txt">
+                        <p>左图表示的是当前话题的地域分布，在当前话题下，颜色值越高的地点表示该话题热度越高。右图表示当前话题热度排名前十的地区。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--技术预警end-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/3DCloudWords.js"></script>
+<script type="text/javascript" src="../js/HotspotAnalyse.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

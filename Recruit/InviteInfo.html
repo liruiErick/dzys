@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/selectize.default.css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/Paginate.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href="../index.html">首页</a> &gt; <a href="InviteInfo.html?menu=4">项目申报</a>
+        </li>
+    </ul>
+    <div class="law_searech">
+        <div class="published">
+            <div class="control_time">
+                <label class="w_label80">时间</label>
+                <div class="w_r_100">
+                    <select id="control_time_zhaocaixinxi" required placeholder="选择时间">
+                        <option value="1">全部</option>
+                        <option value="2">近一周</option>
+                        <option value="3">近一月</option>
+                        <option value="4">近三个月</option>
+                        <option value="5">近一年</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control_keywords">
+                <label class="w_label80">关 键 词</label>
+                <div class="sousuo_con"><input type="search" id="keysid" style="font-size:16px;"/></div>
+                <div class="sousuo_btn"><a onclick="Search()">搜 索</a></div>
+                <div class="sousuo_btn_jieguo"><a onclick="SearchAgain()">在结果中检索</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="law_list law_list_box">
+        <div class="left-data-box" style="width: 50%;float: left;">
+            <div class="law_list_top">
+                <div class="caibiaoxinxi_title1 mar-sm">中央部委</div>
+            </div>
+            <div class="law_list_con caibiaoxinxi_list fl">
+                <ul class="index-data-list fl" id="left_list">
+                    <!--<li class="fl">-->
+                    <!--<a class="fl" href="#">-->
+                    <!--<img src="../images/book1.jpg" width="150" height="184" alt=""/>-->
+                    <!--</a>-->
+                    <!--<div class="fl">-->
+                    <!--<h1>-->
+                    <!--<a href="#">标题标题标题标题标题标题标题标题标题标题</a>-->
+                    <!--</h1>-->
+                    <!--<p>-->
+                    <!--<a href="#">摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...</a>-->
+                    <!--</p>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="law_list_fenye fl set-area" style="width:62%;">
+                <div id="pagingid" class="pagination"></div>
+            </div>
+        </div>
+        <div class="right-data-box" style="width: 50%;float: left;border-left: 1px solid #ddd;box-sizing: border-box;">
+            <div class="law_list_top">
+                <div class="caibiaoxinxi_title1 mar-sm">地方</div>
+            </div>
+            <div class="law_list_con caibiaoxinxi_list fl">
+                <ul class="index-data-list fl" id="right_list">
+                    <!--<li class="fl">-->
+                    <!--<a class="fl" href="#">-->
+                    <!--<img src="../images/book1.jpg" width="150" height="184" alt=""/>-->
+                    <!--</a>-->
+                    <!--<div class="fl">-->
+                    <!--<h1>-->
+                    <!--<a href="#">标题标题标题标题标题标题标题标题标题标题</a>-->
+                    <!--</h1>-->
+                    <!--<p>-->
+                    <!--<a href="#">摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...摘要...</a>-->
+                    <!--</p>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="law_list_fenye fl set-area" style="width:62%;">
+                <div id="right_pagingid" class="pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    var pageSize = 12;
+    var pageCount = 0;
+    var displayNums = 10;
+    var pageNum = 0;
+    var smenu = "";
+    if (getUrl()[0].slice(0, 4) === 'menu') {
+        smenu = getUrl()[0].substring(5);
+    }
+
+    //分页
+    //currentIndex 当前页码
+    function ShowPage(currentIndex)
+    {
+        var time = "";
+        var words = "";
+        $(document).click(function (e) {
+            var cc = $(e.target).parent().parent().attr("id");
+            if (cc == "pagingid")
+            {
+                Invite.GetInfoListFirst(currentIndex, time, words);
+            }
+            else if (cc == "right_pagingid") {
+                Invite.GetInfoListSecond(currentIndex, time, words);
+            }
+        })
+    }
+
+    function Search()
+    {
+        Invite.Search();
+    }
+    function SearchAgain()
+    {
+        Invite.SearchAgain();
+    }
+
+    var Invite = {
+        //界面初次加载
+        init: function () {
+            this.GetInfoListFirst(1, "", "");
+            this.GetInfoListSecond(1, "", "");
+        },
+        //获取中央内容
+        //currentIndex 当前页码
+        //time 时间条件
+        //words 查询关键字
+        GetInfoListFirst: function (currentIndex, time, words) {
+            var nurl = LoadUrl() + "axis2/services/MyService/searchProject";
+            var start = (currentIndex - 1) * pageSize;
+            $.ajax({
+                type: "POST",
+                url: nurl,
+                data: {
+                    "sub_srv": "4",
+                    "unit": "中央",
+                    "keyword": words,
+                    "datescope": time,
+                    "fromIndex": start,
+                    "size": pageSize
+                },
+                dataType: "text",
+                success: function (result) {
+                    var html = "";
+                    result = loadXML(result);
+                    if (result) {
+                        result = jQuery.parseJSON(result);
+                        $.each(result, function (a, b) {
+                            if (pageCount === 0) {
+                                pageCount = b.total;
+                            }
+                            html += '<li class="fl"><a class="fl" href="InviteInfoDetails.html?menu=4&pid=' + b.id + '" title="' + b.title + '"><img src="../images/item/' + b.organization + '.jpg" width="150" height="184" alt=""/></a><div class="fl"><h1><a href="InviteInfoDetails.html?menu=4&pid=' + b.id + '" title="' + b.title + '">' + b.title + '</a></h1><p><a href="InviteInfoDetails.html?menu=4&pid=' + b.id + '">' + ((b.stick_abstract.length > 140) ? (b.stick_abstract.substring(0, 140) + '...') : (b.stick_abstract)) + '</a></p></div></li>'
+                        });
+                        $("#left_list").html(html);
+                        var num = 0;
+                        if (pageCount % pageSize == 0) {
+                            num = Math.floor(pageCount / pageSize);
+                        }
+                        else {
+                            num = Math.floor(pageCount / pageSize) + 1;
+                        }
+                        if (pageCount !== 0) {
+                            $("#pagingid").empty();
+                            $("#pagingid").pagination(currentIndex, num, displayNums);
+                        }
+                        else {
+                            $("#pagingid").empty();
+                        }
+                    }
+                }
+            })
+        },
+        //获取地方内容
+        //currentIndex 当前页码
+        //time 时间条件
+        //words 查询关键字
+        GetInfoListSecond: function (currentIndex, time, words) {
+            var nurl = LoadUrl() + "axis2/services/MyService/searchProject";
+            var start = (currentIndex - 1) * pageSize;
+            $.ajax({
+                type: "POST",
+                url: nurl,
+                data: {
+                    "sub_srv": "4",
+                    "unit": "地方",
+                    "keyword": words,
+                    "datescope": time,
+                    "fromIndex": start,
+                    "size": pageSize
+                },
+                dataType: "text",
+                success: function (result) {
+                    var html = "";
+                    result = loadXML(result);
+                    if (result) {
+                        result = jQuery.parseJSON(result);
+                        $.each(result, function (a, b) {
+                            if (pageNum === 0) {
+                                pageNum = b.total;
+                            }
+                            html += '<li class="fl"><a class="fl" href="InviteInfoDetails.html?menu=4&pid=' + b.id + '" title="' + b.title + '"><img src="../images/item/' + b.organization + '.jpg" width="150" height="184" alt=""/></a><div class="fl"><h1><a href="InviteInfoDetails.html?menu=4&pid=' + b.id + '" title="' + b.title + '">' + b.title + '</a></h1><p><a href="InviteInfoDetails.html?menu=4&pid=' + b.id + '">' + ((b.stick_abstract.length > 140) ? (b.stick_abstract.substring(0, 140) + '...') : (b.stick_abstract)) + '</a></p></div></li>'
+                        });
+                        $("#right_list").html(html);
+
+                        var num = 0;
+                        if (pageNum % pageSize == 0) {
+                            num = Math.floor(pageNum / pageSize);
+                        }
+                        else {
+                            num = Math.floor(pageNum / pageSize) + 1;
+                        }
+                        if (pageNum !== 0) {
+                            $("#right_pagingid").empty();
+                            $("#right_pagingid").pagination(currentIndex, num, displayNums);
+                        }
+                        else {
+                            $("#right_pagingid").empty();
+                        }
+                    }
+                }
+            })
+        },
+        //搜索
+        Search: function () {
+            var conection = $("#control_time_zhaocaixinxi").text();
+            var words = $("#keysid").val();
+            SetLocal("Connection", conection);
+            SetLocal("kWords", words);
+            pageCount = 0;
+            pageNum = 0;
+            Invite.GetInfoListFirst(1, conection, words);
+            Invite.GetInfoListSecond(1, conection, words);
+        },
+        //在结果中搜索
+        SearchAgain:function()
+        {
+            var ww = $("#keysid").val();
+            if (ww != GetLocal("kWords")) {
+                ww = GetLocal("kWords") + "," + ww;
+            }
+            pageCount = 0;
+            pageNum = 0;
+            Invite.GetInfoListFirst(1, GetLocal("Connection"), ww);
+            Invite.GetInfoListSecond(1, GetLocal("Connection"), ww);
+        }
+    };
+
+    Invite.init();
+</script>
+<script type="text/javascript">
+    $('#control_time_zhaocaixinxi').selectize({
+        create: true,
+        sortField: {
+            field: 'value',
+            direction: 'asc'
+        },
+        dropdownParent: 'body'
+    })
+</script>
+<script type="text/javascript">
+    $('#control_time_zhaocaixinxi').selectize({
+        create: true,
+        sortField: {
+            field: 'value',
+            direction: 'asc'
+        },
+        dropdownParent: 'body'
+    });
+
+    function checkall() {
+        var c = document.getElementsByName("radiog_dark");
+        var r = document.getElementsByTagName("input");
+        AllChecked(c, r)
+    }
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

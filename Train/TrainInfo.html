@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--2017-01-14法律搜索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx">
+            <a href='../index.html'>首页</a> &gt; <a href='ShowInfo.html?menu=5'>会展培训</a> &gt; <a href='TrainInfo.html?menu=5'>培训信息</a>
+        </li>
+    </ul>
+    <div class="law_searech">
+        <div class="published">
+            <div class="control_time">
+                <label class="w_label80">时间</label>
+                <div class="w_r_100">
+                    <select id="control_time_zhaocaixinxi" required placeholder="选择时间">
+                        <option value="1">全部</option>
+                        <option value="2">近一周</option>
+                        <option value="3">近一月</option>
+                        <option value="4">近三个月</option>
+                        <option value="5">近一年</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control_keywords">
+                <label class="w_label80">关 键 词</label>
+                <div class="sousuo_con"><input type="search" id="keysid"/></div>
+                <div class="sousuo_btn"><a onclick="SearchT()">搜 索</a></div>
+                <div class="sousuo_btn_jieguo"><a onclick="SearchAgain()">在结果中检索</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="peishunxinxi_con">
+        <div class="peishunxinxi_list">
+            <ul class="peishunxinxi_list_nr" id="listid">
+                <!--<li>-->
+                    <!--<div class="peishunxinxi_list_img">-->
+                        <!--<a href="#">-->
+                            <!--<img src="../images/peixun.jpg" width="354" height="168" alt="">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="peishunxinxi_list_xq">-->
+                        <!--<h2><a href="#">大数据流程管理与标准化建立</a></h2>-->
+                        <!--<p>培训时间：2017-08-24</p>-->
+                        <!--<p>报名时间：2016-12至2017-07</p>-->
+                        <!--<p>活动规模：350人</p>-->
+                        <!--<p>培训地点：上海浦东新区</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div class="law_list_fenye" style="text-align:center;">
+            <div class="pagination" id="pagingid"></div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/selectize.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/traininfo.js"></script>
+<script type="text/javascript" src="../js/pagination-custom.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.fawen_tab').Tabs({
+            event: 'click',  //事件类型
+            timeout: 100,  //设置事件延迟
+            auto: false,  //3秒自动切换一次
+            callback: null  //回调函数
+        })  //返回了this
+    });
+    $('#control_time_zhaocaixinxi').selectize({
+        create: true,
+        sortField: {
+            field: 'value',
+            direction: 'asc'
+        },
+        dropdownParent: 'body'
+    });
+</script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

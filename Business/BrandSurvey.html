@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet">
+    <link href="../css/selectize.default.css" rel="stylesheet">
+    <link href="../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet">
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+<body>
+<!--header -->
+<div id="header"></div>
+<!--技术预警start-->
+<div class="graphictop">
+    <div class="zcenter column ppjc">
+        <ul class="mbxcon mbxcon_ny">
+            <li class="mbx">
+                <a href="../index.html">首页</a> &gt; <a href="IndicesRefer.html?menu=2">产业商情</a> &gt; <a href="BrandSurvey.html?menu=2">品牌监测</a>
+            </li>
+        </ul>
+        <h1>品牌监测<span class="more ppjc-png"></span></h1>
+        <ul class="tabGraphBtn clearfloat">
+            <li class="current"><a href="javascript: void(0);" rel="1">物联网<span>The Internet of Thing</span></a></li>
+            <li><a href="javascript: void(0);" rel="2">云计算<span>Cloud Computing</span></a></li>
+            <li><a href="javascript: void(0);" rel="3">大数据<span>Big Data</span></a></li>
+            <li><a href="javascript: void(0);" rel="4">人工智能<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="5">未来计算<span>Network Communication</span></a></li>
+            <li><a href="javascript: void(0);" rel="6">信息安全<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="7">智能制造<span>Intelligent Manufacturing</span></a></li>
+            <li><a href="javascript: void(0);" rel="8">集成电路<span>Intefrated Circruit</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="ppjccon_box graphic_con">
+    <div class="shadow"></div>
+    <div class="ppjccon zcenter">
+        <div class="clearfloat ppjc_block">
+            <h2 class="fl">领域品牌总览</h2>
+            <!--<div class="tishi2 fr"><a href="javascript:void(0);" class="showbox"><i></i>提示</a></div>-->
+        </div>
+        <div class="graphic_box_full clearfloat">
+            <div class="imgbox fl">
+                <div id="BrandTolData" style="width:800px;height:338px;"></div>
+            </div>
+            <div class="fl">
+                <div class="ppjc_year_chose clearfloat">
+                    <div class="w60 data-position">
+                        <input class="date-sel" type="text" id="startTime" maxlength="10">
+                    </div>
+                    <div class="fl">至</div>
+                    <div class="w60 data-position">
+                        <input class="date-sel" type="text" id="endTime" maxlength="10">
+                    </div>
+                    <div class="bluebtn fl ser-box">
+                        <span class="msg">时间设置存在错误！</span>
+                        <a class="ser-btn" href="javascript: void(0)">搜索</a>
+                    </div>
+                </div>
+                <p>&#x3000;&#x3000;X轴和Y轴分别是负面敏感度和价值认可度。圆圈大小表示品牌关注度，圆圈颜色明暗表示品牌喜好度。将鼠标放到各个圆圈上，显示该品牌四维情况。四个维度区间在[0,1]之间。品牌关注度、品牌喜好度、价值认可度数值越高越好，负面敏感度数值越低越好。四个值含义分别为，品牌喜好度：用户对品牌的喜好程度；品牌关注度：用户对品牌的实时关注程度；负面敏感度：用户对品牌负面新闻的敏感程度；价值认可度：用户对购买行为的认可程度。</p>
+            </div>
+        </div>
+        <div class="clearfloat ppjc_block">
+            <h2 class="fl">领域品牌排行</h2>
+            <div class="tishi2 fr"><a href="javascript:void(0);" class="showbox"><i></i>提示</a></div>
+        </div>
+        <div class="graphic_box_full ppjc_db">
+            <ul class="tab_menu clearfloat">
+                <li class="current pointer" value="20">Top 20</li>
+                <li class="pointer" value="50">Top 50</li>
+            </ul>
+            <div class="tab_box">
+                <div class="tab_box_con">
+                    <table class="ppjc_db_table">
+                        <thead>
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th width="15%">品牌名称</th>
+                            <th width="50%" class="sel-box">
+                                <div>
+                                    <span class="selected">综合</span>
+                                    <ul class="sec">
+                                        <li value="overall">综合</li>
+                                        <li value="pleasantness">品牌喜好度</li>
+                                        <li value="attention">品牌关注度</li>
+                                        <li value="sensitivity">品牌敏感度</li>
+                                        <li value="aptitude">价值认可度</li>
+                                    </ul>
+                                </div>
+                            </th>
+                            <th width="15%">value</th>
+                            <th width="15%">对比</th>
+                        </tr>
+                        </thead>
+                        <tbody id="top20"></tbody>
+                    </table>
+                </div>
+                <div class="hide tab_box_con">
+                    <table class="ppjc_db_table">
+                        <thead>
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th width="15%">品牌名称</th>
+                            <th width="50%" class="sel-box">
+                                <div>
+                                    <span class="selected">综合</span>
+                                    <ul class="sec">
+                                        <li value="overall">综合</li>
+                                        <li value="pleasantness">品牌喜好度</li>
+                                        <li value="attention">品牌关注度</li>
+                                        <li value="sensitivity">品牌敏感度</li>
+                                        <li value="aptitude">价值认可度</li>
+                                    </ul>
+                                </div>
+                            </th>
+                            <th width="15%">value</th>
+                            <th width="15%">对比</th>
+                        </tr>
+                        </thead>
+                        <tbody id="top50"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ppjc_dp ppjccon">
+        <div class="clearfloat ppjc_block zcenter">
+            <h2 class="fl">单品牌详情</h2>
+            <!--<div class="tishi2 fr"><a href="javascript:void(0);" class="showbox"><i></i>提示</a></div>-->
+        </div>
+        <div class="zcenter graphic_box_full clearfloat" style="overflow: visible;">
+            <div class="pp_title" id="selBox">
+                <span class="current" rel="0">综合</span>
+                <span class="" rel="1">品牌喜好度</span>
+                <span class="" rel="2">品牌关注度</span>
+                <span class="" rel="3">品牌敏感度</span>
+                <span class="" rel="4">价值认可度</span>
+            </div>
+            <div class="imgbox fl five-box">
+                <div class="ab">
+                    <div class="" id="BrandSinData" style="width: 800px;height: 400px;"></div>
+                </div>
+                <div class="ab hide">
+                    <div class="hide" id="BrandSinData1" style="width: 800px;height: 400px;"></div>
+                </div>
+                <div class="ab hide">
+                    <div class="hide" id="BrandSinData2" style="width: 800px;height: 400px;"></div>
+                </div>
+                <div class="ab hide">
+                    <div class="hide" id="BrandSinData3" style="width: 800px;height: 400px;"></div>
+                </div>
+                <div class="ab hide">
+                    <div class="hide" id="BrandSinData4" style="width: 800px;height: 400px;"></div>
+                </div>
+                <p>未选择任何品牌！</p>
+            </div>
+            <div class="fl control-class">
+                <p>&#x3000;&#x3000;该图分别显示在所选时间内的品牌综合走势和四个情感值的变化走势。鼠标停在某个时间节点上，显示当前时刻情感值的具体数据。根据上方表格的复选情况，这里显示多个品牌的分析情况。</p>
+            </div>
+        </div>
+    </div>
+    <div id="TB_overlayBG"></div>
+    <div class="Tipbox" style="display:none">
+        <a href="javascript: void (0);" class="close">关闭</a>
+        <h4>领域品牌排行</h4>
+        <div class="mainlist">
+            <p>各个品牌四维值、综合值排名情况表。综合值由四维值计算得出，代表品牌的总体评价分数。在复选框可以进行品牌的选择，选择的效果在上方总览图和下方随时间变化图上有所体现。</p>
+        </div>
+    </div>
+</div>
+<!--技术预警end-->
+<!--footer-->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/jquery.tips.js"></script>
+<script type="text/javascript" src="../js/laydate.dev.js"></script>
+<script type="text/javascript" src="../js/BrandSurvey.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>

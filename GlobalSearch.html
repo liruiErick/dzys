@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/selectize.default.css">
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <link href="css/Paginate.css" type="text/css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
+</head>
+<body bgcolor="#FFFFFF">
+<!-- header -->
+<div id="header"></div>
+<!--2017-02-09检索框-->
+<div class="w1200 ">
+    <ul class="mbxcon mbxcon_ny">
+        <li class="mbx"><a href="index.html">首页</a> &gt; <a href="GlobalSearch.html">全站检索</a></li>
+    </ul>
+    <div class="law_searech">
+        <div class="published">
+            <div class="control_time">
+                <label class="w_label80">子 菜 单</label>
+                <div class="w_r_100">
+                    <select style="font-size:16px;" id="control_time_zhaocaixinxi" required
+                            placeholder="选择子菜单"></select>
+                </div>
+            </div>
+            <div class="control_time">
+                <label class="w_label80">领 域</label>
+                <div class="w_r_100">
+                    <select style="font-size:16px;" id="control_lingyu_xuanze" required placeholder="选择领域"></select>
+                </div>
+            </div>
+            <div class="control_keywords">
+                <label class="w_label80">关 键 词</label>
+                <div class="sousuo_con"><input type="search" id="keyid"/></div>
+                <div class="sousuo_btn"><a onclick="SearchBtn()">搜 索</a></div>
+                <div class="sousuo_btn_jieguo"><a onclick="SearchAgain()">在结果中检索</a></div>
+            </div>
+        </div>
+    </div>
+    <!--2017-02-09词条图层-->
+    <div class="citiaokuang">
+        <div class="citiao_guanbi_btn">
+            <a href="javascript:void(0);">
+                <img src="images/guanbi.png" width="30" height="30" alt=""/>
+            </a>
+        </div>
+        <div class="citiao_title">百科词条</div>
+        <div class="citiao_title_cihui" id="ctid">物联网</div>
+        <p class="citiao_txt" id="ctcid">物联网是新一代信息技术的重要组成部分，也是“信息化”时代的重要发展阶段。其英文名称是：“Internet of
+            things（IoT）”。顾名思义，物联网就是物物相连的互联网。这有两层意思：其一，物联网的核心和基础仍然是互联网，是在互联网基础上的延伸和扩展的网络；其二，其用户端延伸和扩展到了任何物品与物品之间，进行信息交换和通信，也就是物物相息。物联网通过智能感知、识别技术与普适计算等通信感知技术，广泛应用于网络的融合中，也因此被称为继计算机、互联网之后世界信息产业发展的第三次浪潮。物联网是互联网的应用拓展，与其说物联网是网络，不如说物联网是业务和应用。因此，应用创新是物联网发展的核心，以用户体验为核心的创新2.0是物联网发展的灵魂。</p>
+    </div>
+    <div class="law_list left_sousuo">
+        <div class="law_list_top">
+            <div class="sousuo_time_select">
+                <select id="control_time_xuanze" onchange="ShowInfoByTime(this)" required placeholder="选择时间">
+                    <option value="1">全部</option>
+                    <option value="2">近一天</option>
+                    <option value="3">近一周</option>
+                    <option value="4">近一个月</option>
+                    <option value="5">近一年</option>
+                </select>
+            </div>
+        </div>
+        <div class="law_list_con quawensousuo_list" style="height:90%;">
+            <ul class="tab1list " id="listid"></ul>
+        </div>
+        <div class="law_list_fenye" style="text-align:center;">
+            <div class="pagination" id="pagingid"></div>
+        </div>
+    </div>
+    <div class="sousou_right">
+        <div class="sousou_leixing_title">类型<span class="more" id="leixing_more">更多</span></div>
+        <div class="sousou_leixing" id="leixing_box">
+            <div class="sousou_leixing_list">
+                <ul id="typeid"></ul>
+            </div>
+        </div>
+        <div class="blank20"></div>
+        <div class="sousou_leixing_title sousou_diyu_title">地域 <span class="more" id="diyu_more">更多</span></div>
+        <div class="sousou_leixing h540" id="diyu_box">
+            <div class="sousou_leixing_list">
+                <ul id="areaid"></ul>
+            </div>
+        </div>
+        <div class="blank20"></div>
+        <div class="sousou_leixing_title sousou_jigou_title">机构<span class="more" id="jigou_more">更多</span></div>
+        <div class="sousou_leixing h540" id="jigou_box">
+            <div class="sousou_leixing_list ">
+                <ul id="organid"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.tabs.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/selectize.js"></script>
+<script type="text/javascript" src="js/jspatch.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type="text/javascript" src="js/GlobalSearch.js"></script>
+<script type="text/javascript" src="js/pagination-custom.js"></script>
+<!--右侧div显示隐藏-->
+<script type="text/javascript">
+    $(".citiao_guanbi_btn").click(function () {
+        $(".citiaokuang").hide();
+    });
+    $(document).ready(function () {
+        $("#leixing_more").click(function () {
+            $("#leixing_box").toggleClass("hh300");
+        });
+        $("#diyu_more").click(function () {
+            $("#diyu_box").toggleClass("h584");
+//            $("#diyu_more").replaceWith(function () {
+//                return '<span class="more" id="diyu_more_guanbi">关闭</span>';
+//            });
+        });
+        $("#jigou_more").click(function () {
+
+            $("#jigou_box").toggleClass("h584");
+//            $("#jigou_more").replaceWith(function () {
+//                return '<span class="more" id="diyu_more_guanbi">关闭</span>';
+//            });
+        });
+    });
+    $('#control_time_xuanze').selectize({
+        create: true,
+        sortField: {
+            field: 'value',
+            direction: 'asc'
+        },
+        dropdownParent: 'body'
+    });
+</script>
+<script type="text/javascript" src="js/Last_Menu.js"></script>
+</body>
+</html>

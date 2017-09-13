@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>工业和信息化产业信息公共服务平台</title>
+    <link href="../css/basic.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/selectize.default.css">
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.carousel.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/owl.theme.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/world.js"></script>
+    <script type="text/javascript" src="../js/echarts-wordcloud.min.js"></script>
+    <!--[if IE 8]><script src="../js/es5.js"></script><![endif]-->
+<body>
+<!-- header -->
+<div id="header"></div>
+<!--技术预警start-->
+<div class="graphictop">
+    <div class="zcenter column jsyj">
+        <ul class="mbxcon mbxcon_ny">
+            <li class="mbx">
+                <a href="../index.html">首页</a> &gt; <a href="IndestryNews.html?menu=0">产业动态</a> &gt; <a href="TechnicalWarning.html?menu=0">技术预警</a>
+            </li>
+        </ul>
+        <h1>技术预警<span class="more jsyj-png"></span></h1>
+        <ul class="tabGraphBtn clearfloat">
+            <li class="current"><a href="javascript: void(0);" rel="1">物联网<span>The Internet of Thing</span></a></li>
+            <li><a href="javascript: void(0);" rel="2">云计算<span>Cloud Computing</span></a></li>
+            <li><a href="javascript: void(0);" rel="3">大数据<span>Big Data</span></a></li>
+            <li><a href="javascript: void(0);" rel="4">人工智能<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="5">未来计算<span>Network Communication</span></a></li>
+            <li><a href="javascript: void(0);" rel="6">信息安全<span>Artificial Intelligence</span></a></li>
+            <li><a href="javascript: void(0);" rel="7">智能制造<span>Intelligent Manufacturing</span></a></li>
+            <li><a href="javascript: void(0);" rel="8">集成电路<span>Intefrated Circruit</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="jsyjcon_box graphic_con">
+    <div class="shadow"></div>
+    <div class="jsyjcon">
+        <ul class="tab_menu tabVertical">
+            <li class="current pointer tab-key" value="1"><span>技术基本情况分析</span></li>
+            <li class="pointer tab-key" value="2"><span>技术发展趋势分析</span></li>
+        </ul>
+        <div class="tab_box">
+            <div class="con1 tab_box_con">
+                <h2>技术基本情况分析</h2>
+                <ul class="clearfloat">
+                    <li class="graphic_box_2">
+                        <h3>技术趋势</h3>
+                        <div class="imgbox" id="TecTrend" style="width: 516px;height: 312px;"></div>
+                        <p>x轴和y轴分别是时间和领域贡献值，展示当前领域或关键技术的发展趋势，点击右上角文字可以选择需要隐藏的趋势曲线，鼠标停留到具体年份可以显示具体数值，数值是基于论文与专利数据的统计分析结果。</p>
+                    </li>
+                    <li class="graphic_box_2">
+                        <h3>机构地区分布</h3>
+                        <div class="imgbox" id="worldMap" style="width: 516px;height: 312px;"></div>
+                        <p>图示为当前领域中的研究机构在世界各地的分布热度，色温越高的颜色表示当前领域在该地区的研究机构越多，鼠标停留到具体地区可以显示地区名和热度值。</p>
+                    </li>
+                </ul>
+                <div class="jsyjtab2">
+                    <div class="grayline"></div>
+                    <ul class="tabStyleUnderline tab_menu clearfloat">
+                        <li class="current pointer sec-key" value="1"><h2>重点研究机构</h2></li>
+                        <li class="pointer sec-key" value="2"><h2>知名研究专家</h2></li>
+                    </ul>
+                    <div class="tab_box">
+                        <div class="tab_box_con">
+                            <div class="jsyjtab2_con_box clearfloat">
+                                <div class="fl Tec-exp-0">
+                                    <table style="width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <th width="4%">No.</th>
+                                            <th width="40%">机构名称</th>
+                                            <th width="50%" id="tecInsName">...</th>
+                                            <th width="6%">贡献度</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="fl Tec-exp">
+                                    <table class="Tec-exp-table">
+                                        <thead>
+                                        <tr>
+                                            <th width="4%"></th>
+                                            <th width="40%"></th>
+                                            <th width="50%"></th>
+                                            <th width="6%"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tecIns"></tbody>
+                                    </table>
+                                </div>
+                                <div class="fl">
+                                    <p>该列表展示当前领域各研究机构的贡献度排名。</p>
+                                </div>
+                            </div>
+                            <ul class="graphic_box_3 clearfloat">
+                                <li>
+                                    <h3>机构研究领域占比</h3>
+                                    <div class="imgbox" id="TecIns2Data" style="width: 314px;height: 260px;"></div>
+                                    <p>该图表示当前选中机构近年来论文和专利研究领域的分布，鼠标停留到某一具体位置可以显示此机构在该领域的论文和专利数量。</p>
+                                </li>
+                                <li class="box3_w">
+                                    <h3>机构论文专利数目</h3>
+                                    <div class="big-box">
+                                        <div class="mes-box jum-msg-hide" id="mes-box1">
+                                            <!--<p>样式测试</p>-->
+                                        </div>
+                                        <div class="imgbox" id="TecIns3Data" style="width: 350px;height: 260px;"></div>
+                                    </div>
+                                    <p>x轴和y轴分别是时间和数量，展示当前机构的发文数量与专利数量，点击条形柱可以展示该机构最近发表的论文或专利概况。</p>
+                                </li>
+                                <li>
+                                    <h3>机构学术影响力演化</h3>
+                                    <div class="imgbox" id="TecIns4Data" style="width: 314px;height: 260px;"></div>
+                                    <p>X轴和Y轴分别表示对应的年份和机构的影响力。曲线的走势代表该机构在十年内影响力的变化情况，最后两年为预测值。</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hide tab_box_con">
+                            <div class="jsyjtab2_con_box clearfloat">
+                                <div class="fl Tec-exp-0">
+                                    <table style="width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <th width="4%">No.</th>
+                                            <th width="40%">专家</th>
+                                            <th width="50%" id="tecExpName">...</th>
+                                            <th width="6%">贡献度</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="fl Tec-exp">
+                                    <table class="Tec-exp-table">
+                                        <thead>
+                                        <tr>
+                                            <th width="4%"></th>
+                                            <th width="40%"></th>
+                                            <th width="50%"></th>
+                                            <th width="6%"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tecExp"></tbody>
+                                    </table>
+                                </div>
+                                <div class="fl">
+                                    <p>该列表展示当前领域各专家的贡献度排名。</p>
+                                </div>
+                            </div>
+                            <ul class="graphic_box_3 clearfloat">
+                                <li>
+                                    <h3>专家研究领域占比</h3>
+                                    <div class="imgbox" id="TecExp2Data" style="width: 314px;height: 260px;"></div>
+                                    <p>当前专家近年来研究领域的分布。</p>
+                                </li>
+                                <li class="box3_w">
+                                    <h3>专家论文专利数目</h3>
+                                    <div class="big-box">
+                                        <div class="mes-box jum-msg-hide" id="mes-box2">
+                                            <!--<p>样式测试</p>-->
+                                        </div>
+                                        <div class="imgbox" id="TecExp3Data" style="width: 350px;height: 260px;"></div>
+                                    </div>
+                                    <p>x轴和y轴分别是时间和数量，展示当前专家的发文数量与专利数量，点击条形柱可以展示该专家最近发表的论文或专利概况。</p>
+                                </li>
+                                <li>
+                                    <h3>专家学术影响力演化</h3>
+                                    <div class="imgbox" id="TecExp4Data" style="width: 314px;height: 260px;"></div>
+                                    <p>X轴和Y轴分别表示对应的年份和研究人员的影响力。曲线的走势代表该研究人员在十年内影响力的变化情况，最后两年为预测值。</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide con1 tab_box_con">
+                <h2>技术发展趋势分析</h2>
+                <div class="graphic_box_1 clearfloat">
+                    <h3>时间演化主题分析</h3>
+                    <div class="clearfloat topic-box">
+                        <ul class="sjyhform checkbox_style fl clearfloat" id="theme">
+                            <!--<li>-->
+                            <!--<input type="checkbox" name="checkbox1" id="checkbox1" class="css-checkbox" checked>-->
+                            <!--<label for="checkbox1" class="css-label radGroup1 clr">主题</label>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <div class="imgbox fl">
+                        <div id="themeData" style="width: 746px;height: 440px;"></div>
+                    </div>
+                    <div class="fl">
+                        <p>图中显示该领域十年内影响力较强的5个主题的时间演化情况。如只选择某一主题，则按年份显示十年内与该主题最相关的十个词，点的大小表示该词与该主题的相关性，虚线表示相邻两年间最相关的两个词。</p>
+                    </div>
+                </div>
+                <div class="graphic_box_1 clearfloat">
+                    <h3>技术发展评估</h3>
+                    <div class="imgbox fl">
+                        <div id="TecDevData" style="width:746px;height:300px;"></div>
+                    </div>
+                    <div class="fl">
+                        <p>图中曲线表示对当前领域各个关键技术的综合评估，展示不同技术的发展历程。</p>
+                    </div>
+                </div>
+                <div class="graphic_box_1 clearfloat">
+                    <h3>新兴技术捕捉</h3>
+                    <div class="imgbox fl">
+                        <div id="TecWordData" style="width: 746px;height: 384px;"></div>
+                    </div>
+                    <div class="fl">
+                        <div class="chosebtn clearfloat">
+                            <div class="current">
+                                <a class="year-cut" href="javascript: void(0);" rel="1">近一年</a>
+                            </div>
+                            <div>
+                                <a class="year-cut" href="javascript: void(0);" rel="5">近五年</a>
+                            </div>
+                        </div>
+                        <table id="table_hotwords">
+                            <thead>
+                            <tr class="con-box">
+                                <th width="10%">序号</th>
+                                <th width="40%">热词</th>
+                                <th width="30%" class="active" id="toHot">热度</th>
+                                <th width="20%" class="" id="toYear">年份</th>
+                            </tr>
+                            </thead>
+                            <tbody id="wordData">
+                            <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td class="hotwords">AI</td>-->
+                            <!--<td>99999</td>-->
+                            <!--<td>2016</td>-->
+                            <!--</tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="graphic_box_1 clearfloat">
+                    <h3>突发词频分析</h3>
+                    <div class="imgbox fl">
+                        <div id="burstWordData" style="width: 746px;height: 234px;"></div>
+                    </div>
+                    <div class="fl">
+                        <p>上图词云和列表显示近一年或近五年的热词，选择近一年时，显示15个词，选择近五年时，每年显示3个词，共15个词。点击某词语，可获得该词在近几年中的词频统计情况。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--技术预警end-->
+<!-- footer -->
+<div id="footer"></div>
+<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../js/jquery.tabs.js"></script>
+<script type="text/javascript" src="../js/Common.js"></script>
+<script type="text/javascript" src="../js/jspatch.js"></script>
+<script type="text/javascript" src="../js/TechnicalWarning.js"></script>
+<script type="text/javascript" src="../js/Last_Menu.js"></script>
+</body>
+</html>
